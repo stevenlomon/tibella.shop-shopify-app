@@ -1,0 +1,16 @@
+name = "meta-capi-pixel"
+type = "web_pixel_extension"
+uid = "4072536e-c925-cdd7-5c9c-1b106b7414f5344d542e"
+
+runtime_context = "strict"
+
+[settings]
+type = "object"
+
+[settings.fields.accountID]
+name = "Account ID"
+description = "Account ID"
+type = "single_line_text_field"
+validations =  [
+  { name = "min", value = "1" }
+]
