@@ -75,4 +75,43 @@ register(({ analytics, browser }) => {
       // unloads or redirects, greatly increasing the odds that the payload reaches our Python server
     }).catch((e) => console.error("CAPI Send Failed", e));
   });
+
+  // A second `analytics.subscribe` for Add to Cart events!
+  analytics.subscribe('product_added_to_cart', async (event) => {
+    const fbc = await browser.cookie.get('_fbc');
+    const fbp = await browser.cookie.get('_fbp');
+    const cartLine = event.data.cartLine;
+    const url = event.context.window.location.href;
+
+    const payload = {
+      event_id: event.id, // Unique event ID for Meta deduplication
+      event_name: "AddToCart",
+      event_time: Math.floor(new Date(event.timestamp).getTime() / 1000),
+      event_source_url: url,
+      action_source: "website",
+      user_data: {
+        fbc: fbc,
+        fbp: fbp,
+        user_agent: event.context.navigator.userAgent
+      },
+      custom_data: {
+        currency: cartLine?.cost?.totalAmount?.currencyCode || "USD",
+        value: cartLine?.cost?.totalAmount?.amount,
+        content_name: cartLine?.merchandise?.product?.title,
+        content_type: "product",
+        contents: [{
+          id: cartLine?.merchandise?.sku || cartLine?.merchandise?.id,
+          quantity: cartLine?.quantity,
+          item_price: cartLine?.merchandise?.price?.amount
+        }]
+      }
+    };
+
+    fetch("https://tibella-shop-shopify-app.onrender.com/process-event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch((e) => console.error("CAPI AddToCart Failed", e));
+  });
 });
