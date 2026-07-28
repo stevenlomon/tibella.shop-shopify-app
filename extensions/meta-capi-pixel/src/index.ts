@@ -114,4 +114,42 @@ register(({ analytics, browser }) => {
       keepalive: true
     }).catch((e) => console.error("CAPI AddToCart Failed", e));
   });
+
+  // And a third but still crucially important (especially in the beginning) `analytics.subscribe` for ViewContent (Product Page Views) events!
+  analytics.subscribe('product_viewed', async (event) => {
+    const fbc = await browser.cookie.get('_fbc');
+    const fbp = await browser.cookie.get('_fbp');
+    const variant = event.data.productVariant;
+    const url = event.context.window.location.href;
+
+    const payload = {
+      event_id: event.id,
+      event_name: "ViewContent",
+      event_time: Math.floor(new Date(event.timestamp).getTime() / 1000),
+      event_source_url: url,
+      action_source: "website",
+      user_data: {
+        fbc: fbc,
+        fbp: fbp,
+        user_agent: event.context.navigator.userAgent
+      },
+      custom_data: {
+        currency: variant?.price?.currencyCode || "USD",
+        value: variant?.price?.amount,
+        content_name: variant?.product?.title || variant?.title,
+        content_type: "product",
+        contents: [{
+          id: variant?.sku || variant?.id,
+          item_price: variant?.price?.amount
+        }]
+      }
+    };
+
+    fetch("https://tibella-shop-shopify-app.onrender.com/process-event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch((e) => console.error("CAPI ViewContent Failed", e));
+  });
 });
