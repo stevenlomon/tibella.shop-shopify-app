@@ -35,11 +35,44 @@ register(({ analytics, browser }) => {
       utm_term: urlObj.searchParams.get('utm_term') || "",
     };
 
+    const payload = {
+      event_id: event.id, // Shopify provides a guaranteed unique UUID for event deduplication!
+      event_name: "Purchase", // The focus now in E-commerce is "Purchase" rather than "Lead"
+      event_time: Math.floor(new Date(event.timestamp).getTime() / 1000),
+      event_source_url: url,
+      action_source: "website",
+      user_data: {
+        // Access normalized PII natively. Zero DOM scraping required!
+        email: checkout.email,
+        first_name: checkout.shippingAddress?.firstName,
+        last_name: checkout.shippingAddress?.lastName,
+        phone: checkout.shippingAddress?.phone,
+        fbc: fbc,
+        fbp: fbp,
+        user_agent: event.context.navigator.userAgent,
 
-  })
+        // Shopify provides location data automatically which also is a massive win for EMQ scores!
+        city: checkout.shippingAddress?.city,
+        state: checkout.shippingAddress?.provinceCode,
+        zip: checkout.shippingAddress?.zip,
+        country: checkout.shippingAddress?.countryCode
+      },
+      custom_data: {
+        ...utmData,
+        currency: checkout.currencyCode,
+        value: checkout.subtotalPrice?.amount
+      }
+    };
 
-  // Sample subscribe to page view
-  analytics.subscribe('page_viewed', (event) => {
-    console.log('Page viewed', event);
+    // Send directly to our Render deployed Python Server at https://tibella-shop-shopify-app.onrender.com
+    fetch("https://tibella-shop-shopify-app.onrender.com/process-event", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true // `keepalive: true` is a standard browser Fetch API flag. It instructs the browser to keep the HTTP POST request 
+      // alive in the background even if the user immediately closes the browser tab or navigates to another page. Shopify explicitly
+      // requires `keepalive: true` in Web Pixels, guarantees on our part that the browser won't abort the request when the checkout tab
+      // unloads or redirects, greatly increasing the odds that the payload reaches our Python server
+    }).catch((e) => console.error("CAPI Send Failed", e));
   });
 });
