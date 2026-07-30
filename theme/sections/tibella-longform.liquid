@@ -249,29 +249,49 @@
     btn.innerText = 'Redirecting...';
     btn.disabled = true;
 
-    // 1. Grab whichever radio button the user currently has selected
+    // 1. Get selected variant ID
     const selectedRadio = document.querySelector('input[name="pack"]:checked');
     const variantId = selectedRadio ? selectedRadio.value : {{ massager.variants.first.id | default: 0 }};
 
-    // 2. Pass the selected variant ID to Shopify's cart API
+    // 2. Define direct permalink checkout URL as a fallback in case the primary AJAX checkout attempt fails
+    const fallbackCheckoutUrl = `/cart/${variantId}:1`;
+    // This follows Shopify's built-in "Permalink"
+    // [https://tibella.shop/cart/](https://tibella.shop/cart/){variant_id}:{quantity}
+    // Apparently, navigating directly to this URL tells Shopify: "Create a cart with 1 unit of this variant and push 
+    // the customer directly into checkout immediately."
+
+    // 3. Safety Timer: If AJAX hangs for > 3.5 seconds, force permalink checkout
+    const safetyTimer = setTimeout(() => {
+      console.warn('AJAX timed out. Executing direct permalink fallback...');
+      window.location.href = fallbackCheckoutUrl;
+    }, 3500);
+
+    // 4. Primary AJAX Attempt
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         items: [{
-          id: variantId,
+          id: parseInt(variantId),
           quantity: 1
         }]
       })
     })
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error('Cart API network error');
+      return res.json();
+    })
     .then(data => {
+      clearTimeout(safetyTimer);
       window.location.href = '/checkout';
     })
     .catch(err => {
-      console.error('Cart add error:', err);
-      btn.disabled = false;
-      btn.innerText = 'ADD TO CART LOREM IPSUM';
+      console.error('AJAX failed, executing permalink fallback:', err);
+      clearTimeout(safetyTimer);
+      // Fallback: Force direct redirect to checkout permalink
+      window.location.href = fallbackCheckoutUrl;
+      // And it goes without saying but the customer being redirected to the permalink for checkout still restults in a valid 
+      // purchase and the customer seeing the exact same checkout screen!
     });
   }
 </script>
