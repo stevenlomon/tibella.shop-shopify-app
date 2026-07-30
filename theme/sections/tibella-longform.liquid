@@ -143,22 +143,37 @@
           <!-- Option A -->
           <label class="cursor-pointer p-5 rounded-2xl border-2 border-[#DDD0C2] hover:border-[#D1AE5B] flex items-center justify-between transition-all bg-[#F4EEE6]/50">
             <div class="flex items-center space-x-4">
-              <input type="radio" name="pack" class="w-6 h-6 accent-[#D1AE5B]">
-              <span class="font-bold text-lg text-[#18181A]">Option A (Lorem)</span>
+              <input 
+                type="radio" 
+                name="pack" 
+                value="{{ massager.variants[0].id | default: massager.variants.first.id }}" 
+                class="w-6 h-6 accent-[#D1AE5B]"
+              >
+              <span class="font-bold text-lg text-[#18181A]">Option A (1 Pack)</span>
             </div>
-            <span class="font-bold text-xl text-[#18181A]">$49</span>
+            <span class="font-bold text-xl text-[#18181A]">
+              {{ massager.variants[0].price | money | default: "$49" }}
+            </span>
           </label>
 
           <!-- Option B (Popular) -->
           <label class="relative cursor-pointer p-6 rounded-2xl border-4 border-[#D1AE5B] bg-[#F4EEE6] flex items-center justify-between transition-all transform hover:-translate-y-1 hover:shadow-xl">
             <span class="absolute -top-3 right-6 bg-[#18181A] text-[#D1AE5B] text-xs font-black uppercase px-3 py-1 rounded-full">Popular</span>
             <div class="flex items-center space-x-4">
-              <input type="radio" name="pack" checked class="w-7 h-7 accent-[#D1AE5B]">
-              <span class="font-black text-xl text-[#18181A]">Option B (Ipsum)</span>
+              <input 
+                type="radio" 
+                name="pack" 
+                value="{{ massager.variants[1].id | default: massager.variants.first.id }}" 
+                checked 
+                class="w-7 h-7 accent-[#D1AE5B]"
+              >
+              <span class="font-black text-xl text-[#18181A]">Option B (2 Pack)</span>
             </div>
             <div class="text-right">
-                <span class="font-black text-2xl text-[#18181A]">$99</span>
-                <div class="text-[#D1AE5B] font-bold text-sm -mt-1">Save 15%</div>
+              <span class="font-black text-2xl text-[#18181A]">
+                {{ massager.variants[1].price | money | default: "$99" }}
+              </span>
+              <div class="text-[#D1AE5B] font-bold text-sm -mt-1">Save 15%</div>
             </div>
           </label>
         </div>
@@ -234,8 +249,11 @@
     btn.innerText = 'Redirecting...';
     btn.disabled = true;
 
-    const variantId = {{ massager.variants.first.id | default: 0 }};
+    // 1. Grab whichever radio button the user currently has selected
+    const selectedRadio = document.querySelector('input[name="pack"]:checked');
+    const variantId = selectedRadio ? selectedRadio.value : {{ massager.variants.first.id | default: 0 }};
 
+    // 2. Pass the selected variant ID to Shopify's cart API
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
