@@ -12,8 +12,8 @@
 </div>
 
 <div class="font-sans text-[#18181A] overflow-hidden">
-  
-  <!-- 1. HERO SECTION (Lightest Color: #F4EEE6) -->
+
+  <!-- 1. HERO SECTION (#F4EEE6) -->
   <section class="w-full bg-[#F4EEE6] py-12 lg:py-20 px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
       <!-- Left: Copy -->
@@ -48,12 +48,25 @@
     </div>
   </section>
 
-  <!-- 2. SCIENCE CARDS SECTION (Next Color: #DDD0C2) -->
+  <!-- NEW: PRESS / CREDIBILITY LOGOS STRIP (#18181A) -->
+  <section class="w-full bg-[#18181A] py-8 px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto w-full text-center">
+      <p class="text-[#999999] text-xs uppercase tracking-[0.25em] mb-6 font-medium">As Featured In</p>
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
+        <div class="h-8 w-24 bg-[#333333] rounded flex items-center justify-center text-[#666666] text-xs font-bold">LOGO</div>
+        <div class="h-8 w-24 bg-[#333333] rounded flex items-center justify-center text-[#666666] text-xs font-bold">LOGO</div>
+        <div class="h-8 w-24 bg-[#333333] rounded flex items-center justify-center text-[#666666] text-xs font-bold">LOGO</div>
+        <div class="h-8 w-24 bg-[#333333] rounded flex items-center justify-center text-[#666666] text-xs font-bold">LOGO</div>
+        <div class="h-8 w-24 bg-[#333333] rounded flex items-center justify-center text-[#666666] text-xs font-bold">LOGO</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SCIENCE CARDS SECTION (#DDD0C2) -->
   <section class="w-full bg-[#DDD0C2] py-16 lg:py-24 px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full text-center">
       <h2 class="text-3xl lg:text-4xl font-extrabold mb-12 text-[#18181A]">Lorem Ipsum Science Cards</h2>
-      
-      <!-- FIX: Replaced Grid with Flexbox -->
+
       <div class="flex flex-col md:flex-row gap-8 w-full justify-center">
         <!-- Card 1 -->
         <div class="flex-1 w-full bg-[#F4EEE6] p-8 lg:p-10 rounded-3xl shadow-lg border border-white/60 flex flex-col items-center">
@@ -106,9 +119,152 @@
       <div class="w-full lg:w-1/2 flex flex-col justify-center">
         <h2 class="text-3xl lg:text-5xl font-extrabold mb-4 text-[#18181A]">Lorem Ipsum Solution (UMS)</h2>
         <h4 class="text-xl lg:text-2xl text-[#D1AE5B] font-bold mb-6">Sub Headline Adipiscing</h4>
-        <p class="text-[#666666] text-lg leading-relaxed">
+        <p class="text-[#666666] text-lg leading-relaxed mb-8">
           Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.
         </p>
+        <!-- MID-PAGE CTA -->
+        <button onclick="document.getElementById('buybox').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto px-10 py-4 bg-[#D1AE5B] hover:bg-[#c4a150] text-[#18181A] text-lg font-black rounded-2xl shadow-lg transition-transform active:scale-95">
+          SHOP NOW
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: HOW IT WORKS - 3 STEPS (#F4EEE6) -->
+  <section class="w-full bg-[#F4EEE6] py-16 lg:py-24 px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto w-full text-center">
+      <p class="text-[#D1AE5B] font-bold text-sm uppercase tracking-[0.2em] mb-3">Simple To Use</p>
+      <h2 class="text-3xl lg:text-5xl font-extrabold mb-16 text-[#18181A]">How It Works</h2>
+
+      <div class="flex flex-col md:flex-row gap-8 lg:gap-12 w-full justify-center items-start">
+        <!-- Step 1 -->
+        <div class="flex-1 w-full flex flex-col items-center">
+          <div class="relative mb-6">
+            <div class="h-24 w-24 bg-[#D1AE5B] rounded-full flex items-center justify-center shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#18181A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <span class="absolute -top-2 -right-2 bg-[#18181A] text-[#D1AE5B] text-sm font-black w-8 h-8 rounded-full flex items-center justify-center">1</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-[#18181A]">Lorem Ipsum Step One</h3>
+          <p class="text-[#666666] leading-relaxed max-w-xs">Consectetur adipiscing elit sed do eiusmod tempor incididunt.</p>
+        </div>
+
+        <!-- Connector Arrow (desktop only) -->
+        <div class="hidden md:flex items-center pt-12 text-[#D1AE5B]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex-1 w-full flex flex-col items-center">
+          <div class="relative mb-6">
+            <div class="h-24 w-24 bg-[#D1AE5B] rounded-full flex items-center justify-center shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#18181A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <span class="absolute -top-2 -right-2 bg-[#18181A] text-[#D1AE5B] text-sm font-black w-8 h-8 rounded-full flex items-center justify-center">2</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-[#18181A]">Lorem Ipsum Step Two</h3>
+          <p class="text-[#666666] leading-relaxed max-w-xs">Ut labore et dolore magna aliqua enim ad minim veniam.</p>
+        </div>
+
+        <!-- Connector Arrow (desktop only) -->
+        <div class="hidden md:flex items-center pt-12 text-[#D1AE5B]">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex-1 w-full flex flex-col items-center">
+          <div class="relative mb-6">
+            <div class="h-24 w-24 bg-[#D1AE5B] rounded-full flex items-center justify-center shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-[#18181A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <span class="absolute -top-2 -right-2 bg-[#18181A] text-[#D1AE5B] text-sm font-black w-8 h-8 rounded-full flex items-center justify-center">3</span>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-[#18181A]">Lorem Ipsum Step Three</h3>
+          <p class="text-[#666666] leading-relaxed max-w-xs">Quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: RESULTS TIMELINE (#DDD0C2) -->
+  <section class="w-full bg-[#DDD0C2] py-16 lg:py-24 px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto w-full text-center">
+      <p class="text-[#D1AE5B] font-bold text-sm uppercase tracking-[0.2em] mb-3">What To Expect</p>
+      <h2 class="text-3xl lg:text-5xl font-extrabold mb-16 text-[#18181A]">Your Results Over Time</h2>
+
+      <div class="flex flex-col md:flex-row gap-0 w-full justify-center items-stretch">
+        <!-- Milestone 1 -->
+        <div class="flex-1 w-full relative pb-10 md:pb-0">
+          <div class="flex flex-col items-center">
+            <div class="h-16 w-16 bg-[#D1AE5B]/20 border-4 border-[#D1AE5B] rounded-full flex items-center justify-center mb-5">
+              <span class="text-[#D1AE5B] font-black text-lg">1</span>
+            </div>
+            <div class="bg-[#F4EEE6] rounded-2xl p-6 shadow-md border border-white/60 w-full">
+              <h3 class="font-black text-lg text-[#18181A] mb-1">Day 1</h3>
+              <p class="text-[#D1AE5B] font-bold text-sm mb-2">First Use</p>
+              <p class="text-[#666666] text-sm leading-relaxed">Lorem ipsum dolor sit amet consectetur adipiscing.</p>
+            </div>
+          </div>
+          <!-- Connector line (desktop) -->
+          <div class="hidden md:block absolute top-8 left-[calc(50%+2rem)] right-0 h-1 bg-[#D1AE5B]/30"></div>
+        </div>
+
+        <!-- Milestone 2 -->
+        <div class="flex-1 w-full relative pb-10 md:pb-0">
+          <div class="flex flex-col items-center">
+            <div class="h-16 w-16 bg-[#D1AE5B]/20 border-4 border-[#D1AE5B] rounded-full flex items-center justify-center mb-5">
+              <span class="text-[#D1AE5B] font-black text-lg">2</span>
+            </div>
+            <div class="bg-[#F4EEE6] rounded-2xl p-6 shadow-md border border-white/60 w-full">
+              <h3 class="font-black text-lg text-[#18181A] mb-1">Week 2</h3>
+              <p class="text-[#D1AE5B] font-bold text-sm mb-2">Building Momentum</p>
+              <p class="text-[#666666] text-sm leading-relaxed">Sed do eiusmod tempor incididunt ut labore dolore.</p>
+            </div>
+          </div>
+          <div class="hidden md:block absolute top-8 left-0 right-0 h-1 bg-[#D1AE5B]/30"></div>
+        </div>
+
+        <!-- Milestone 3 -->
+        <div class="flex-1 w-full relative pb-10 md:pb-0">
+          <div class="flex flex-col items-center">
+            <div class="h-16 w-16 bg-[#D1AE5B]/20 border-4 border-[#D1AE5B] rounded-full flex items-center justify-center mb-5">
+              <span class="text-[#D1AE5B] font-black text-lg">3</span>
+            </div>
+            <div class="bg-[#F4EEE6] rounded-2xl p-6 shadow-md border border-white/60 w-full">
+              <h3 class="font-black text-lg text-[#18181A] mb-1">Month 1</h3>
+              <p class="text-[#D1AE5B] font-bold text-sm mb-2">Noticeable Change</p>
+              <p class="text-[#666666] text-sm leading-relaxed">Ut enim ad minim veniam quis nostrud exercitation.</p>
+            </div>
+          </div>
+          <div class="hidden md:block absolute top-8 left-0 right-0 h-1 bg-[#D1AE5B]/30"></div>
+        </div>
+
+        <!-- Milestone 4 -->
+        <div class="flex-1 w-full relative">
+          <div class="flex flex-col items-center">
+            <div class="h-16 w-16 bg-[#D1AE5B] rounded-full flex items-center justify-center mb-5 shadow-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-[#18181A]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div class="bg-[#F4EEE6] rounded-2xl p-6 shadow-md border-2 border-[#D1AE5B] w-full">
+              <h3 class="font-black text-lg text-[#18181A] mb-1">Month 3+</h3>
+              <p class="text-[#D1AE5B] font-bold text-sm mb-2">Full Results</p>
+              <p class="text-[#666666] text-sm leading-relaxed">Duis aute irure dolor in reprehenderit in voluptate.</p>
+            </div>
+          </div>
+          <div class="hidden md:block absolute top-8 left-0 right-[calc(50%+2rem)] h-1 bg-[#D1AE5B]/30"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -117,36 +273,40 @@
   <section class="w-full bg-[#F4EEE6] py-16 lg:py-24 px-6 lg:px-8">
     <div class="max-w-5xl mx-auto w-full text-center">
       <h2 class="text-3xl lg:text-5xl font-extrabold mb-10 text-[#18181A]">Lorem Ipsum Us Vs Them</h2>
-      <div class="w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#DDD0C2] bg-white">
+      <div class="w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-[#DDD0C2] bg-white mb-10">
         <img src="https://cdn.shopify.com/s/files/1/0994/7971/6159/files/img6.png?v=1785343392" alt="Us vs Them Comparison" class="w-full h-auto object-contain" />
       </div>
+      <!-- MID-PAGE CTA -->
+      <button onclick="document.getElementById('buybox').scrollIntoView({behavior:'smooth'})" class="px-12 py-5 bg-[#D1AE5B] hover:bg-[#c4a150] text-[#18181A] text-xl font-black rounded-2xl shadow-xl transition-transform active:scale-95">
+        GET YOURS NOW
+      </button>
     </div>
   </section>
 
   <!-- 6. BUYBOX (#DDD0C2) -->
-  <section class="w-full bg-[#DDD0C2] py-16 lg:py-24 px-6 lg:px-8">
+  <section id="buybox" class="w-full bg-[#DDD0C2] py-16 lg:py-24 px-6 lg:px-8">
     <div class="max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-start gap-12 lg:gap-16 bg-white p-8 lg:p-12 rounded-[2rem] shadow-2xl border-2 border-white">
-      
+
       <!-- Left: Product Hero -->
       <div class="w-full lg:w-1/2">
         <div class="w-full aspect-square rounded-3xl overflow-hidden border-2 border-[#F4EEE6] bg-[#F4EEE6]/30">
           <img src="https://cdn.shopify.com/s/files/1/0994/7971/6159/files/img1.png?v=1785343393" alt="Product" class="w-full h-full object-contain p-4" />
         </div>
       </div>
-      
+
       <!-- Right: Offer Selector -->
       <div class="w-full lg:w-1/2 flex flex-col h-full justify-center">
         <h2 class="text-3xl lg:text-4xl font-extrabold mb-3 text-[#18181A]">Buybox Headline Dolor</h2>
         <p class="text-[#666666] text-lg mb-8 font-medium">Sub headline consectetur elit.</p>
-        
+
         <div class="space-y-5 mb-8">
           <!-- Option A -->
           <label class="cursor-pointer p-5 rounded-2xl border-2 border-[#DDD0C2] hover:border-[#D1AE5B] flex items-center justify-between transition-all bg-[#F4EEE6]/50">
             <div class="flex items-center space-x-4">
-              <input 
-                type="radio" 
-                name="pack" 
-                value="{{ massager.variants[0].id | default: massager.variants.first.id }}" 
+              <input
+                type="radio"
+                name="pack"
+                value="{{ massager.variants[0].id | default: massager.variants.first.id }}"
                 class="w-6 h-6 accent-[#D1AE5B]"
               >
               <span class="font-bold text-lg text-[#18181A]">Option A (1 Pack)</span>
@@ -160,11 +320,11 @@
           <label class="relative cursor-pointer p-6 rounded-2xl border-4 border-[#D1AE5B] bg-[#F4EEE6] flex items-center justify-between transition-all transform hover:-translate-y-1 hover:shadow-xl">
             <span class="absolute -top-3 right-6 bg-[#18181A] text-[#D1AE5B] text-xs font-black uppercase px-3 py-1 rounded-full">Popular</span>
             <div class="flex items-center space-x-4">
-              <input 
-                type="radio" 
-                name="pack" 
-                value="{{ massager.variants[1].id | default: massager.variants.first.id }}" 
-                checked 
+              <input
+                type="radio"
+                name="pack"
+                value="{{ massager.variants[1].id | default: massager.variants.first.id }}"
+                checked
                 class="w-7 h-7 accent-[#D1AE5B]"
               >
               <span class="font-black text-xl text-[#18181A]">Option B (2 Pack)</span>
@@ -185,12 +345,50 @@
     </div>
   </section>
 
+  <!-- NEW: GUARANTEE + SOCIAL PROOF COUNTER (#18181A) -->
+  <section class="w-full bg-[#18181A] py-16 lg:py-20 px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto w-full text-center">
+      <!-- Guarantee Badge -->
+      <div class="inline-flex items-center justify-center mb-8">
+        <div class="h-28 w-28 border-4 border-[#D1AE5B] rounded-full flex items-center justify-center bg-[#D1AE5B]/10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-[#D1AE5B]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+          </svg>
+        </div>
+      </div>
+      <h2 class="text-3xl lg:text-4xl font-extrabold mb-4 text-white">Your Purchase Is Protected By Our<br><span class="text-[#D1AE5B]">90-Day Money Back Guarantee</span></h2>
+      <p class="text-[#999999] text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. If you're not completely satisfied, we'll refund every penny. No questions asked, no hassle returns.
+      </p>
+
+      <!-- Divider -->
+      <div class="w-24 h-1 bg-[#D1AE5B]/40 mx-auto mb-10"></div>
+
+      <!-- Social Proof Counter -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+        <div>
+          <p class="text-4xl lg:text-5xl font-black text-[#D1AE5B]">10,000+</p>
+          <p class="text-[#999999] text-sm font-medium mt-1">Happy Customers</p>
+        </div>
+        <div class="hidden sm:block w-px h-12 bg-[#333333]"></div>
+        <div>
+          <p class="text-4xl lg:text-5xl font-black text-[#D1AE5B]">4.8/5</p>
+          <p class="text-[#999999] text-sm font-medium mt-1">Average Rating</p>
+        </div>
+        <div class="hidden sm:block w-px h-12 bg-[#333333]"></div>
+        <div>
+          <p class="text-4xl lg:text-5xl font-black text-[#D1AE5B]">90 Days</p>
+          <p class="text-[#999999] text-sm font-medium mt-1">Risk-Free Guarantee</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 7. REVIEWS CARDS (#F4EEE6) -->
   <section class="w-full bg-[#F4EEE6] py-16 lg:py-24 px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full">
       <h2 class="text-3xl lg:text-5xl font-extrabold mb-12 text-center text-[#18181A]">Lorem Ipsum Reviews</h2>
-      
-      <!-- FIX: Replaced Grid with Flexbox -->
+
       <div class="flex flex-col md:flex-row gap-8 w-full justify-center">
         <!-- Review 1 -->
         <div class="flex-1 w-full bg-white p-8 rounded-3xl shadow-lg border border-[#DDD0C2]">
@@ -229,7 +427,7 @@
           </summary>
           <p class="mt-6 text-[#666666] text-lg leading-relaxed">Consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
         </details>
-        
+
         <details class="bg-[#F4EEE6] p-6 lg:p-8 rounded-3xl border-2 border-white cursor-pointer group shadow-sm">
           <summary class="font-bold text-xl outline-none flex justify-between items-center text-[#18181A]">
             Sed cursus ante dapibus diam?
@@ -257,7 +455,7 @@
     const fallbackCheckoutUrl = `/cart/${variantId}:1`;
     // This follows Shopify's built-in "Permalink"
     // [https://tibella.shop/cart/](https://tibella.shop/cart/){variant_id}:{quantity}
-    // Apparently, navigating directly to this URL tells Shopify: "Create a cart with 1 unit of this variant and push 
+    // Apparently, navigating directly to this URL tells Shopify: "Create a cart with 1 unit of this variant and push
     // the customer directly into checkout immediately."
 
     // 3. Safety Timer: If AJAX hangs for > 3.5 seconds, force permalink checkout
@@ -290,7 +488,7 @@
       clearTimeout(safetyTimer);
       // Fallback: Force direct redirect to checkout permalink
       window.location.href = fallbackCheckoutUrl;
-      // And it goes without saying but the customer being redirected to the permalink for checkout still restults in a valid 
+      // And it goes without saying but the customer being redirected to the permalink for checkout still restults in a valid
       // purchase and the customer seeing the exact same checkout screen!
     });
   }
