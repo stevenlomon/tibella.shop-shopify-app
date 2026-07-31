@@ -46,3 +46,4 @@ database.sqlite
 !/theme/sections/tibella-longform.liquid
 !/theme/templates/page.tibella-longform.json
 !/theme/layout/theme.liquid
+!/theme/templates/index.json
