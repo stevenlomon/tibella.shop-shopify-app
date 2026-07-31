@@ -35,11 +35,14 @@ database.sqlite
 # Un-ignore sections and templates directories so Git scans them
 !/theme/sections/
 !/theme/templates/
+!/theme/layout
 
 # Ignore all other files inside those directories...
 /theme/sections/*
 /theme/templates/*
+/theme/layout/*
 
 # ...EXCEPT our custom Tibella files!
 !/theme/sections/tibella-longform.liquid
 !/theme/templates/page.tibella-longform.json
+!/theme/layout/theme.liquid
