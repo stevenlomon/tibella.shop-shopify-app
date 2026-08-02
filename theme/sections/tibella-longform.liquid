@@ -902,10 +902,9 @@
   background: var(--beige);
 }
 .tib-guarantee-inner {
-  display: grid;
-  grid-template-columns: 1fr 0.7fr;
-  gap: 48px;
-  align-items: center;
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
 }
 .tib-guarantee h2 {
   font-size: var(--fs-3xl);
@@ -916,15 +915,8 @@
   line-height: 1.7;
   margin-bottom: 16px;
 }
-.tib-guarantee-image .tib-img-placeholder {
-  aspect-ratio: 1;
-  max-width: 320px;
-  border-radius: 16px;
-}
 @media (max-width: 768px) {
-  .tib-guarantee-inner { grid-template-columns: 1fr; }
   .tib-guarantee h2 { font-size: var(--fs-2xl); }
-  .tib-guarantee-image { order: -1; }
 }
 
 /* ═══ 11. FAQ ═══ */
@@ -1508,23 +1500,12 @@
 <section class="tib-guarantee tib-section">
   <div class="tib-inner">
     <div class="tib-guarantee-inner">
-      <div>
-        <h2>We Know You&rsquo;ve Spent Money on Things That Didn&rsquo;t Work</h2>
-        <p>The diets. The supplements. The specialists. The medications that traded one problem for another. Thousands of dollars, and you&rsquo;re still here looking for something that actually helps.</p>
-        <p>That&rsquo;s why Tibella comes with a <strong>90-day money-back guarantee</strong>. No questions asked. Use it consistently for 90 days. If you don&rsquo;t see improvement, email us with your order number and we&rsquo;ll refund you in full within 24 hours.</p>
-        <p>We can offer this because the science supports it. We&rsquo;re not asking you to take our word for it &mdash; we&rsquo;re asking you to try it and see.</p>
-        <div style="margin-top: 24px;">
-          <a href="#tib-buybox" class="tib-btn">Try Tibella Risk-Free</a>
-        </div>
-      </div>
-      <div class="tib-guarantee-image">
-        {% if product.images[2] %}
-          <img src="{{ product.images[2] | image_url: width: 600 }}" alt="{{ product.title }}" loading="lazy" width="600" height="600" style="border-radius: 16px;">
-        {% else %}
-          <div class="tib-img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-        {% endif %}
+      <h2>We Know You&rsquo;ve Spent Money on Things That Didn&rsquo;t Work</h2>
+      <p>The diets. The supplements. The specialists. The medications that traded one problem for another. Thousands of dollars, and you&rsquo;re still here looking for something that actually helps.</p>
+      <p>That&rsquo;s why Tibella comes with a <strong>90-day money-back guarantee</strong>. No questions asked. Use it consistently for 90 days. If you don&rsquo;t see improvement, email us with your order number and we&rsquo;ll refund you in full within 24 hours.</p>
+      <p>We can offer this because the science supports it. We&rsquo;re not asking you to take our word for it &mdash; we&rsquo;re asking you to try it and see.</p>
+      <div style="margin-top: 24px;">
+        <a href="#tib-buybox" class="tib-btn">Try Tibella Risk-Free</a>
       </div>
     </div>
   </div>
