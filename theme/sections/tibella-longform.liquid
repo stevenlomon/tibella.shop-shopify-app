@@ -1237,7 +1237,9 @@ body {
   display: flex;
   flex-direction: column;
 }
-.solution-img { order: -1; }
+.solution-img { display: none; }
+.solution-section .section-heading { text-align: center; }
+.solution-copy { padding: 0 18px 20px; }
 
 .use-steps {
   display: flex;
@@ -1446,10 +1448,13 @@ body {
     align-items: center;
   }
   .solution-img {
+    display: block;
     max-width: none;
     margin: 0;
     aspect-ratio: 1 / 1;
   }
+  .solution-section .section-heading { text-align: left; }
+  .solution-copy { padding: 0; }
   .solution-subhead { font-size: 18px; }
   .solution-benefit-text { font-size: 17px; }
 
