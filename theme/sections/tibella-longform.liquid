@@ -33,17 +33,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Announcement Bar ── */
-.announce-bar {
-  background: var(--brown);
-  color: var(--white);
-  text-align: center;
-  padding: 10px 15px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
 
 /* ── Hero ── */
 .hero {
@@ -1580,9 +1569,6 @@ body {
 }
 </style>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="announce-bar">FREE SHIPPING ON ALL US ORDERS</div>
-
 
 <!-- HERO -->
 <section class="hero">
@@ -2141,7 +2127,7 @@ function toggleFaq(trigger) {
 
 document.addEventListener('DOMContentLoaded', function() {
   var sticky = document.getElementById('sticky-cart');
-  var trigger = document.querySelector('.hero') || document.querySelector('.announce-bar');
+  var trigger = document.querySelector('.hero');
   if (!sticky || !trigger) return;
   document.body.appendChild(sticky);
 
