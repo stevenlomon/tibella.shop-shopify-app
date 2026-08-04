@@ -1,0 +1,502 @@
+{% assign product = section.settings.product | default: all_products['ankle-support-ems-massager-with-remote-control'] %}
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<style>
+/* ── Buy Box ── */
+.bb {
+  --bb-brown: #361E12;
+  --bb-brown-hover: #2A1610;
+  --bb-heading: #1B1919;
+  --bb-body: #5E5C5C;
+  --bb-border: #E5E0D9;
+  --bb-cream: #F4F0E9;
+  --bb-green: #3D8C52;
+  --bb-gold: #E8A838;
+  --bb-white: #FFFFFF;
+  --bb-light: #F6F6F6;
+  --bb-font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+
+  font-family: var(--bb-font);
+  padding: 55px 0 80px;
+  border-top: 1px solid var(--bb-border);
+}
+.bb-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+.bb-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Image ── */
+.bb-media {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.bb-media-main {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--bb-light);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bb-media-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.bb-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.bb-thumbnails::-webkit-scrollbar { display: none; }
+.bb-thumb {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: var(--bb-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bb-thumb.active { border-color: var(--bb-brown); }
+.bb-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Details ── */
+.bb-details {}
+.bb-badge {
+  display: inline-block;
+  background: var(--bb-heading);
+  color: var(--bb-white);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.bb-desc {
+  font-size: 16px;
+  color: var(--bb-heading);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.bb-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.bb-benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--bb-heading);
+  line-height: 1.4;
+}
+.bb-check {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  background: var(--bb-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bb-check svg { width: 12px; height: 12px; }
+
+/* ── Price ── */
+.bb-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.bb-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--bb-heading);
+}
+.bb-free-ship {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--bb-green);
+}
+
+/* ── Pack Selector ── */
+.bb-pack-label {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bb-heading);
+  margin-bottom: 14px;
+}
+.bb-packs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.bb-pack {
+  position: relative;
+  border: 2px solid var(--bb-border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  background: var(--bb-white);
+}
+.bb-pack:hover { border-color: var(--bb-brown); }
+.bb-pack.active { border-color: var(--bb-brown); }
+.bb-pack-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bb-green);
+  color: var(--bb-white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.bb-pack-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bb-heading);
+  margin-bottom: 4px;
+}
+.bb-pack-price {
+  font-size: 14px;
+  color: var(--bb-body);
+}
+.bb-pack-save {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--bb-green);
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+.bb-pack-note {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--bb-body);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* ── Add to Cart ── */
+.bb-atc {
+  display: block;
+  width: 100%;
+  padding: 18px 32px;
+  background: var(--bb-brown);
+  color: var(--bb-white);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--bb-font);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: center;
+}
+.bb-atc:hover { background: var(--bb-brown-hover); }
+.bb-atc:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Trust ── */
+.bb-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--bb-body);
+}
+.bb-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.bb-trust-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Accordions ── */
+.bb-accordions {
+  margin-top: 28px;
+  border-top: 1px solid var(--bb-border);
+}
+.bb-accordion {
+  border-bottom: 1px solid var(--bb-border);
+}
+.bb-accordion-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  font-family: var(--bb-font);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bb-heading);
+  cursor: pointer;
+  text-align: left;
+}
+.bb-accordion-trigger svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  color: var(--bb-body);
+}
+.bb-accordion.open .bb-accordion-trigger svg {
+  transform: rotate(90deg);
+}
+.bb-accordion-body {
+  display: none;
+  padding: 0 0 18px;
+  font-size: 15px;
+  color: var(--bb-body);
+  line-height: 1.6;
+}
+.bb-accordion.open .bb-accordion-body {
+  display: block;
+}
+
+/* ── Desktop ── */
+@media (min-width: 768px) {
+  .bb-layout {
+    flex-direction: row;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  .bb-media {
+    flex: 0 0 48%;
+    max-width: none;
+    position: sticky;
+    top: 100px;
+  }
+  .bb-details { flex: 1; }
+  .bb-packs { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .bb-inner { padding: 0 40px; }
+  .bb-media { flex: 0 0 50%; }
+}
+</style>
+
+
+<section class="bb" id="pdp">
+  <div class="bb-inner">
+    <div class="bb-layout">
+
+      <!-- IMAGE -->
+      <div class="bb-media">
+        <div class="bb-media-main" id="bb-main-image">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" width="800" height="800" loading="lazy">
+          {% else %}
+            <span style="font-size:13px;color:#8A8787;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Product Image</span>
+          {% endif %}
+        </div>
+        {% if product.media.size > 1 %}
+          <div class="bb-thumbnails">
+            {% for media in product.media %}
+              <div class="bb-thumb{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}" onclick="bbSelectImage(this, '{{ media | image_url: width: 800 }}')">
+                <img src="{{ media | image_url: width: 128 }}" alt="{{ media.alt | escape }}" width="64" height="64" loading="lazy">
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- DETAILS -->
+      <div class="bb-details">
+        <div class="bb-badge">Clinic-Grade Technology</div>
+
+        <p class="bb-desc">A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week.</p>
+
+        <div class="bb-benefits">
+          <div class="bb-benefit">
+            <span class="bb-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            6 stimulation modes, 19 intensity levels
+          </div>
+          <div class="bb-benefit">
+            <span class="bb-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            30-minute sessions, 3-4 times per week
+          </div>
+          <div class="bb-benefit">
+            <span class="bb-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            USB rechargeable with remote control
+          </div>
+          <div class="bb-benefit">
+            <span class="bb-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Gentle tingling, you control the intensity
+          </div>
+        </div>
+
+        <div class="bb-price-row">
+          <span class="bb-price" id="bb-display-price">${{ current_variant.price | money_without_currency }}</span>
+          <span class="bb-free-ship">Free Shipping</span>
+        </div>
+
+        {% form 'product', product %}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" id="bb-variant-id">
+
+          <div class="bb-pack-label">Select Quantity:</div>
+          <div class="bb-packs" id="bb-packs">
+            {% for variant in product.variants %}
+              <div class="bb-pack{% if forloop.first %} active{% endif %}"
+                   data-variant-id="{{ variant.id }}"
+                   data-price="{{ variant.price | money_without_currency }}"
+                   onclick="bbSelectPack(this)">
+                {% if forloop.index == 2 %}
+                  <div class="bb-pack-badge">Most Popular</div>
+                {% elsif forloop.index == 3 %}
+                  <div class="bb-pack-badge" style="background:#E8A838;">Best Value</div>
+                {% endif %}
+                <div class="bb-pack-name">{{ variant.title }}</div>
+                <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <p class="bb-pack-note">*For Best Results, Use Consistently For 4-6 Weeks</p>
+
+          <button type="submit" class="bb-atc"{% unless current_variant.available %} disabled{% endunless %}>
+            {% if current_variant.available %}Add To Cart{% else %}Sold Out{% endif %}
+          </button>
+        {% endform %}
+
+        <div class="bb-trust">
+          <span class="bb-trust-item">
+            <span class="bb-trust-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" fill="#E8A838"/></svg></span>
+            60-Day Money-Back Guarantee
+          </span>
+          <span class="bb-trust-item">
+            <span class="bb-trust-icon"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="#3D8C52"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            Free US Shipping
+          </span>
+        </div>
+
+        <div class="bb-accordions">
+          <div class="bb-accordion">
+            <button class="bb-accordion-trigger" onclick="bbToggle(this)">
+              How To Use
+              <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="bb-accordion-body">
+              <p>1. Place Tibella around your inner ankle bone and secure with the adjustable strap.</p>
+              <p>2. Use the remote control to select your preferred mode and intensity level.</p>
+              <p>3. Relax for 30 minutes while Tibella stimulates the posterior tibial nerve.</p>
+              <p>Use 3-4 times per week for best results. Most women notice improvement within 4-6 weeks.</p>
+            </div>
+          </div>
+          <div class="bb-accordion">
+            <button class="bb-accordion-trigger" onclick="bbToggle(this)">
+              What's In The Box
+              <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="bb-accordion-body">
+              <p>1x Tibella nerve stimulation device</p>
+              <p>1x Wireless remote control</p>
+              <p>1x USB charging cable</p>
+              <p>1x Quick start guide</p>
+            </div>
+          </div>
+          <div class="bb-accordion">
+            <button class="bb-accordion-trigger" onclick="bbToggle(this)">
+              Specifications
+              <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="bb-accordion-body">
+              <p>Frequency: 20 Hz (optimized for tibial nerve stimulation)</p>
+              <p>Pulse width: 200 microseconds</p>
+              <p>Modes: 6 stimulation modes</p>
+              <p>Intensity: 19 adjustable levels</p>
+              <p>Session timer: Auto 30-minute shutoff</p>
+              <p>Battery: Rechargeable lithium-ion (USB-C)</p>
+              <p>Battery life: ~10 sessions per charge</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+function bbSelectPack(el) {
+  document.querySelectorAll('.bb-pack').forEach(function(p) { p.classList.remove('active'); });
+  el.classList.add('active');
+  var variantId = el.dataset.variantId;
+  var price = el.dataset.price;
+  document.getElementById('bb-variant-id').value = variantId;
+  document.getElementById('bb-display-price').textContent = '$' + price;
+}
+
+function bbSelectImage(thumb, src) {
+  document.querySelectorAll('.bb-thumb').forEach(function(t) { t.classList.remove('active'); });
+  thumb.classList.add('active');
+  var main = document.getElementById('bb-main-image');
+  var img = main.querySelector('img');
+  if (img) { img.src = src; }
+}
+
+function bbToggle(trigger) {
+  trigger.closest('.bb-accordion').classList.toggle('open');
+}
+</script>
+
+
+{% schema %}
+{
+  "name": "Tibella Buy Box",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    }
+  ]
+}
+{% endschema %}
