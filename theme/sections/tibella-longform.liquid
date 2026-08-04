@@ -712,7 +712,7 @@ body {
 }
 .stats-sub {
   font-size: 14px;
-  color: var(--tan);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 35px;
 }
 .stats-grid {
@@ -738,17 +738,17 @@ body {
 }
 .stat-label {
   font-size: 13px;
-  color: var(--tan);
+  color: rgba(255, 255, 255, 0.8);
   line-height: 1.45;
 }
 .stat-source {
   font-size: 11px;
-  color: rgba(219,204,185,0.5);
+  color: rgba(255, 255, 255, 0.5);
   margin-top: 4px;
 }
 .stats-note {
   font-size: 12px;
-  color: rgba(219,204,185,0.45);
+  color: rgba(255, 255, 255, 0.45);
   margin-top: 30px;
   padding: 0 18px;
   line-height: 1.5;
@@ -1324,6 +1324,111 @@ body {
   text-transform: uppercase;
 }
 
+/* ── Mobile Only ── */
+.site-nav { display: none; }
+.how-section { display: none; }
+.compare-img { display: none; }
+.use-img { display: none; }
+.expert-card { display: none; }
+.pdp-badge { display: none; }
+
+.solution-split {
+  display: flex;
+  flex-direction: column;
+}
+.solution-img { order: -1; }
+
+.use-steps {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 10px;
+}
+.use-steps::-webkit-scrollbar { display: none; }
+.use-step {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  flex-direction: column;
+  gap: 0;
+  background: var(--cream-27);
+  border-radius: 12px;
+  padding: 24px 18px;
+  border: 1px solid var(--border);
+}
+.use-step-num { margin-bottom: 12px; }
+.use-step-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(145deg, #f8f5f0 0%, #ebe5db 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.stats-grid {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  max-width: none;
+}
+.stats-grid::-webkit-scrollbar { display: none; }
+.stat-card {
+  flex: 0 0 260px;
+  scroll-snap-align: start;
+}
+
+.expert-mobile-logo {
+  text-align: center;
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+.expert-mobile-aua {
+  width: 200px;
+  height: 70px;
+  margin: 0 auto 14px;
+  background: var(--white);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+}
+.expert-mobile-text {
+  font-size: 14px;
+  color: var(--body);
+  line-height: 1.5;
+}
+
+.pdp-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.pdp-rating-stars {
+  color: var(--gold);
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+.pdp-rating-score {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--heading);
+}
+.pdp-rating-count {
+  font-size: 14px;
+  color: var(--body);
+}
+
 /* ── Desktop ── */
 @media (min-width: 768px) {
   .hero { padding: 60px 40px 60px; text-align: left; }
@@ -1503,6 +1608,46 @@ body {
   .expert-quote { font-size: 19px; }
 
   .footer-grid { grid-template-columns: repeat(4, 1fr); }
+
+  .site-nav { display: flex; }
+  .how-section { display: block; }
+  .compare-img { display: flex; }
+  .use-img { display: flex; }
+  .solution-img { order: 0; }
+  .expert-card { display: block; }
+  .expert-mobile-logo { display: none; }
+  .pdp-badge { display: inline-block; }
+  .pdp-rating { display: none; }
+  .use-step-img { display: none; }
+  .use-steps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    padding-bottom: 0;
+  }
+  .use-step {
+    flex: none;
+    scroll-snap-align: unset;
+    flex-direction: row;
+    gap: 16px;
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    border: none;
+  }
+  .use-step-num { margin-bottom: 0; }
+  .stats-grid {
+    display: grid;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    max-width: 800px;
+  }
+  .stat-card {
+    flex: none;
+    scroll-snap-align: unset;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -1793,6 +1938,7 @@ body {
       <h2 class="section-heading">Simple to Use. 30 Minutes. Done.</h2>
       <div class="use-steps">
         <div class="use-step">
+          <div class="use-step-img"><span class="placeholder-label">Step 1</span></div>
           <div class="use-step-num">1</div>
           <div class="use-step-content">
             <div class="use-step-title">Wrap</div>
@@ -1800,6 +1946,7 @@ body {
           </div>
         </div>
         <div class="use-step">
+          <div class="use-step-img"><span class="placeholder-label">Step 2</span></div>
           <div class="use-step-num">2</div>
           <div class="use-step-content">
             <div class="use-step-title">Set Your Level</div>
@@ -1807,6 +1954,7 @@ body {
           </div>
         </div>
         <div class="use-step">
+          <div class="use-step-img"><span class="placeholder-label">Step 3</span></div>
           <div class="use-step-num">3</div>
           <div class="use-step-content">
             <div class="use-step-title">Relax</div>
@@ -1830,6 +1978,12 @@ body {
       <div class="expert-source">American Urological Association (AUA)</div>
       <div class="expert-context">The AUA endorses the clinical (percutaneous) version of this technology. Tibella applies the same principle using surface electrodes for home use.</div>
     </div>
+    <div class="expert-mobile-logo">
+      <div class="expert-mobile-aua">
+        <span class="placeholder-label">AUA Logo</span>
+      </div>
+      <p class="expert-mobile-text">Endorsed by the American Urological Association</p>
+    </div>
   </div>
 </section>
 
@@ -1843,6 +1997,11 @@ body {
 
       <div class="pdp-info">
         <div class="pdp-badge">Clinic-Grade Technology</div>
+        <div class="pdp-rating">
+          <span class="pdp-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="pdp-rating-score">4.6</span>
+          <span class="pdp-rating-count">584 reviews</span>
+        </div>
 
         <p class="pdp-desc">A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week.</p>
 
