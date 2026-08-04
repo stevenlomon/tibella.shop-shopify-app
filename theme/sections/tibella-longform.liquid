@@ -424,19 +424,6 @@ body {
 .compare-layout {
   margin-top: 40px;
 }
-.compare-img {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  background: linear-gradient(145deg, #f8f5f0 0%, #ebe5db 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .compare-note {
   margin-top: 20px;
@@ -1230,7 +1217,6 @@ body {
 
 /* ── Mobile Only ── */
 .how-section { display: none; }
-.compare-img { display: none; }
 .use-img { display: none; }
 .expert-card { display: none; }
 .pdp-badge { display: none; }
@@ -1464,17 +1450,9 @@ body {
   .review-card { flex: 0 0 320px; }
 
   .compare-layout {
-    display: grid;
-    grid-template-columns: 35% 1fr;
-    gap: 40px;
-    align-items: start;
-  }
-  .compare-img {
-    max-width: none;
-    margin: 0;
-    aspect-ratio: 3 / 4;
-    position: sticky;
-    top: 80px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .compare-table { font-size: 14px; }
   .compare-table thead th { padding: 16px 14px; font-size: 14px; }
@@ -1514,7 +1492,6 @@ body {
 
 
   .how-section { display: block; }
-  .compare-img { display: flex; }
   .use-img { display: flex; }
   .solution-img { order: 0; }
   .expert-card { display: block; }
@@ -1740,10 +1717,6 @@ body {
     <h2 class="section-heading">How Tibella Compares</h2>
 
     <div class="compare-layout">
-      <div class="compare-img">
-        <span class="placeholder-label">Product Image</span>
-      </div>
-
       <div>
         <!-- Comparison table -->
         <div class="compare-wrap">
