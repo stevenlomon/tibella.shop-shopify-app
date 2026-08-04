@@ -1,0 +1,396 @@
+<style>
+:root {
+  --nav-dark: #423F3F;
+  --brown: #361E12;
+  --brown-hover: #2A1610;
+  --heading: #1B1919;
+  --body-dark: #282828;
+  --body: #5E5C5C;
+  --muted: #8A8787;
+  --cream: #F4F0E9;
+  --cream-27: rgba(244, 240, 233, 0.27);
+  --tan: #DBCCB9;
+  --light: #F6F6F6;
+  --white: #FFFFFF;
+  --border: #E5E0D9;
+  --green: #3D8C52;
+  --red: #B54A3A;
+  --gold: #E8A838;
+  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+}
+
+/* ── Section Shared ── */
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+.section-heading {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--heading);
+  text-align: center;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+/* ── Reviews ── */
+.reviews-section {
+  padding: 55px 0;
+  border-top: 1px solid var(--border);
+}
+.review-cards {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 30px 18px 10px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.review-cards::-webkit-scrollbar { display: none; }
+.review-card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background: var(--cream);
+  border-radius: 12px;
+  padding: 22px 18px;
+}
+.review-stars {
+  color: var(--gold);
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+}
+.review-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgb(33, 33, 33);
+  margin-bottom: 12px;
+}
+.review-body {
+  font-size: 15px;
+  color: rgb(33, 33, 33);
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+.review-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(33, 33, 33);
+}
+.review-verified {
+  font-size: 15px;
+  color: rgb(71, 71, 71);
+  margin-top: 2px;
+}
+.review-sample-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 14px;
+  font-style: italic;
+}
+
+/* ── Guarantee ── */
+.guarantee-section {
+  padding: 55px 0;
+  background: var(--light);
+}
+.guarantee-card {
+  background: var(--brown);
+  border-radius: 16px;
+  padding: 40px 24px;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.guarantee-heading {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.guarantee-body {
+  font-size: 14px;
+  color: var(--white);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  opacity: 0.9;
+}
+.guarantee-body strong {
+  font-weight: 700;
+  opacity: 1;
+}
+.btn-guarantee {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--white);
+  color: rgb(8, 8, 8);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.btn-guarantee:hover { background: var(--cream); }
+
+/* ── FAQ ── */
+.faq-section {
+  padding: 55px 0;
+}
+.faq-list {
+  max-width: 680px;
+  margin: 30px auto 0;
+}
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+.faq-trigger {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+.faq-trigger svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.faq-item.open .faq-trigger svg {
+  transform: rotate(45deg);
+}
+.faq-answer {
+  display: none;
+  padding: 0 0 18px;
+  font-size: 15px;
+  color: var(--body);
+  line-height: 1.6;
+}
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+/* ── Sticky Cart ── */
+.sticky-cart {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 999999;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+  transform: translateY(100%);
+  transition: transform 0.3s ease-in-out;
+  visibility: hidden;
+}
+.sticky-cart.visible {
+  transform: translateY(0);
+  visibility: visible;
+}
+.sticky-cart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.sticky-cart-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--heading);
+}
+.sticky-cart-price {
+  font-size: 14px;
+  color: var(--body);
+}
+.sticky-cart-price strong {
+  color: var(--heading);
+  font-weight: 700;
+}
+.btn-sticky {
+  background: var(--brown);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.btn-sticky:hover { background: var(--brown-hover); }
+
+/* ── Desktop ── */
+@media (min-width: 768px) {
+  .review-cards { padding: 30px 0 10px; justify-content: center; overflow-x: visible; }
+  .review-card { flex: 0 0 320px; }
+  .guarantee-heading { font-size: 24px; }
+}
+
+@media (min-width: 1024px) {
+  .section-inner { padding: 0 40px; }
+}
+</style>
+
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="section-inner">
+    <h2 class="section-heading">Here's What Women Are Saying About Tibella</h2>
+  </div>
+  <div class="review-cards">
+    <div class="review-card">
+      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="review-title">[Review Title]</div>
+      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
+      <div class="review-name">[Customer Name]</div>
+      <div class="review-verified">Verified Customer</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="review-title">[Review Title]</div>
+      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
+      <div class="review-name">[Customer Name]</div>
+      <div class="review-verified">Verified Customer</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="review-title">[Review Title]</div>
+      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
+      <div class="review-name">[Customer Name]</div>
+      <div class="review-verified">Verified Customer</div>
+    </div>
+  </div>
+  <p class="review-sample-note">Placeholder reviews. Replace with real customer testimonials before launch.</p>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-section">
+  <div class="section-inner">
+    <div class="guarantee-card">
+      <h2 class="guarantee-heading">Try Tibella Completely Risk-Free For 60 Days</h2>
+      <p class="guarantee-body">Yes! We do mean completely risk-free. If you do not notice improvement within 60 days of using Tibella, simply send us an email at <strong>support@tibella.shop</strong> with your order number and we will give you a full refund within 24 hours. No questions asked. That's how confident we are that Tibella will work for you.</p>
+      <a href="#pdp" class="btn-guarantee">TAKE BACK CONTROL TODAY</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="section-inner">
+    <h2 class="section-heading">Frequently Asked Questions</h2>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          How long before I see results?
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">Studies show improvement beginning around 4-6 weeks with consistent use (3-4 sessions per week, 30 minutes each). Some women notice changes sooner. For best results, use consistently for at least 60 days.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          How is this different from a regular TENS unit?
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">Tibella uses a specific frequency (20 Hz), pulse width (200 microseconds), and placement protocol designed for the posterior tibial nerve. A regular back pain TENS unit doesn't target this nerve pathway. This isn't general pain relief. It targets a specific nerve for a specific purpose.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Will it work if medications didn't?
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">Tibella works through a completely different mechanism. Medications suppress the bladder signal with chemicals, which is why they come with side effects. Tibella targets the nerve pathway directly. Studies have shown improvement even in women who didn't respond to medication.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Is it uncomfortable?
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">Most users describe a gentle tingling sensation. You control the intensity across 19 levels, so you can always find a comfortable setting. Zero side effects were reported in clinical trials of surface-electrode tibial nerve stimulation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          Can I use it with my current medications or HRT?
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">Yes. Tibella is non-invasive and non-pharmacological. It works alongside any existing treatment, including hormone replacement therapy and OAB medications. Always consult with your healthcare provider if you have questions about your specific situation.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)">
+          What if it doesn't work for me?
+          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">We offer a 60-day money-back guarantee. If you don't notice improvement within 60 days, email support@tibella.shop with your order number and we'll refund you in full within 24 hours. No questions asked.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY CART BAR -->
+<div class="sticky-cart" id="sticky-cart">
+  <div class="sticky-cart-info">
+    <div class="sticky-cart-name">Tibella</div>
+    <div class="sticky-cart-price">From <strong>$59</strong></div>
+  </div>
+  <a href="#pdp" class="btn-sticky">ADD TO CART</a>
+</div>
+
+
+<script>
+function toggleFaq(trigger) {
+  trigger.closest('.faq-item').classList.toggle('open');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var sticky = document.getElementById('sticky-cart');
+  var trigger = document.querySelector('.hero');
+  if (!sticky || !trigger) return;
+  document.body.appendChild(sticky);
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+        sticky.classList.add('visible');
+      } else {
+        sticky.classList.remove('visible');
+      }
+    });
+  }, { root: null, threshold: 0 });
+
+  observer.observe(trigger);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Tibella Longform Bottom",
+  "tag": "section",
+  "class": "tibella-longform-section",
+  "settings": []
+}
+{% endschema %}
