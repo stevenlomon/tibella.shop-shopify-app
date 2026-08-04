@@ -1288,10 +1288,10 @@ body {
   margin: 0 auto;
 }
 .footer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 700px;
+  margin: 0 auto 40px;
 }
 .footer-col-title {
   font-size: 14px;
@@ -1607,7 +1607,7 @@ body {
   .expert-card { padding: 40px 36px; }
   .expert-quote { font-size: 19px; }
 
-  .footer-grid { grid-template-columns: repeat(4, 1fr); }
+  .footer-grid { max-width: 900px; }
 
   .site-nav { display: flex; }
   .how-section { display: block; }
@@ -2208,22 +2208,10 @@ body {
   <div class="footer-inner">
     <div class="footer-grid">
       <div>
-        <div class="footer-col-title">Shop</div>
-        <a href="#" class="footer-link">Tibella Device</a>
-        <a href="#" class="footer-link">Replacement Pads</a>
-        <a href="#" class="footer-link">Bundles</a>
-      </div>
-      <div>
         <div class="footer-col-title">Support</div>
         <a href="#" class="footer-link">Contact Us</a>
         <a href="#" class="footer-link">FAQ</a>
         <a href="#" class="footer-link">Shipping & Returns</a>
-      </div>
-      <div>
-        <div class="footer-col-title">Company</div>
-        <a href="#" class="footer-link">Our Story</a>
-        <a href="#" class="footer-link">The Science</a>
-        <a href="#" class="footer-link">Blog</a>
       </div>
       <div>
         <div class="footer-col-title">Legal</div>
