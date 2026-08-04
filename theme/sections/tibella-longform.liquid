@@ -44,48 +44,6 @@ body {
   letter-spacing: 0.5px;
 }
 
-/* ── Nav ── */
-.site-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  border-bottom: 1px solid var(--border);
-  background: var(--white);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.nav-hamburger {
-  width: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-}
-.nav-hamburger span {
-  display: block;
-  height: 2px;
-  background: var(--heading);
-  border-radius: 1px;
-}
-.nav-logo {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--heading);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-.nav-icons {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-.nav-icon {
-  width: 22px;
-  height: 22px;
-  color: var(--heading);
-}
 
 /* ── Hero ── */
 .hero {
@@ -1325,7 +1283,6 @@ body {
 }
 
 /* ── Mobile Only ── */
-.site-nav { display: none; }
 .how-section { display: none; }
 .compare-img { display: none; }
 .use-img { display: none; }
@@ -1609,7 +1566,6 @@ body {
 
   .footer-grid { max-width: 900px; }
 
-  .site-nav { display: flex; }
   .how-section { display: block; }
   .compare-img { display: flex; }
   .use-img { display: flex; }
@@ -1663,15 +1619,6 @@ body {
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar">FREE SHIPPING ON ALL US ORDERS</div>
 
-<!-- NAV -->
-<nav class="site-nav">
-  <div class="nav-hamburger"><span></span><span></span><span></span></div>
-  <div class="nav-logo">TIBELLA</div>
-  <div class="nav-icons">
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4ZM3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
-  </div>
-</nav>
 
 <!-- HERO -->
 <section class="hero">
