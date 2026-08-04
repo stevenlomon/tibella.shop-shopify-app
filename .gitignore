@@ -44,6 +44,7 @@ database.sqlite
 
 # ...EXCEPT our custom Tibella files!
 !/theme/sections/tibella-longform.liquid
+!/theme/sections/tibella-home.liquid
 !/theme/templates/page.tibella-longform.json
 !/theme/layout/theme.liquid
 !/theme/templates/index.json

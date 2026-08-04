@@ -1,0 +1,288 @@
+{% assign product = all_products['ankle-support-ems-massager-with-remote-control'] %}
+
+<style>
+.th {
+  --brown: #361E12;
+  --brown-hover: #2A1610;
+  --heading: #1B1919;
+  --body: #5E5C5C;
+  --cream: #F4F0E9;
+  --white: #FFFFFF;
+  --gold: #E8A838;
+  --nav-dark: #423F3F;
+  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+  font-family: var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Hero ── */
+.th-hero {
+  background: var(--cream);
+  padding: 50px 18px 55px;
+  text-align: center;
+}
+.th-hero-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.th-hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: var(--heading);
+}
+.th-hero-stars {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.th-hero h1 {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--heading);
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.th-hero p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  margin-bottom: 30px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.th-hero-img {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(145deg, #f8f5f0 0%, #ebe5db 100%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+  overflow: hidden;
+}
+.th-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.th-btn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--brown);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.th-btn:hover { background: var(--brown-hover); }
+.th-btn-outline {
+  background: transparent;
+  color: var(--brown);
+  border: 2px solid var(--brown);
+}
+.th-btn-outline:hover {
+  background: var(--brown);
+  color: var(--white);
+}
+.th-hero-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Value Props ── */
+.th-values {
+  background: var(--nav-dark);
+  padding: 36px 18px;
+}
+.th-values-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.th-value {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.th-value-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.th-value-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ── About ── */
+.th-about {
+  padding: 60px 18px;
+  text-align: center;
+}
+.th-about-inner {
+  max-width: 620px;
+  margin: 0 auto;
+}
+.th-about-eyebrow {
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--brown);
+  margin-bottom: 14px;
+}
+.th-about h2 {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--heading);
+  margin-bottom: 18px;
+  text-wrap: balance;
+}
+.th-about p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--body);
+  margin-bottom: 30px;
+}
+
+/* ── Desktop ── */
+@media (min-width: 768px) {
+  .th-hero {
+    padding: 70px 40px 80px;
+  }
+  .th-hero-inner {
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    text-align: left;
+  }
+  .th-hero h1 {
+    font-size: 42px;
+  }
+  .th-hero p {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .th-hero-img {
+    max-width: 100%;
+    margin: 0;
+    order: 2;
+  }
+  .th-hero-buttons {
+    justify-content: flex-start;
+  }
+  .th-values-inner {
+    gap: 60px;
+  }
+  .th-about {
+    padding: 80px 40px;
+  }
+  .th-about h2 {
+    font-size: 34px;
+  }
+}
+</style>
+
+<div class="th">
+  <!-- HERO -->
+  <section class="th-hero">
+    <div class="th-hero-inner">
+      <div>
+        <div class="th-hero-eyebrow">
+          <span class="th-hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          Trusted By Thousands of Women
+        </div>
+        <h1>Drug-Free Bladder Control That Actually Works</h1>
+        <p>Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks.</p>
+        <div class="th-hero-buttons">
+          <a href="/pages/overactive-bladder" class="th-btn">Learn More</a>
+          {% if product %}
+            <a href="{{ product.url }}" class="th-btn th-btn-outline">Shop Now</a>
+          {% endif %}
+        </div>
+      </div>
+      <div class="th-hero-img">
+        {% if product and product.featured_image %}
+          <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | default: product.title }}">
+        {% else %}
+          <span style="font-size:13px;color:#8A8787;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Product Image</span>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE PROPS -->
+  <section class="th-values">
+    <div class="th-values-inner">
+      <div class="th-value">
+        <div class="th-value-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        Drug-Free
+      </div>
+      <div class="th-value">
+        <div class="th-value-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        30 Min Sessions
+      </div>
+      <div class="th-value">
+        <div class="th-value-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+        </div>
+        Clinic-Grade Technology
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="th-about">
+    <div class="th-about-inner">
+      <div class="th-about-eyebrow">How It Works</div>
+      <h2>The Same Principle Urologists Have Used for 20+ Years</h2>
+      <p>Tibella uses gentle electrical stimulation on the tibial nerve at your ankle to calm the overactive signals causing urgency, leaks, and nighttime bathroom trips. No drugs. No side effects. Just 30 minutes, 3-4 times per week.</p>
+      <a href="/pages/overactive-bladder" class="th-btn">See the Science</a>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Tibella Home",
+  "settings": []
+}
+{% endschema %}
