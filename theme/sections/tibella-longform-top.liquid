@@ -851,15 +851,19 @@ body {
   gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-padding-inline-start: 18px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   max-width: none;
-  padding: 0 18px;
+  padding: 0 0 0 18px;
 }
 .stats-grid::-webkit-scrollbar { display: none; }
 .stat-card {
   flex: 0 0 260px;
   scroll-snap-align: start;
+}
+.stat-card:last-child {
+  margin-right: 18px;
 }
 
 .expert-mobile-logo {
@@ -1084,10 +1088,14 @@ body {
     overflow-x: visible;
     scroll-snap-type: none;
     max-width: 800px;
+    padding: 0 18px;
   }
   .stat-card {
     flex: none;
     scroll-snap-align: unset;
+  }
+  .stat-card:last-child {
+    margin-right: 0;
   }
 }
 
