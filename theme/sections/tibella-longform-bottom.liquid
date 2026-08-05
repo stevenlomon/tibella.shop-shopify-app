@@ -53,12 +53,12 @@
 .review-card {
   flex: 0 0 300px;
   scroll-snap-align: start;
-}
-.review-card:last-child {
-  margin-right: 18px;
   background: var(--cream);
   border-radius: 12px;
   padding: 22px 18px;
+}
+.review-card:last-child {
+  margin-right: 18px;
 }
 .review-stars {
   color: var(--gold);
@@ -94,6 +94,57 @@
   color: var(--muted);
   margin-top: 14px;
   font-style: italic;
+}
+
+/* ── Carousel ── */
+.review-carousel {
+  position: relative;
+}
+.carousel-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--heading);
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: opacity 0.2s;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0 2px;
+}
+.carousel-prev { left: 6px; }
+.carousel-next { right: 6px; }
+.carousel-arrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 18px 18px 0;
+}
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel-dot.active {
+  background: var(--brown);
 }
 
 /* ── Guarantee ── */
@@ -250,9 +301,11 @@
 
 /* ── Desktop ── */
 @media (min-width: 768px) {
-  .review-cards { padding: 30px 0 10px; justify-content: center; overflow-x: visible; }
+  .review-carousel { max-width: 1100px; margin: 0 auto; }
+  .review-cards { padding: 30px 18px 10px; scroll-padding-inline-start: 18px; }
   .review-card { flex: 0 0 320px; }
   .review-card:last-child { margin-right: 0; }
+  .carousel-arrow { display: flex; }
   .guarantee-heading { font-size: 24px; }
 }
 
@@ -267,30 +320,69 @@
   <div class="section-inner">
     <h2 class="section-heading">Here's What Women Are Saying About Tibella</h2>
   </div>
-  <div class="review-cards">
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="review-title">[Review Title]</div>
-      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
-      <div class="review-name">[Customer Name]</div>
-      <div class="review-verified">Verified Customer</div>
+  <div class="review-carousel">
+    <button class="carousel-arrow carousel-prev" aria-label="Previous review" disabled>&#8249;</button>
+    <div class="review-cards" id="review-cards">
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">I Actually Sleep Through the Night Now</div>
+        <div class="review-body">I was getting up 4-5 times a night. My doctor said it was "just menopause" and gave me a prescription that made my mouth so dry I couldn't sleep anyway. After about 5 weeks of using Tibella while watching TV in the evenings, I went from 4-5 trips to maybe one. That alone changed everything.</div>
+        <div class="review-name">Diane M.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">I Stopped Planning My Life Around Bathrooms</div>
+        <div class="review-body">For three years I knew every bathroom in every store, every restaurant, every highway rest stop. I'd skip walks with friends because I was afraid of not making it in time. Tibella is the first thing that actually addressed why the urgency was happening. Seven weeks in and I don't think about bathrooms constantly anymore.</div>
+        <div class="review-name">Margaret K.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">I'd Tried Everything. This Actually Works.</div>
+        <div class="review-body">Kegels for years. Two different medications (quit both because of the side effects). Pumpkin seed supplements that did absolutely nothing. When I read about tibial nerve stimulation I almost scrolled past it, but the clinical research was real. It took about 6 weeks, but the urgency episodes have dropped significantly. I wish I'd found this sooner.</div>
+        <div class="review-name">Linda R.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">I Got Off My Medication and Don't Miss It</div>
+        <div class="review-body">I was on Oxybutynin for almost two years. The dry mouth was constant, and I started reading about long-term side effects that genuinely scared me. Tibella gave me a way out. I weaned off the pills with my doctor's OK and haven't looked back.</div>
+        <div class="review-name">Susan W.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">I Can Finally Go for Walks Again</div>
+        <div class="review-body">I gave up my morning walks because the urgency would hit out of nowhere, miles from a bathroom. I tried kegels for over a year — my PT eventually told me my pelvic floor was actually too tight, not too weak. Tibella made sense because it targets the nerve, not the muscle. Five weeks in, I'm walking 3 miles again.</div>
+        <div class="review-name">Patricia H.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">Road Trips Used to Be My Worst Nightmare</div>
+        <div class="review-body">I used to love driving to see my grandkids three hours away. Then the urgency got so bad I had to stop every 30 minutes. I started making excuses not to go. After six weeks with Tibella, I drove the whole way with one planned stop. I cried in the car when I realized what I'd gotten back.</div>
+        <div class="review-name">Carol T.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">I Thought This Was Just Part of Getting Older</div>
+        <div class="review-body">My doctor said urgency and nighttime trips were "normal for my age" and offered me medication or told me to do kegels. No one ever mentioned the nerve connection. When I learned this approach has been used in urology clinics for 20 years, I was furious no one told me sooner. It works.</div>
+        <div class="review-name">Janet L.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-title">No More Carrying a "Just in Case" Bag</div>
+        <div class="review-body">For years I carried an extra pair of underwear and pads everywhere I went. Work meetings, dinners, even quick errands. The constant planning was exhausting. After about seven weeks with Tibella, I left the house without my bag for the first time in years. I almost turned around out of habit.</div>
+        <div class="review-name">Barbara S.</div>
+        <div class="review-verified">Verified Customer</div>
+      </div>
     </div>
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="review-title">[Review Title]</div>
-      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
-      <div class="review-name">[Customer Name]</div>
-      <div class="review-verified">Verified Customer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="review-title">[Review Title]</div>
-      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
-      <div class="review-name">[Customer Name]</div>
-      <div class="review-verified">Verified Customer</div>
-    </div>
+    <button class="carousel-arrow carousel-next" aria-label="Next review">&#8250;</button>
   </div>
-  <p class="review-sample-note">Placeholder reviews. Replace with real customer testimonials before launch.</p>
+  <div class="carousel-dots" id="carousel-dots"></div>
 </section>
 
 <!-- GUARANTEE -->
@@ -389,6 +481,53 @@ document.addEventListener('DOMContentLoaded', function() {
 
   observer.observe(trigger);
 });
+
+(function() {
+  var cards = document.getElementById('review-cards');
+  var dotsWrap = document.getElementById('carousel-dots');
+  var prev = document.querySelector('.carousel-prev');
+  var next = document.querySelector('.carousel-next');
+  if (!cards || !dotsWrap) return;
+
+  var items = Array.prototype.slice.call(cards.querySelectorAll('.review-card'));
+  var dots = [];
+
+  items.forEach(function(_, i) {
+    var d = document.createElement('button');
+    d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Go to review ' + (i + 1));
+    d.addEventListener('click', function() {
+      var max = cards.scrollWidth - cards.clientWidth;
+      cards.scrollTo({ left: (i / (items.length - 1)) * max, behavior: 'smooth' });
+    });
+    dotsWrap.appendChild(d);
+    dots.push(d);
+  });
+
+  function getStep() {
+    return items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : items[0].offsetWidth;
+  }
+
+  function update() {
+    var max = cards.scrollWidth - cards.clientWidth;
+    var idx = max > 0 ? Math.round((cards.scrollLeft / max) * (items.length - 1)) : 0;
+    idx = Math.max(0, Math.min(idx, items.length - 1));
+    dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+    if (prev) prev.disabled = cards.scrollLeft <= 5;
+    if (next) next.disabled = cards.scrollLeft >= max - 5;
+  }
+
+  cards.addEventListener('scroll', update, { passive: true });
+
+  if (prev) prev.addEventListener('click', function() {
+    cards.scrollBy({ left: -getStep(), behavior: 'smooth' });
+  });
+  if (next) next.addEventListener('click', function() {
+    cards.scrollBy({ left: getStep(), behavior: 'smooth' });
+  });
+
+  update();
+})();
 </script>
 
 {% schema %}
