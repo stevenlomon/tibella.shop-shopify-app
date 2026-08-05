@@ -72,12 +72,22 @@
       }
 
       /* Force Global Backgrounds & Header Styling */
-      body, 
-      .gradient, 
-      .header-wrapper, 
+      body,
+      .gradient,
+      .header-wrapper,
       .footer {
         background-color: #F4EEE6 !important;
         color: #18181A !important;
+      }
+
+      /* Sticky Header — solid background on all pages */
+      .header-section {
+        background-color: #F4EEE6 !important;
+      }
+      #header-group {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 20 !important;
       }
 
       /* Force Primary Buttons to Tibella Gold */
