@@ -44,7 +44,8 @@
   gap: 16px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 30px 18px 10px;
+  scroll-padding-inline-start: 18px;
+  padding: 30px 0 10px 18px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -52,6 +53,9 @@
 .review-card {
   flex: 0 0 300px;
   scroll-snap-align: start;
+}
+.review-card:last-child {
+  margin-right: 18px;
   background: var(--cream);
   border-radius: 12px;
   padding: 22px 18px;
@@ -248,6 +252,7 @@
 @media (min-width: 768px) {
   .review-cards { padding: 30px 0 10px; justify-content: center; overflow-x: visible; }
   .review-card { flex: 0 0 320px; }
+  .review-card:last-child { margin-right: 0; }
   .guarantee-heading { font-size: 24px; }
 }
 
