@@ -54,17 +54,21 @@
         /* Primary Backgrounds */
         --color-background: 244, 238, 230 !important; /* #F4EEE6 (Lightest Sand) */
         --color-background-secondary: 221, 208, 194 !important; /* #DDD0C2 (Warm Sand) */
-        
+
         /* Text & Foregrounds */
         --color-foreground: 24, 24, 26 !important; /* #18181A (Dark Navy/Black) */
         --color-text: 24, 24, 26 !important;
         --color-body-text: 102, 102, 102 !important; /* #666666 (Muted Gray) */
-        
+
         /* Brand Buttons & Gold Accents */
         --color-button: 209, 174, 91 !important; /* #D1AE5B (Gold) */
         --color-button-text: 24, 24, 26 !important; /* #18181A */
         --color-accent-1: 209, 174, 91 !important;
         --color-accent-2: 244, 238, 230 !important;
+
+        /* Global Font Override */
+        --font-body--family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+        --font-heading--family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
       }
 
       /* Force Global Backgrounds & Header Styling */
@@ -77,11 +81,12 @@
       }
 
       /* Force Primary Buttons to Tibella Gold */
-      .button, 
-      .button--primary, 
+      .button,
+      .button--primary,
       button[type="submit"] {
         background-color: #D1AE5B !important;
         color: #18181A !important;
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
         font-weight: 800 !important;
         border-radius: 0.75rem !important;
         border: none !important;
@@ -126,6 +131,63 @@
       .shopify-policy__body a {
         color: #361E12 !important;
         font-weight: 700 !important;
+      }
+
+      /* Cart Page & Cart Drawer */
+      :root {
+        --cart-primary-font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+        --cart-secondary-font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+      }
+      .cart-page,
+      .cart-drawer__content,
+      .cart-drawer__inner,
+      cart-drawer-component {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+      }
+      .cart-page .cart-title,
+      .cart-page--empty .cart-title,
+      .cart-page h1, .cart-page h2, .cart-page h3,
+      .theme-drawer__title {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+        color: #1B1919 !important;
+      }
+      .cart-primary-typography,
+      .cart-secondary-typography {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+      }
+      .cart-totals,
+      .cart-totals__original-label,
+      .cart-totals__original-value,
+      .cart-totals__total-label,
+      .cart-totals__total-value,
+      .cart-discounts__label,
+      .cart-discounts__value {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+      }
+      .cart-product__name,
+      .cart-product__variant,
+      .cart-product__price {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+      }
+      .cart-product__name {
+        color: #1B1919 !important;
+      }
+      .cart-product__variant,
+      .cart-product__price {
+        color: #5E5C5C !important;
+      }
+      .cart-note__label,
+      .cart-note__textarea,
+      .cart-discount__label,
+      .cart-discount__input {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
+      }
+      .product-list h2, .product-list h3,
+      .product-list .product-card__title,
+      .product-list .product-card__price,
+      product-price, product-price div, product-price .price,
+      .h6 {
+        font-family: "Century Gothic", CenturyGothic, AppleGothic, Futura, "Avenir Next", system-ui, sans-serif !important;
       }
     </style>
   </head>
