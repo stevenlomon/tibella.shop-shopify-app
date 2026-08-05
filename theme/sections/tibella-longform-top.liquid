@@ -1417,6 +1417,13 @@ body {
   </div>
 </section>
 
+<script>
+(function() {
+  var hc = document.getElementById('header-component');
+  if (hc) hc.removeAttribute('data-transparent-background');
+})();
+</script>
+
 {% schema %}
 {
   "name": "Tibella Longform Top",
