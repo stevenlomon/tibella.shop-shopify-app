@@ -153,7 +153,7 @@
 .bb-packs {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 10px;
+  gap: 18px;
   margin-bottom: 12px;
 }
 .bb-pack {
@@ -170,18 +170,21 @@
 .bb-pack.active { border-color: var(--bb-brown); }
 .bb-pack-badge {
   position: absolute;
-  top: -10px;
+  top: -11px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--bb-green);
   color: var(--bb-white);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  padding: 3px 10px;
-  border-radius: 3px;
+  padding: 4px 12px;
+  border-radius: 4px;
   white-space: nowrap;
+}
+.bb-pack-badge--gold {
+  background: var(--bb-gold);
 }
 .bb-pack-name {
   font-size: 16px;
@@ -312,7 +315,7 @@
     top: 100px;
   }
   .bb-details { flex: 1; }
-  .bb-packs { grid-template-columns: repeat(3, 1fr); }
+  .bb-packs { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
 
 @media (min-width: 1024px) {
@@ -389,7 +392,7 @@
                 {% if forloop.index == 2 %}
                   <div class="bb-pack-badge">Most Popular</div>
                 {% elsif forloop.index == 3 %}
-                  <div class="bb-pack-badge" style="background:#E8A838;">Best Value</div>
+                  <div class="bb-pack-badge bb-pack-badge--gold">Best Value</div>
                 {% endif %}
                 <div class="bb-pack-name">{{ variant.title }}</div>
                 <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
