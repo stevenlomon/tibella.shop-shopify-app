@@ -79,10 +79,10 @@
         "mobile_text_size": 14,
         "bold_text": true,
         "uppercase_text": false,
-        "desktop_padding_top": 14,
-        "desktop_padding_bottom": 14,
-        "mobile_padding_top": 14,
-        "mobile_padding_bottom": 14
+        "desktop_padding_top": 12,
+        "desktop_padding_bottom": 12,
+        "mobile_padding_top": 12,
+        "mobile_padding_bottom": 12
       }
     },
 
