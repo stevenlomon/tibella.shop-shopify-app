@@ -1,0 +1,242 @@
+<style>
+:root {
+  --brown: #361E12;
+  --brown-hover: #2A1610;
+  --heading: #1B1919;
+  --body: #5E5C5C;
+  --muted: #8A8787;
+  --cream: #F4F0E9;
+  --white: #FFFFFF;
+  --border: #E5E0D9;
+  --green: #3D8C52;
+  --red: #B54A3A;
+  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+}
+
+.tc-section {
+  padding: 60px 0 80px;
+  font-family: var(--font) !important;
+}
+.tc-inner {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 0 18px;
+}
+.tc-section .tc-heading {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  font-family: var(--font) !important;
+  color: var(--heading) !important;
+  text-align: center;
+  line-height: 1.2 !important;
+  margin-bottom: 12px;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+.tc-subtext {
+  font-size: 15px;
+  color: var(--body);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+.tc-subtext a {
+  color: var(--brown);
+  font-weight: 700;
+  text-decoration: none;
+}
+.tc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tc-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.tc-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--heading);
+  margin-bottom: 6px;
+}
+.tc-section .tc-input,
+.tc-section .tc-textarea {
+  width: 100%;
+  padding: 14px 16px !important;
+  font-family: var(--font) !important;
+  font-size: 15px !important;
+  color: var(--heading) !important;
+  background: var(--white) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+  box-sizing: border-box;
+}
+.tc-section .tc-input:focus,
+.tc-section .tc-textarea:focus {
+  outline: none;
+  border-color: var(--brown) !important;
+}
+.tc-input::placeholder,
+.tc-textarea::placeholder {
+  color: var(--muted);
+}
+.tc-textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+.tc-section .tc-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px !important;
+  background: var(--brown) !important;
+  color: var(--white) !important;
+  font-family: var(--font) !important;
+  font-size: 16px !important;
+  font-weight: 700;
+  border: none !important;
+  border-radius: 50px !important;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+  width: 100%;
+  letter-spacing: 0.5px;
+}
+.tc-section .tc-submit:hover {
+  background: var(--brown-hover) !important;
+}
+.tc-success {
+  text-align: center;
+  padding: 20px;
+  background: #f0f8f0;
+  border: 1px solid var(--green);
+  border-radius: 8px;
+  color: var(--green);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.tc-error {
+  text-align: center;
+  padding: 20px;
+  background: #fdf0ee;
+  border: 1px solid var(--red);
+  border-radius: 8px;
+  color: var(--red);
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+.tc-support-note {
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 32px;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .tc-section { padding: 80px 0 100px; }
+  .tc-heading { font-size: 36px; }
+  .tc-row { flex-direction: row; }
+  .tc-submit { width: auto; }
+}
+</style>
+
+<section class="tc-section">
+  <div class="tc-inner">
+    <h1 class="tc-heading">Get in Touch</h1>
+    <p class="tc-subtext">Have a question about Tibella or your order? We're here to help. You can also reach us directly at <a href="mailto:support@tibella.shop">support@tibella.shop</a></p>
+
+    {%- form 'contact', id: 'TibellaContact', class: 'tc-form' -%}
+
+      {%- if form.posted_successfully? -%}
+        <div class="tc-success">Thank you for reaching out. We'll get back to you within 24 hours.</div>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <div class="tc-error">
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}
+        </div>
+      {%- endif -%}
+
+      <div class="tc-row">
+        <div style="flex:1">
+          <label class="tc-label" for="tc-name">Name</label>
+          <input
+            type="text"
+            id="tc-name"
+            class="tc-input"
+            name="contact[name]"
+            autocomplete="name"
+            placeholder="Your name"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+          >
+        </div>
+        <div style="flex:1">
+          <label class="tc-label" for="tc-email">Email <span style="color:var(--red)">*</span></label>
+          <input
+            type="email"
+            id="tc-email"
+            class="tc-input"
+            name="contact[email]"
+            autocomplete="email"
+            placeholder="your@email.com"
+            required
+            aria-required="true"
+            value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+            {% if form.errors contains 'email' %}aria-invalid="true"{% endif %}
+          >
+        </div>
+      </div>
+
+      <div>
+        <label class="tc-label" for="tc-subject">Subject</label>
+        <input
+          type="text"
+          id="tc-subject"
+          class="tc-input"
+          name="contact[subject]"
+          placeholder="What can we help with?"
+        >
+      </div>
+
+      <div>
+        <label class="tc-label" for="tc-message">Message</label>
+        <textarea
+          id="tc-message"
+          class="tc-textarea"
+          name="contact[body]"
+          placeholder="Tell us more..."
+          rows="6"
+        >{{ form.body }}</textarea>
+      </div>
+
+      <button type="submit" class="tc-submit">Send Message</button>
+
+    {%- endform -%}
+
+    <p class="tc-support-note">We typically respond within 24 hours on business days.</p>
+  </div>
+</section>
+
+<script>
+(function() {
+  var hc = document.getElementById('header-component');
+  if (hc) hc.removeAttribute('data-transparent-background');
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Tibella Contact",
+  "tag": "section",
+  "class": "tibella-contact-section",
+  "settings": []
+}
+{% endschema %}

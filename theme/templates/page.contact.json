@@ -1,71 +1,11 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
-      "disabled": true,
-      "settings": {
-        "padding_top": 36,
-        "padding_bottom": 36
-      }
-    },
-    "intro": {
-      "type": "rich-text",
-      "blocks": {
-        "intro_heading": {
-          "type": "heading",
-          "settings": {
-            "title": "Get in Touch",
-            "heading_size": "h0"
-          }
-        },
-        "intro_text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Have a question about Tibella or your order? We're here to help. You can also reach us directly at <strong>support@tibella.shop</strong></p>"
-          }
-        }
-      },
-      "block_order": ["intro_heading", "intro_text"],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "background-1",
-        "padding_top": 52,
-        "padding_bottom": 0
-      }
-    },
-    "form": {
-      "type": "contact-form",
-      "settings": {
-        "title": "Send us a message",
-        "heading_size": "h2",
-        "button_full_width": true,
-        "color_scheme": "background-1",
-        "padding_top": 24,
-        "padding_bottom": 36
-      }
-    },
-    "support-note": {
-      "type": "rich-text",
-      "blocks": {
-        "note_text": {
-          "type": "caption",
-          "settings": {
-            "caption": "We typically respond within 24 hours on business days.",
-            "text_style": "body",
-            "text_size": "small"
-          }
-        }
-      },
-      "block_order": ["note_text"],
-      "settings": {
-        "desktop_content_position": "center",
-        "content_alignment": "center",
-        "color_scheme": "background-1",
-        "padding_top": 0,
-        "padding_bottom": 52
-      }
+      "type": "tibella-contact",
+      "settings": {}
     }
   },
-  "order": ["main", "intro", "form", "support-note"]
+  "order": [
+    "main"
+  ]
 }
