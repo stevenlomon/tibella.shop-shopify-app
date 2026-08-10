@@ -10,8 +10,9 @@
   --white: #FFFFFF;
   --gold: #E8A838;
   --nav-dark: #423F3F;
-  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-  font-family: var(--font);
+  --font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -37,6 +38,9 @@
   color: var(--gold);
   font-size: 14px;
   letter-spacing: 1px;
+}
+.th h1, .th h2 {
+  font-family: var(--font-heading);
 }
 .th-hero h1 {
   font-size: 32px;
@@ -79,7 +83,7 @@
   color: var(--white);
   border: none;
   border-radius: 6px;
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -262,9 +266,9 @@
       </div>
       <div class="th-value">
         <div class="th-value-icon">
-          <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 14l-2-2m0 0l2-2m-2 2h6m-3-7a9 9 0 1 1 0 18 9 9 0 0 1 0-18z"/></svg>
         </div>
-        Clinic-Grade Technology
+        20+ Years of Research
       </div>
     </div>
   </section>
