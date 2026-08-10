@@ -393,7 +393,7 @@
           <span class="bb-free-ship">Free Shipping</span>
         </div>
 
-        {% form 'product', product %}
+        {% form 'product', product, id: 'bb-product-form' %}
           <input type="hidden" name="id" value="{{ current_variant.id }}" id="bb-variant-id">
 
           <div class="bb-pack-label">Select Quantity:</div>
@@ -511,6 +511,40 @@ function bbSelectImage(thumb, src) {
 function bbToggle(trigger) {
   trigger.closest('.bb-accordion').classList.toggle('open');
 }
+
+(function() {
+  var form = document.getElementById('bb-product-form');
+  if (!form) return;
+  var cart = document.querySelector('cart-drawer');
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('[type="submit"]');
+    btn.setAttribute('aria-disabled', 'true');
+    btn.classList.add('loading');
+    var formData = new FormData(form);
+    if (cart) {
+      formData.append('sections', cart.getSectionsToRender().map(function(s) { return s.id; }));
+      formData.append('sections_url', window.location.pathname);
+      cart.setActiveElement(document.activeElement);
+    }
+    var config = { method: 'POST', headers: { 'X-Requested-With': 'XMLHttpRequest' }, body: formData };
+    fetch(window.routes.cart_add_url, config)
+      .then(function(r) { return r.json(); })
+      .then(function(response) {
+        if (response.status) { window.location.href = '/cart'; return; }
+        if (cart) {
+          cart.renderContents(response);
+        } else {
+          window.location.href = '/cart';
+        }
+      })
+      .catch(function() { window.location.href = '/cart'; })
+      .finally(function() {
+        btn.classList.remove('loading');
+        btn.removeAttribute('aria-disabled');
+      });
+  });
+})();
 </script>
 
 
