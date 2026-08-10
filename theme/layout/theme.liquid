@@ -319,6 +319,53 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .shopify-policy__container {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 60px 18px 80px;
+        font-family: "Inter", system-ui, sans-serif;
+      }
+      .shopify-policy__title h1 {
+        font-family: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: #1B1919;
+        text-align: center;
+        margin-bottom: 32px;
+        line-height: 1.2;
+      }
+      .shopify-policy__body .rte {
+        font-size: 15px;
+        color: #5E5C5C;
+        line-height: 1.7;
+      }
+      .shopify-policy__body .rte p {
+        margin-bottom: 14px;
+      }
+      .shopify-policy__body .rte h2,
+      .shopify-policy__body .rte h3 {
+        font-family: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+        color: #1B1919;
+        margin-top: 28px;
+        margin-bottom: 12px;
+      }
+      .shopify-policy__body .rte a {
+        color: #361E12;
+        font-weight: 600;
+      }
+      .shopify-policy__body .rte ul,
+      .shopify-policy__body .rte ol {
+        padding-left: 20px;
+        margin-bottom: 14px;
+      }
+      .shopify-policy__body .rte li {
+        margin-bottom: 6px;
+      }
+    </style>
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
