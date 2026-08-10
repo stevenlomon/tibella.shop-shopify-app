@@ -2,6 +2,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tibella - Drug-Free Bladder Control Device</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --nav-dark: #423F3F;
@@ -20,19 +23,28 @@
   --green: #3D8C52;
   --red: #B54A3A;
   --gold: #E8A838;
-  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+  --font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: var(--font);
+  font-family: var(--font-body);
   color: var(--body-dark);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2, h3, h4, h5, h6,
+.section-heading,
+.hero-headline,
+.mech-heading,
+.how-card-title,
+.how-card-step {
+  font-family: var(--font-heading);
+}
 
 /* ── Hero ── */
 .hero {
@@ -125,7 +137,7 @@ body {
   color: var(--white);
   border: none;
   border-radius: 6px;
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -619,7 +631,7 @@ body {
   display: inline-block;
   background: var(--white);
   color: var(--brown);
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.5px;

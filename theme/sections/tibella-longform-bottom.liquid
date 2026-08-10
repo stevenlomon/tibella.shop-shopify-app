@@ -16,7 +16,13 @@
   --green: #3D8C52;
   --red: #B54A3A;
   --gold: #E8A838;
-  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+  --font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.section-heading {
+  font-family: var(--font-heading);
 }
 
 /* ── Section Shared ── */
@@ -186,7 +192,7 @@
   color: rgb(8, 8, 8);
   border: none;
   border-radius: 6px;
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -215,7 +221,7 @@
   padding: 18px 0;
   background: none;
   border: none;
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 700;
   color: #000;
@@ -286,7 +292,7 @@
 .btn-sticky {
   background: var(--brown);
   color: var(--white);
-  font-family: var(--font);
+  font-family: var(--font-heading);
   font-size: 14px;
   font-weight: 700;
   padding: 12px 28px;
