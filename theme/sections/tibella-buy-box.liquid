@@ -517,15 +517,10 @@ function bbToggle(trigger) {
   if (!form) return;
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    var cart = document.querySelector('cart-drawer');
     var btn = form.querySelector('[type="submit"]');
     btn.setAttribute('aria-disabled', 'true');
+    btn.textContent = 'Adding...';
     var formData = new FormData(form);
-    if (cart) {
-      formData.append('sections', cart.getSectionsToRender().map(function(s) { return s.id; }));
-      formData.append('sections_url', window.location.pathname);
-      cart.setActiveElement(document.activeElement);
-    }
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'X-Requested-With': 'XMLHttpRequest' },
@@ -534,14 +529,36 @@ function bbToggle(trigger) {
     .then(function(r) { return r.json(); })
     .then(function(response) {
       if (response.status) { window.location.href = '/cart'; return; }
-      if (cart) {
-        cart.renderContents(response);
+      var cartDrawer = document.querySelector('cart-drawer');
+      if (cartDrawer) {
+        fetch('/?section_id=cart-drawer')
+          .then(function(r) { return r.text(); })
+          .then(function(html) {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(html, 'text/html');
+            var newDrawer = doc.querySelector('cart-drawer');
+            if (newDrawer) {
+              cartDrawer.querySelector('.drawer__inner').innerHTML = newDrawer.querySelector('.drawer__inner').innerHTML;
+              cartDrawer.classList.remove('is-empty');
+            }
+            var bubble = document.querySelector('#cart-icon-bubble .cart-count-bubble');
+            if (bubble) {
+              fetch('/cart.js').then(function(r) { return r.json(); }).then(function(cart) {
+                bubble.querySelector('[aria-hidden]').textContent = cart.item_count;
+                bubble.querySelector('.visually-hidden').textContent = cart.item_count + ' items';
+              });
+            }
+            cartDrawer.open(btn);
+          });
       } else {
         window.location.href = '/cart';
       }
     })
     .catch(function() { window.location.href = '/cart'; })
-    .finally(function() { btn.removeAttribute('aria-disabled'); });
+    .finally(function() {
+      btn.removeAttribute('aria-disabled');
+      btn.textContent = 'Add To Cart';
+    });
   });
 })();
 </script>
