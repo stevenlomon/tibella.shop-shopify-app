@@ -29,15 +29,17 @@ database.sqlite
 # Ignore everything inside theme/
 /theme/*
 
-# Un-ignore sections and templates directories so Git scans them
+# Un-ignore sections, templates and config directories so Git scans them
 !/theme/sections/
 !/theme/templates/
 !/theme/layout
+!/theme/config
 
 # Ignore all other files inside those directories...
 /theme/sections/*
 /theme/templates/*
 /theme/layout/*
+/theme/config/*
 
 # ...EXCEPT our custom Tibella files!
 !/theme/sections/tibella-longform.liquid
@@ -54,6 +56,7 @@ database.sqlite
 !/theme/templates/page.tibella-longform.json
 !/theme/layout/theme.liquid
 !/theme/templates/index.json
+!/theme/config/settings_data.json
 
 # Now also ignore our local backups
 /theme-horizon-backup/
