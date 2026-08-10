@@ -271,6 +271,10 @@ h1, h2, h3, h4, h5, h6,
   transform: translateY(0);
   visibility: visible;
 }
+.sticky-cart.visible.footer-hidden,
+.sticky-cart.visible.hero-hidden {
+  transform: translateY(100%);
+}
 .sticky-cart-info {
   display: flex;
   flex-direction: column;
@@ -478,14 +482,35 @@ document.addEventListener('DOMContentLoaded', function() {
   var observer = new IntersectionObserver(function(entries) {
     entries.forEach(function(entry) {
       if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+        sticky.classList.remove('hero-hidden');
         sticky.classList.add('visible');
       } else {
-        sticky.classList.remove('visible');
+        sticky.classList.add('hero-hidden');
+        sticky.addEventListener('transitionend', function handler() {
+          if (sticky.classList.contains('hero-hidden')) {
+            sticky.classList.remove('visible');
+          }
+          sticky.removeEventListener('transitionend', handler);
+        });
       }
     });
   }, { root: null, threshold: 0 });
 
   observer.observe(trigger);
+
+  var footer = document.querySelector('.tibella-footer');
+  if (footer) {
+    var footerVisible = false;
+    var footerObs = new IntersectionObserver(function(entries) {
+      footerVisible = entries[0].isIntersecting;
+      if (footerVisible) {
+        sticky.classList.add('footer-hidden');
+      } else {
+        sticky.classList.remove('footer-hidden');
+      }
+    }, { root: null, threshold: 0 });
+    footerObs.observe(footer);
+  }
 });
 
 (function() {

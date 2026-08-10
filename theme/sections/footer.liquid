@@ -1,0 +1,110 @@
+
+{%- comment -%}
+  Tibella footer — 4-column link grid
+{%- endcomment -%}
+
+<footer class="tibella-footer">
+  <div class="tibella-footer-inner">
+    <div class="tibella-footer-grid">
+      {%- for i in (1..2) -%}
+        {%- assign menu_key = 'menu_' | append: i -%}
+        {%- assign title_key = 'title_' | append: i -%}
+        {%- assign menu_handle = section.settings[menu_key] -%}
+        {%- assign col_title = section.settings[title_key] -%}
+        {%- if menu_handle != blank -%}
+          <div class="tibella-footer-col">
+            <div class="tibella-footer-col-title">{{ col_title }}</div>
+            {%- for link in linklists[menu_handle].links -%}
+              <a href="{{ link.url }}" class="tibella-footer-link">{{ link.title }}</a>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+    <div class="tibella-footer-bottom">
+      &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .tibella-footer {
+    background: #423F3F;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 60px 18px 50px;
+  }
+  .tibella-footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .tibella-footer-grid {
+    display: flex;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+  .tibella-footer-col-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .tibella-footer-link {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .tibella-footer-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .tibella-footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: 20px;
+    font-size: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  @media screen and (min-width: 750px) {
+    .tibella-footer-grid {
+      max-width: 900px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "class": "section-wrapper",
+  "enabled_on": {
+    "groups": ["footer"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Column 1 title",
+      "default": "Support"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Column 1 menu"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Column 2 title",
+      "default": "Legal"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Column 2 menu"
+    }
+  ]
+}
+{% endschema %}

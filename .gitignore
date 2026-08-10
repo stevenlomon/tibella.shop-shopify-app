@@ -49,6 +49,8 @@ database.sqlite
 !/theme/sections/header.liquid
 !/theme/sections/header-group.json
 !/theme/sections/announcement-bar.liquid
+!/theme/sections/footer.liquid
+!/theme/sections/footer-group.json
 !/theme/templates/page.tibella-longform.json
 !/theme/layout/theme.liquid
 !/theme/templates/index.json
