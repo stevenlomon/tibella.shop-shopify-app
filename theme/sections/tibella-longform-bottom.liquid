@@ -272,7 +272,8 @@ h1, h2, h3, h4, h5, h6,
   visibility: visible;
 }
 .sticky-cart.visible.footer-hidden,
-.sticky-cart.visible.hero-hidden {
+.sticky-cart.visible.hero-hidden,
+.sticky-cart.visible.drawer-open {
   transform: translateY(100%);
 }
 .sticky-cart-info {
@@ -510,6 +511,19 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }, { root: null, threshold: 0 });
     footerObs.observe(footer);
+  }
+
+  var drawerObs = new MutationObserver(function() {
+    var drawer = document.querySelector('cart-drawer');
+    if (drawer && drawer.classList.contains('active')) {
+      sticky.classList.add('drawer-open');
+    } else {
+      sticky.classList.remove('drawer-open');
+    }
+  });
+  var drawerEl = document.querySelector('cart-drawer');
+  if (drawerEl) {
+    drawerObs.observe(drawerEl, { attributes: true, attributeFilter: ['class'] });
   }
 });
 
