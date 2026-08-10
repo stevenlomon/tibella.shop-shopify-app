@@ -46,6 +46,9 @@ database.sqlite
 !/theme/sections/tibella-buy-box.liquid
 !/theme/sections/tibella-home.liquid
 !/theme/sections/tibella-contact.liquid
+!/theme/sections/header.liquid
+!/theme/sections/header-group.json
+!/theme/sections/announcement-bar.liquid
 !/theme/templates/page.tibella-longform.json
 !/theme/layout/theme.liquid
 !/theme/templates/index.json
