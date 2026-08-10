@@ -410,6 +410,16 @@
                 {% endif %}
                 <div class="bb-pack-name">{{ variant.title }}</div>
                 <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
+                {% unless forloop.first %}
+                  {% assign single_price = product.variants.first.price %}
+                  {% assign pack_count = forloop.index %}
+                  {% assign full_price = single_price | times: pack_count %}
+                  {% assign saved = full_price | minus: variant.price %}
+                  {% assign pct = saved | times: 100 | divided_by: full_price %}
+                  {% if pct > 0 %}
+                    <div class="bb-pack-save">Save {{ pct }}%</div>
+                  {% endif %}
+                {% endunless %}
               </div>
             {% endfor %}
           </div>
