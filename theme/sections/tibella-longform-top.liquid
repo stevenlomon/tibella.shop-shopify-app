@@ -679,13 +679,13 @@ h1, h2, h3, h4, h5, h6,
 }
 .stats-sub {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.55);
   padding-bottom: 44px;
 }
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
   max-width: 520px;
   margin: 0 auto;
   padding: 0 18px;
@@ -694,15 +694,52 @@ h1, h2, h3, h4, h5, h6,
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 12px;
-  padding: 24px 14px;
+  padding: 24px 12px;
 }
-.stat-number {
-  font-size: 38px;
+.stat-visual {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stat-ring {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.stat-ring svg {
+  transform: rotate(-90deg);
+}
+.stat-ring-track {
+  fill: none;
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 5;
+}
+.stat-ring-fill {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.stat-ring-fill--green { stroke: var(--green); }
+.stat-ring-fill--gold { stroke: var(--gold); }
+.stat-ring-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 8px;
 }
+.stat-big-number {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-green { color: var(--green); }
+.stat-gold { color: var(--gold); }
 .stat-label {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.8);
@@ -710,15 +747,18 @@ h1, h2, h3, h4, h5, h6,
 }
 .stat-source {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 6px;
 }
 .stats-note {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.45);
-  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 28px;
   padding: 0 18px;
   line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ── How to Use (Physical) ── */
@@ -894,26 +934,6 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 16px;
 }
 
-.stats-grid {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline-start: 18px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  max-width: none;
-  padding: 0 0 0 18px;
-}
-.stats-grid::-webkit-scrollbar { display: none; }
-.stat-card {
-  flex: 0 0 260px;
-  scroll-snap-align: start;
-}
-.stat-card:last-child {
-  margin-right: 18px;
-}
-
 .expert-mobile-logo {
   text-align: center;
   max-width: 580px;
@@ -1069,9 +1089,8 @@ h1, h2, h3, h4, h5, h6,
   .stats-heading { font-size: 28px; }
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 800px;
+    max-width: 700px;
   }
-  .stat-number { font-size: 44px; }
 
   .use-section .section-inner {
     display: grid;
@@ -1117,18 +1136,8 @@ h1, h2, h3, h4, h5, h6,
   }
   .use-step-num { margin-bottom: 0; }
   .stats-grid {
-    display: grid;
-    overflow-x: visible;
-    scroll-snap-type: none;
-    max-width: 800px;
+    max-width: 700px;
     padding: 0 18px;
-  }
-  .stat-card {
-    flex: none;
-    scroll-snap-align: unset;
-  }
-  .stat-card:last-child {
-    margin-right: 0;
   }
 }
 
@@ -1371,24 +1380,44 @@ h1, h2, h3, h4, h5, h6,
   </div>
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-number">54.5%</div>
+      <div class="stat-visual">
+        <div class="stat-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="stat-ring-track" cx="50" cy="50" r="42"/>
+            <circle class="stat-ring-fill stat-ring-fill--green" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="120.07"/>
+          </svg>
+          <div class="stat-ring-value stat-green">54.5%</div>
+        </div>
+      </div>
       <div class="stat-label">of patients improved vs 20.9% with sham</div>
-      <div class="stat-source">SUmiT trial, n=220 (clinical PTNS version)</div>
+      <div class="stat-source">SUmiT trial, n=220</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">0</div>
-      <div class="stat-label">side effects reported in surface-electrode trials</div>
-      <div class="stat-source">Booth review, 629 patients</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">72%</div>
+      <div class="stat-visual">
+        <div class="stat-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="stat-ring-track" cx="50" cy="50" r="42"/>
+            <circle class="stat-ring-fill stat-ring-fill--gold" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="73.89"/>
+          </svg>
+          <div class="stat-ring-value stat-gold">72%</div>
+        </div>
+      </div>
       <div class="stat-label">of women quit OAB medications within 1 year</div>
       <div class="stat-source">Medicare analysis, 42,886 patients</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">20+</div>
+      <div class="stat-visual">
+        <div class="stat-big-number stat-green">0</div>
+      </div>
+      <div class="stat-label">side effects reported in surface-electrode trials</div>
+      <div class="stat-source">Booth review, 629 patients</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-visual">
+        <div class="stat-big-number stat-gold">20+</div>
+      </div>
       <div class="stat-label">years this principle has been used in urology clinics worldwide</div>
-      <div class="stat-source">AUA guideline-endorsed (clinical version)</div>
+      <div class="stat-source">AUA guideline-endorsed</div>
     </div>
   </div>
   <p class="stats-note">Tibella uses surface electrodes (TTNS). The SUmiT trial used the clinical needle version (PTNS). Surface-electrode studies show comparable results with higher patient satisfaction.</p>
