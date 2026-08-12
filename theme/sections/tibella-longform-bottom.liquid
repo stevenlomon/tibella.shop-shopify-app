@@ -1,28 +1,21 @@
-<style>
-:root {
-  --nav-dark: #423F3F;
-  --brown: #361E12;
-  --brown-hover: #2A1610;
-  --heading: #1B1919;
-  --body-dark: #282828;
-  --body: #5E5C5C;
-  --muted: #8A8787;
-  --cream: #F4F0E9;
-  --cream-27: rgba(244, 240, 233, 0.27);
-  --tan: #DBCCB9;
-  --light: #F6F6F6;
-  --white: #FFFFFF;
-  --border: #E5E0D9;
-  --green: #3D8C52;
-  --red: #B54A3A;
-  --gold: #E8A838;
-  --font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-}
+{%- render 'lp-brand-vars' -%}
 
+{%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
+
+{%- assign lb_reviews_heading = "Here's What Women Are Saying About Tibella" -%}
+{%- assign lb_guarantee_heading = "Try Tibella Completely Risk-Free For 60 Days" -%}
+{%- assign lb_guarantee_cta = "TAKE BACK CONTROL TODAY" -%}
+{%- assign lb_faq_heading = "Frequently Asked Questions" -%}
+{%- assign lb_sticky_name = "Tibella" -%}
+{%- assign lb_sticky_price = "$59" -%}
+{%- assign lb_sticky_cta = "ADD TO CART" -%}
+
+{%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
+
+<style>
 h1, h2, h3, h4, h5, h6,
 .section-heading {
-  font-family: var(--font-heading);
+  font-family: var(--font);
 }
 
 /* ── Section Shared ── */
@@ -75,23 +68,23 @@ h1, h2, h3, h4, h5, h6,
 .review-title {
   font-size: 18px;
   font-weight: 700;
-  color: rgb(33, 33, 33);
+  color: var(--heading);
   margin-bottom: 12px;
 }
 .review-body {
   font-size: 15px;
-  color: rgb(33, 33, 33);
+  color: var(--heading);
   line-height: 1.6;
   margin-bottom: 18px;
 }
 .review-name {
   font-size: 15px;
   font-weight: 700;
-  color: rgb(33, 33, 33);
+  color: var(--heading);
 }
 .review-verified {
   font-size: 15px;
-  color: rgb(71, 71, 71);
+  color: var(--body);
   margin-top: 2px;
 }
 .review-sample-note {
@@ -189,10 +182,10 @@ h1, h2, h3, h4, h5, h6,
   display: inline-block;
   padding: 14px 40px;
   background: var(--white);
-  color: rgb(8, 8, 8);
+  color: var(--heading);
   border: none;
   border-radius: 6px;
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -221,10 +214,10 @@ h1, h2, h3, h4, h5, h6,
   padding: 18px 0;
   background: none;
   border: none;
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 700;
-  color: #000;
+  color: var(--heading);
   cursor: pointer;
   text-align: left;
   gap: 16px;
@@ -297,7 +290,7 @@ h1, h2, h3, h4, h5, h6,
 .btn-sticky {
   background: var(--brown);
   color: var(--white);
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-size: 14px;
   font-weight: 700;
   padding: 12px 28px;
@@ -329,11 +322,12 @@ h1, h2, h3, h4, h5, h6,
 <!-- REVIEWS -->
 <section class="reviews-section">
   <div class="section-inner">
-    <h2 class="section-heading">Here's What Women Are Saying About Tibella</h2>
+    <h2 class="section-heading">{{ lb_reviews_heading }}</h2>
   </div>
   <div class="review-carousel">
     <button class="carousel-arrow carousel-prev" aria-label="Previous review" disabled>&#8249;</button>
     <div class="review-cards" id="review-cards">
+      {%- comment -%} ═══ REVIEWS — edit cards directly ═══ {%- endcomment -%}
       <div class="review-card">
         <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
         <div class="review-title">I Actually Sleep Through the Night Now</div>
@@ -390,6 +384,7 @@ h1, h2, h3, h4, h5, h6,
         <div class="review-name">Barbara S.</div>
         <div class="review-verified">Verified Customer</div>
       </div>
+      {%- comment -%} ═══ END REVIEWS ═══ {%- endcomment -%}
     </div>
     <button class="carousel-arrow carousel-next" aria-label="Next review">&#8250;</button>
   </div>
@@ -400,9 +395,9 @@ h1, h2, h3, h4, h5, h6,
 <section class="guarantee-section">
   <div class="section-inner">
     <div class="guarantee-card">
-      <h2 class="guarantee-heading">Try Tibella Completely Risk-Free For 60 Days</h2>
-      <p class="guarantee-body">Yes! We do mean completely risk-free. If you do not notice improvement within 60 days of using Tibella, simply send us an email at <strong>support@tibella.shop</strong> with your order number and we will give you a full refund within 24 hours. No questions asked. That's how confident we are that Tibella will work for you.</p>
-      <a href="#pdp" class="btn-guarantee">TAKE BACK CONTROL TODAY</a>
+      <h2 class="guarantee-heading">{{ lb_guarantee_heading }}</h2>
+      <p class="guarantee-body">Yes! We do mean completely risk-free. If you do not notice improvement within 60 days of using Tibella, simply send us an email at <strong>{{ settings.lp_support_email }}</strong> with your order number and we will give you a full refund within 24 hours. No questions asked. That's how confident we are that Tibella will work for you.</p>
+      <a href="#pdp" class="btn-guarantee">{{ lb_guarantee_cta }}</a>
     </div>
   </div>
 </section>
@@ -410,9 +405,10 @@ h1, h2, h3, h4, h5, h6,
 <!-- FAQ -->
 <section class="faq-section">
   <div class="section-inner">
-    <h2 class="section-heading">Frequently Asked Questions</h2>
+    <h2 class="section-heading">{{ lb_faq_heading }}</h2>
 
     <div class="faq-list">
+      {%- comment -%} ═══ FAQs — edit items directly ═══ {%- endcomment -%}
       <div class="faq-item">
         <button class="faq-trigger" onclick="toggleFaq(this)">
           How long before I see results?
@@ -453,8 +449,9 @@ h1, h2, h3, h4, h5, h6,
           What if it doesn't work for me?
           <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
         </button>
-        <div class="faq-answer">We offer a 60-day money-back guarantee. If you don't notice improvement within 60 days, email support@tibella.shop with your order number and we'll refund you in full within 24 hours. No questions asked.</div>
+        <div class="faq-answer">We offer a 60-day money-back guarantee. If you don't notice improvement within 60 days, email {{ settings.lp_support_email }} with your order number and we'll refund you in full within 24 hours. No questions asked.</div>
       </div>
+      {%- comment -%} ═══ END FAQs ═══ {%- endcomment -%}
     </div>
   </div>
 </section>
@@ -462,10 +459,10 @@ h1, h2, h3, h4, h5, h6,
 <!-- STICKY CART BAR -->
 <div class="sticky-cart" id="sticky-cart">
   <div class="sticky-cart-info">
-    <div class="sticky-cart-name">Tibella</div>
-    <div class="sticky-cart-price">From <strong>$59</strong></div>
+    <div class="sticky-cart-name">{{ lb_sticky_name }}</div>
+    <div class="sticky-cart-price">From <strong>{{ lb_sticky_price }}</strong></div>
   </div>
-  <a href="#pdp" class="btn-sticky">ADD TO CART</a>
+  <a href="#pdp" class="btn-sticky">{{ lb_sticky_cta }}</a>
 </div>
 
 
@@ -577,7 +574,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% schema %}
 {
-  "name": "Tibella Longform Bottom",
+  "name": "LP Longform Bottom",
   "tag": "section",
   "class": "tibella-longform-section",
   "settings": []
