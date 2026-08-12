@@ -1,49 +1,37 @@
-{% assign product = all_products['ankle-support-ems-massager-with-remote-control'] %}
+{%- render 'lp-brand-vars' -%}
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tibella - Drug-Free Bladder Control Device</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
+
+{%- assign lt_hero_headline = "Finally Stop Urgency, Leaks, and Nighttime Bathroom Trips Without Drugs or Side Effects" -%}
+{%- assign lt_hero_body = "Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks." -%}
+{%- assign lt_hero_cta = "SHOP NOW" -%}
+{%- assign lt_hero_img = "https://cdn.shopify.com/s/files/1/1029/7170/3631/files/Hero_Image_v2.png?v=1786391826" -%}
+{%- assign lt_hero_img_alt = "Tibella bladder control device - 20+ years of research, fewer urgent trips, more restful nights" -%}
+
+{%- assign lt_mech_heading = "The Science Behind Your Bladder" -%}
+{%- assign lt_solution_heading = "Introducing Tibella" -%}
+{%- assign lt_solution_subhead = "Based on the same science used in urology clinics worldwide. No needle. No office visits. Same nerve. Same principle." -%}
+
+{%- assign lt_midcta_heading = "Ready to Take Back Control?" -%}
+{%- assign lt_midcta_sub = "30 minutes a day. No drugs. No side effects. Results in 4-6 weeks." -%}
+{%- assign lt_midcta_cta = "GET TIBELLA NOW" -%}
+
+{%- assign lt_how_heading = "How Tibella Works" -%}
+{%- assign lt_compare_heading = "How Tibella Compares" -%}
+{%- assign lt_stats_heading = "The Science Speaks for Itself" -%}
+{%- assign lt_stats_sub = "Published clinical trial results for tibial nerve stimulation" -%}
+{%- assign lt_use_heading = "Simple to Use. 30 Minutes. Done." -%}
+
+{%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
+
 <style>
-:root {
-  --nav-dark: #423F3F;
-  --brown: #361E12;
-  --brown-hover: #2A1610;
-  --heading: #1B1919;
-  --body-dark: #282828;
-  --body: #5E5C5C;
-  --muted: #8A8787;
-  --cream: #F4F0E9;
-  --cream-27: rgba(244, 240, 233, 0.27);
-  --tan: #DBCCB9;
-  --light: #F6F6F6;
-  --white: #FFFFFF;
-  --border: #E5E0D9;
-  --green: #3D8C52;
-  --red: #B54A3A;
-  --gold: #E8A838;
-  --font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: var(--font-body);
-  color: var(--body-dark);
-  background: var(--white);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 h1, h2, h3, h4, h5, h6,
 .section-heading,
 .hero-headline,
 .mech-heading,
 .how-card-title,
 .how-card-step {
-  font-family: var(--font-heading);
+  font-family: var(--font);
 }
 
 /* ── Hero ── */
@@ -74,13 +62,13 @@ h1, h2, h3, h4, h5, h6,
 }
 .hero-trust-text {
   font-size: 14px;
-  color: #5E5C5C;
+  color: var(--body);
 }
 .hero-headline {
   font-size: 28px;
   font-weight: 700;
   line-height: 1.2;
-  color: #000;
+  color: var(--heading);
   margin-bottom: 28px;
   max-width: 600px;
   margin-left: auto;
@@ -128,7 +116,7 @@ h1, h2, h3, h4, h5, h6,
 .hero-body {
   font-size: 16px;
   line-height: 1.6;
-  color: #000;
+  color: var(--heading);
   max-width: 520px;
   margin: 0 auto;
 }
@@ -142,7 +130,7 @@ h1, h2, h3, h4, h5, h6,
   color: var(--white);
   border: none;
   border-radius: 6px;
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -394,7 +382,7 @@ h1, h2, h3, h4, h5, h6,
 .solution-subhead {
   font-size: 17px;
   font-weight: 400;
-  color: rgb(20, 10, 0);
+  color: var(--heading);
   margin-top: 16px;
   line-height: 1.5;
 }
@@ -563,7 +551,7 @@ h1, h2, h3, h4, h5, h6,
 .how-card {
   flex: 0 0 280px;
   scroll-snap-align: start;
-  background: #fff;
+  background: var(--white);
   border-radius: 12px;
   padding: 28px 22px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
@@ -587,7 +575,7 @@ h1, h2, h3, h4, h5, h6,
 .how-card-icon svg {
   width: 20px;
   height: 20px;
-  color: #fff;
+  color: var(--white);
 }
 .how-card-step {
   font-size: 12px;
@@ -636,7 +624,7 @@ h1, h2, h3, h4, h5, h6,
   display: inline-block;
   background: var(--white);
   color: var(--brown);
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.5px;
@@ -1158,29 +1146,29 @@ h1, h2, h3, h4, h5, h6,
     <div class="hero-copy">
       <div class="hero-trust">
         <span class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="hero-trust-rating">4.7/5</span>
-        <span class="hero-trust-text">Trusted By 1,267 Women</span>
+        <span class="hero-trust-rating">{{ settings.lp_trust_rating }}</span>
+        <span class="hero-trust-text">{{ settings.lp_trust_text }}</span>
       </div>
 
-      <h1 class="hero-headline">Finally Stop Urgency, Leaks, and Nighttime Bathroom Trips Without Drugs or Side Effects</h1>
+      <h1 class="hero-headline">{{ lt_hero_headline }}</h1>
 
       <div class="hero-body-wrap">
-        <p class="hero-body">Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks.</p>
+        <p class="hero-body">{{ lt_hero_body }}</p>
       </div>
 
     </div>
 
     <div class="hero-image-wrap">
       <div class="hero-product-img">
-        <img src="https://cdn.shopify.com/s/files/1/1029/7170/3631/files/Hero_Image_v2.png?v=1786391826" alt="Tibella bladder control device - 20+ years of research, fewer urgent trips, more restful nights" loading="eager" width="1200" height="900" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;">
+        <img src="{{ lt_hero_img }}" alt="{{ lt_hero_img_alt }}" loading="eager" width="1200" height="900" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;">
       </div>
     </div>
 
-    <a href="#pdp" class="btn-primary hero-btn">SHOP NOW</a>
+    <a href="#pdp" class="btn-primary hero-btn">{{ lt_hero_cta }}</a>
   </div>
 </section>
 
-<!-- TRUST STRIP -->
+{%- comment -%} ═══ TRUST STRIP — edit items directly (duplicated for marquee loop) ═══ {%- endcomment -%}
 <div class="trust-strip">
   <div class="trust-strip-inner">
     <span class="trust-strip-item">Try Risk-Free for 60 Days</span>
@@ -1197,8 +1185,9 @@ h1, h2, h3, h4, h5, h6,
 <!-- MECHANISM SECTION -->
 <section class="mechanism-section">
   <div class="section-inner">
-    <h2 class="section-heading">The Science Behind Your Bladder</h2>
+    <h2 class="section-heading">{{ lt_mech_heading }}</h2>
 
+    {%- comment -%} ═══ MECHANISM BLOCKS — edit blocks directly ═══ {%- endcomment -%}
     <div class="mech-blocks">
 
       <div class="mech-block">
@@ -1234,6 +1223,7 @@ h1, h2, h3, h4, h5, h6,
       </div>
 
     </div>
+    {%- comment -%} ═══ END MECHANISM BLOCKS ═══ {%- endcomment -%}
   </div>
 </section>
 
@@ -1242,9 +1232,10 @@ h1, h2, h3, h4, h5, h6,
   <div class="section-inner">
     <div class="solution-split">
       <div class="solution-copy">
-        <h2 class="section-heading">Introducing Tibella</h2>
-        <p class="solution-subhead">Based on the same science used in urology clinics worldwide. No needle. No office visits. Same nerve. Same principle.</p>
+        <h2 class="section-heading">{{ lt_solution_heading }}</h2>
+        <p class="solution-subhead">{{ lt_solution_subhead }}</p>
 
+        {%- comment -%} ═══ SOLUTION BENEFITS — edit bullets directly ═══ {%- endcomment -%}
         <div class="solution-benefits">
           <div class="solution-benefit">
             <div class="solution-check">
@@ -1265,6 +1256,7 @@ h1, h2, h3, h4, h5, h6,
             <div class="solution-benefit-text">Backed by 10+ published clinical studies with thousands of participants across multiple randomized controlled trials</div>
           </div>
         </div>
+        {%- comment -%} ═══ END SOLUTION BENEFITS ═══ {%- endcomment -%}
       </div>
 
       <div class="solution-img">
@@ -1277,9 +1269,9 @@ h1, h2, h3, h4, h5, h6,
 <!-- MID-PAGE CTA -->
 <section class="midcta-section">
   <div class="midcta-inner">
-    <h2 class="midcta-heading">Ready to Take Back Control?</h2>
-    <p class="midcta-sub">30 minutes a day. No drugs. No side effects. Results in 4-6 weeks.</p>
-    <a href="#pdp" class="btn-midcta">GET TIBELLA NOW</a>
+    <h2 class="midcta-heading">{{ lt_midcta_heading }}</h2>
+    <p class="midcta-sub">{{ lt_midcta_sub }}</p>
+    <a href="#pdp" class="btn-midcta">{{ lt_midcta_cta }}</a>
     <div class="midcta-badges">
       <span><svg viewBox="0 0 16 16" fill="none"><path d="M2 4l6-2 6 2v4c0 3.5-2.5 5.5-6 7-3.5-1.5-6-3.5-6-7z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>60-Day Guarantee</span>
       <span><svg viewBox="0 0 16 16" fill="none"><path d="M1 8h14M4 4l-3 4 3 4M12 4l3 4-3 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free Shipping</span>
@@ -1290,8 +1282,9 @@ h1, h2, h3, h4, h5, h6,
 <!-- HOW IT WORKS -->
 <section class="how-section">
   <div class="section-inner">
-    <h2 class="section-heading">How Tibella Works</h2>
+    <h2 class="section-heading">{{ lt_how_heading }}</h2>
   </div>
+  {%- comment -%} ═══ HOW-IT-WORKS CARDS — edit cards directly ═══ {%- endcomment -%}
   <div class="how-cards">
     <div class="how-card">
       <div class="how-card-top">
@@ -1318,13 +1311,15 @@ h1, h2, h3, h4, h5, h6,
       <div class="how-card-text">The overactive "squeeze" signal calms down. Urgency decreases. Leaks stop. Nighttime trips reduce. Studies show improvement beginning around 4-6 weeks with consistent use.</div>
     </div>
   </div>
+  {%- comment -%} ═══ END HOW-IT-WORKS CARDS ═══ {%- endcomment -%}
 </section>
 
 <!-- COMPARISON SECTION -->
 <section class="compare-section">
   <div class="section-inner">
-    <h2 class="section-heading">How Tibella Compares</h2>
+    <h2 class="section-heading">{{ lt_compare_heading }}</h2>
 
+    {%- comment -%} ═══ COMPARISON TABLE — edit rows directly ═══ {%- endcomment -%}
     <div class="compare-layout">
       <div>
         <div class="compare-wrap">
@@ -1367,6 +1362,7 @@ h1, h2, h3, h4, h5, h6,
         </div>
       </div>
     </div>
+    {%- comment -%} ═══ END COMPARISON TABLE ═══ {%- endcomment -%}
 
     <p class="compare-note">Based on published clinical literature and publicly available pricing. Tibella references surface-electrode (TTNS) studies.</p>
   </div>
@@ -1375,9 +1371,10 @@ h1, h2, h3, h4, h5, h6,
 <!-- CLINICAL STATS -->
 <section class="stats-section">
   <div class="section-inner">
-    <h2 class="stats-heading">The Science Speaks for Itself</h2>
-    <p class="stats-sub">Published clinical trial results for tibial nerve stimulation</p>
+    <h2 class="stats-heading">{{ lt_stats_heading }}</h2>
+    <p class="stats-sub">{{ lt_stats_sub }}</p>
   </div>
+  {%- comment -%} ═══ STAT CARDS — edit cards directly ═══ {%- endcomment -%}
   <div class="stats-grid">
     <div class="stat-card">
       <div class="stat-visual">
@@ -1420,6 +1417,7 @@ h1, h2, h3, h4, h5, h6,
       <div class="stat-source">AUA guideline-endorsed</div>
     </div>
   </div>
+  {%- comment -%} ═══ END STAT CARDS ═══ {%- endcomment -%}
   <p class="stats-note">Tibella uses surface electrodes (TTNS). The SUmiT trial used the clinical needle version (PTNS). Surface-electrode studies show comparable results with higher patient satisfaction.</p>
 </section>
 
@@ -1430,8 +1428,9 @@ h1, h2, h3, h4, h5, h6,
   </div>
   <div class="use-text-content">
     <div class="section-inner">
-      <h2 class="section-heading">Simple to Use. 30 Minutes. Done.</h2>
+      <h2 class="section-heading">{{ lt_use_heading }}</h2>
     </div>
+    {%- comment -%} ═══ HOW-TO-USE STEPS — edit steps directly ═══ {%- endcomment -%}
     <div class="use-steps">
       <div class="use-step">
         <div class="use-step-num">1</div>
@@ -1455,10 +1454,11 @@ h1, h2, h3, h4, h5, h6,
         </div>
       </div>
     </div>
+    {%- comment -%} ═══ END HOW-TO-USE STEPS ═══ {%- endcomment -%}
   </div>
 </section>
 
-<!-- EXPERT CREDIBILITY -->
+{%- comment -%} ═══ EXPERT CREDIBILITY — edit content directly ═══ {%- endcomment -%}
 <section class="expert-section">
   <div class="section-inner">
     <div class="expert-card">
@@ -1476,6 +1476,7 @@ h1, h2, h3, h4, h5, h6,
     </div>
   </div>
 </section>
+{%- comment -%} ═══ END EXPERT CREDIBILITY ═══ {%- endcomment -%}
 
 <script>
 (function() {
@@ -1486,7 +1487,7 @@ h1, h2, h3, h4, h5, h6,
 
 {% schema %}
 {
-  "name": "Tibella Longform Top",
+  "name": "LP Longform Top",
   "tag": "section",
   "class": "tibella-longform-section",
   "settings": []
