@@ -61,3 +61,4 @@ database.sqlite
 # Now also ignore our local backups
 /theme-horizon-backup/
 /theme-pre-dawn-backup/
+/theme-dawn-backup/
