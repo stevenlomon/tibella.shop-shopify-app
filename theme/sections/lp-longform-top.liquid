@@ -1,38 +1,38 @@
-{% assign product = all_products['ankle-support-ems-massager-with-remote-control'] %}
+{%- render 'lp-brand-vars' -%}
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tibella - Drug-Free Bladder Control Device</title>
+{%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
+
+{%- assign lt_hero_headline = "Finally Stop Urgency, Leaks, and Nighttime Bathroom Trips Without Drugs or Side Effects" -%}
+{%- assign lt_hero_body = "Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks." -%}
+{%- assign lt_hero_cta = "SHOP NOW" -%}
+{%- assign lt_hero_img = "https://cdn.shopify.com/s/files/1/1029/7170/3631/files/Hero_Image_v2.png?v=1786391826" -%}
+{%- assign lt_hero_img_alt = "Tibella bladder control device - 20+ years of research, fewer urgent trips, more restful nights" -%}
+
+{%- assign lt_mech_heading = "The Science Behind Your Bladder" -%}
+{%- assign lt_solution_heading = "Introducing Tibella" -%}
+{%- assign lt_solution_subhead = "Based on the same science used in urology clinics worldwide. No needle. No office visits. Same nerve. Same principle." -%}
+
+{%- assign lt_midcta_heading = "Ready to Take Back Control?" -%}
+{%- assign lt_midcta_sub = "30 minutes a day. No drugs. No side effects. Results in 4-6 weeks." -%}
+{%- assign lt_midcta_cta = "GET TIBELLA NOW" -%}
+
+{%- assign lt_how_heading = "How Tibella Works" -%}
+{%- assign lt_compare_heading = "How Tibella Compares" -%}
+{%- assign lt_stats_heading = "The Science Speaks for Itself" -%}
+{%- assign lt_stats_sub = "Published clinical trial results for tibial nerve stimulation" -%}
+{%- assign lt_use_heading = "Simple to Use. 30 Minutes. Done." -%}
+
+{%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
+
 <style>
-:root {
-  --nav-dark: #423F3F;
-  --brown: #361E12;
-  --brown-hover: #2A1610;
-  --heading: #1B1919;
-  --body-dark: #282828;
-  --body: #5E5C5C;
-  --muted: #8A8787;
-  --cream: #F4F0E9;
-  --cream-27: rgba(244, 240, 233, 0.27);
-  --tan: #DBCCB9;
-  --light: #F6F6F6;
-  --white: #FFFFFF;
-  --border: #E5E0D9;
-  --green: #3D8C52;
-  --red: #B54A3A;
-  --gold: #E8A838;
-  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
+h1, h2, h3, h4, h5, h6,
+.section-heading,
+.hero-headline,
+.mech-heading,
+.how-card-title,
+.how-card-step {
   font-family: var(--font);
-  color: var(--body-dark);
-  background: var(--white);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
 
 /* ── Hero ── */
 .hero {
@@ -55,15 +55,20 @@ body {
   font-size: 14px;
   letter-spacing: 1px;
 }
+.hero-trust-rating {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--heading);
+}
 .hero-trust-text {
   font-size: 14px;
-  color: #000;
+  color: var(--body);
 }
 .hero-headline {
   font-size: 28px;
   font-weight: 700;
   line-height: 1.2;
-  color: #000;
+  color: var(--heading);
   margin-bottom: 28px;
   max-width: 600px;
   margin-left: auto;
@@ -79,7 +84,7 @@ body {
 .hero-image-wrap {
   position: relative;
   margin: 0 auto 24px;
-  max-width: 400px;
+  max-width: 540px;
 }
 .btn-primary.hero-btn {
   margin-top: 8px;
@@ -88,6 +93,7 @@ body {
   width: 100%;
   position: relative;
   overflow: hidden;
+  border-radius: 16px;
 }
 .hero-callout {
   position: absolute;
@@ -110,7 +116,7 @@ body {
 .hero-body {
   font-size: 16px;
   line-height: 1.6;
-  color: #000;
+  color: var(--heading);
   max-width: 520px;
   margin: 0 auto;
 }
@@ -339,12 +345,13 @@ body {
 }
 .mech-detail {
   margin-top: 16px;
-  padding: 16px 18px;
+  padding: 16px 20px;
   background: var(--cream);
-  border-radius: 10px;
-  font-size: 14px;
-  color: var(--body);
-  line-height: 1.55;
+  border-left: 3px solid var(--brown);
+  border-radius: 0 10px 10px 0;
+  font-size: 16px;
+  color: var(--heading);
+  line-height: 1.6;
 }
 .mech-detail strong {
   color: var(--heading);
@@ -375,7 +382,7 @@ body {
 .solution-subhead {
   font-size: 17px;
   font-weight: 400;
-  color: rgb(20, 10, 0);
+  color: var(--heading);
   margin-top: 16px;
   line-height: 1.5;
 }
@@ -427,7 +434,6 @@ body {
 .compare-layout {
   margin-top: 40px;
 }
-
 .compare-note {
   margin-top: 20px;
   font-size: 13px;
@@ -435,8 +441,6 @@ body {
   text-align: center;
   line-height: 1.5;
 }
-
-/* Comparison table (mobile-first) */
 .compare-wrap {
   border-radius: 12px;
   overflow: hidden;
@@ -491,11 +495,10 @@ body {
   border-bottom-color: rgba(255,255,255,0.1);
 }
 .compare-table tbody td.col-highlight .cmp-check {
-  background: var(--gold);
+  background: var(--green);
 }
 .compare-table tbody tr:last-child td { border-bottom: none; }
 .compare-table tbody tr:last-child td.col-highlight { border-radius: 0 0 12px 12px; }
-
 .cmp-check {
   display: inline-flex;
   align-items: center;
@@ -533,6 +536,7 @@ body {
 /* ── How It Works ── */
 .how-section {
   padding: 55px 0;
+  background: var(--cream);
 }
 .how-cards {
   display: flex;
@@ -547,10 +551,31 @@ body {
 .how-card {
   flex: 0 0 280px;
   scroll-snap-align: start;
-  background: var(--cream-27);
+  background: var(--white);
   border-radius: 12px;
-  padding: 24px 18px;
-  border: 1px solid var(--border);
+  padding: 28px 22px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.how-card-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.how-card-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--brown);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.how-card-icon svg {
+  width: 20px;
+  height: 20px;
+  color: var(--white);
 }
 .how-card-step {
   font-size: 12px;
@@ -558,7 +583,6 @@ body {
   color: var(--brown);
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-bottom: 10px;
 }
 .how-card-title {
   font-size: 20px;
@@ -643,13 +667,13 @@ body {
 }
 .stats-sub {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.55);
   padding-bottom: 44px;
 }
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 16px;
   max-width: 520px;
   margin: 0 auto;
   padding: 0 18px;
@@ -658,15 +682,52 @@ body {
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.1);
   border-radius: 12px;
-  padding: 24px 14px;
+  padding: 24px 12px;
 }
-.stat-number {
-  font-size: 38px;
+.stat-visual {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.stat-ring {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+.stat-ring svg {
+  transform: rotate(-90deg);
+}
+.stat-ring-track {
+  fill: none;
+  stroke: rgba(255,255,255,0.08);
+  stroke-width: 5;
+}
+.stat-ring-fill {
+  fill: none;
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.stat-ring-fill--green { stroke: var(--green); }
+.stat-ring-fill--gold { stroke: var(--gold); }
+.stat-ring-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
   font-weight: 700;
-  color: var(--white);
-  line-height: 1;
-  margin-bottom: 8px;
 }
+.stat-big-number {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+.stat-green { color: var(--green); }
+.stat-gold { color: var(--gold); }
 .stat-label {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.8);
@@ -674,15 +735,18 @@ body {
 }
 .stat-source {
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 6px;
 }
 .stats-note {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.45);
-  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.35);
+  margin-top: 28px;
   padding: 0 18px;
   line-height: 1.5;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ── How to Use (Physical) ── */
@@ -780,6 +844,14 @@ body {
   font-style: italic;
   margin-bottom: 16px;
 }
+.expert-logo {
+  margin-bottom: 10px;
+}
+.expert-logo img {
+  width: 160px;
+  height: 120px;
+  object-fit: contain;
+}
 .expert-source {
   font-size: 13px;
   font-weight: 700;
@@ -792,433 +864,6 @@ body {
   margin-top: 4px;
   line-height: 1.5;
 }
-
-/* ── Sticky Cart Bar ── */
-.sticky-cart {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--white);
-  border-top: 1px solid var(--border);
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 999999;
-  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
-  transform: translateY(100%);
-  transition: transform 0.3s ease-in-out;
-  visibility: hidden;
-}
-.sticky-cart.visible {
-  transform: translateY(0);
-  visibility: visible;
-}
-.sticky-cart-info {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-.sticky-cart-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--heading);
-}
-.sticky-cart-price {
-  font-size: 14px;
-  color: var(--body);
-}
-.sticky-cart-price strong {
-  color: var(--heading);
-  font-weight: 700;
-}
-.btn-sticky {
-  background: var(--brown);
-  color: var(--white);
-  font-family: var(--font);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 12px 28px;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: background 0.2s;
-}
-.btn-sticky:hover { background: var(--brown-hover); }
-
-/* ── Mini PDP ── */
-.pdp-section {
-  padding: 55px 0;
-  padding-bottom: 80px;
-  border-top: 1px solid var(--border);
-}
-.pdp-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-.pdp-image {
-  width: 100%;
-  aspect-ratio: 1;
-  background: linear-gradient(145deg, #f8f5f0 0%, #ebe5db 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pdp-badge {
-  display: inline-block;
-  background: var(--brown);
-  color: var(--white);
-  font-size: 14px;
-  font-weight: 700;
-  padding: 6px 16px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-}
-.pdp-desc {
-  font-size: 16px;
-  color: #000;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-.pdp-benefits {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-.pdp-benefit {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 15px;
-  color: rgb(18, 18, 18);
-}
-.pdp-benefit-check {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-  background: var(--green);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.pdp-benefit-check svg { width: 10px; height: 10px; }
-.pdp-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.pdp-price {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--heading);
-}
-.pdp-price-compare {
-  font-size: 28px;
-  color: rgba(27, 25, 25, 0.4);
-  text-decoration: line-through;
-}
-.pdp-free {
-  font-size: 14px;
-  color: var(--green);
-  font-weight: 700;
-}
-.pdp-select-label {
-  font-size: 18px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 12px;
-}
-.pack-options {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 8px;
-  flex-wrap: wrap;
-}
-.pack-btn {
-  flex: 1;
-  min-width: 90px;
-  padding: 14px 8px 10px;
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  background: var(--white);
-  cursor: pointer;
-  text-align: center;
-  position: relative;
-  font-family: var(--font);
-  transition: border-color 0.2s;
-}
-.pack-btn.active { border-color: var(--brown); }
-.pack-btn-badge {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--white);
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 3px;
-  white-space: nowrap;
-  text-transform: uppercase;
-}
-.pack-btn-name {
-  font-size: 15px;
-  font-weight: 700;
-  color: #000;
-}
-.pack-btn-price {
-  font-size: 12px;
-  color: rgb(20, 10, 0);
-  margin-top: 2px;
-}
-.pack-btn-supply {
-  font-size: 8px;
-  font-weight: 700;
-  color: #000;
-  margin-top: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.pdp-use-note {
-  font-size: 12px;
-  font-weight: 700;
-  color: #000;
-  text-align: center;
-  margin-bottom: 16px;
-}
-.btn-cart {
-  display: block;
-  width: 100%;
-  padding: 16px 32px;
-  background: var(--brown);
-  color: var(--white);
-  border: none;
-  border-radius: 6px;
-  font-family: var(--font);
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 1px;
-  transition: background 0.2s;
-}
-.btn-cart:hover { background: var(--brown-hover); }
-.pdp-trust-row {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-.pdp-trust-item {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: rgb(41, 41, 41);
-}
-.pdp-trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
-.pdp-accordions {
-  margin-top: 24px;
-  border-top: 1px solid var(--border);
-}
-.pdp-accordion {
-  border-bottom: 1px solid var(--border);
-}
-.pdp-accordion-trigger {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 0;
-  background: none;
-  border: none;
-  font-family: var(--font);
-  font-size: 17px;
-  color: #000;
-  cursor: pointer;
-}
-.pdp-accordion-trigger svg {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.2s;
-  flex-shrink: 0;
-}
-.pdp-accordion.open .pdp-accordion-trigger svg {
-  transform: rotate(90deg);
-}
-.pdp-accordion-body {
-  display: none;
-  padding: 0 0 16px;
-  font-size: 15px;
-  color: var(--body);
-  line-height: 1.6;
-}
-.pdp-accordion.open .pdp-accordion-body {
-  display: block;
-}
-
-/* ── Reviews ── */
-.reviews-section {
-  padding: 55px 0;
-  border-top: 1px solid var(--border);
-}
-.review-cards {
-  display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 30px 18px 10px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.review-cards::-webkit-scrollbar { display: none; }
-.review-card {
-  flex: 0 0 300px;
-  scroll-snap-align: start;
-  background: var(--cream);
-  border-radius: 12px;
-  padding: 22px 18px;
-}
-.review-stars {
-  color: var(--gold);
-  font-size: 16px;
-  letter-spacing: 2px;
-  margin-bottom: 14px;
-}
-.review-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: rgb(33, 33, 33);
-  margin-bottom: 12px;
-}
-.review-body {
-  font-size: 15px;
-  color: rgb(33, 33, 33);
-  line-height: 1.6;
-  margin-bottom: 18px;
-}
-.review-name {
-  font-size: 15px;
-  font-weight: 700;
-  color: rgb(33, 33, 33);
-}
-.review-verified {
-  font-size: 15px;
-  color: rgb(71, 71, 71);
-  margin-top: 2px;
-}
-.review-sample-note {
-  text-align: center;
-  font-size: 12px;
-  color: var(--muted);
-  margin-top: 14px;
-  font-style: italic;
-}
-
-/* ── Guarantee ── */
-.guarantee-section {
-  padding: 55px 0;
-  background: var(--light);
-}
-.guarantee-card {
-  background: var(--brown);
-  border-radius: 16px;
-  padding: 40px 24px;
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto;
-}
-.guarantee-heading {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--white);
-  line-height: 1.3;
-  margin-bottom: 18px;
-  text-wrap: balance;
-}
-.guarantee-body {
-  font-size: 14px;
-  color: var(--white);
-  line-height: 1.7;
-  margin-bottom: 28px;
-  opacity: 0.9;
-}
-.guarantee-body strong {
-  font-weight: 700;
-  opacity: 1;
-}
-.btn-guarantee {
-  display: inline-block;
-  padding: 14px 40px;
-  background: var(--white);
-  color: rgb(8, 8, 8);
-  border: none;
-  border-radius: 6px;
-  font-family: var(--font);
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: background 0.2s;
-  text-decoration: none;
-}
-.btn-guarantee:hover { background: var(--cream); }
-
-/* ── FAQ ── */
-.faq-section {
-  padding: 55px 0;
-}
-.faq-list {
-  max-width: 680px;
-  margin: 30px auto 0;
-}
-.faq-item {
-  border-bottom: 1px solid var(--border);
-}
-.faq-trigger {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 0;
-  background: none;
-  border: none;
-  font-family: var(--font);
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  cursor: pointer;
-  text-align: left;
-  gap: 16px;
-}
-.faq-trigger svg {
-  width: 14px;
-  height: 14px;
-  flex-shrink: 0;
-  transition: transform 0.2s;
-}
-.faq-item.open .faq-trigger svg {
-  transform: rotate(45deg);
-}
-.faq-answer {
-  display: none;
-  padding: 0 0 18px;
-  font-size: 15px;
-  color: var(--body);
-  line-height: 1.6;
-}
-.faq-item.open .faq-answer {
-  display: block;
-}
-
 
 /* ── Placeholder ── */
 .placeholder-label {
@@ -1235,7 +880,6 @@ body {
 .use-full-img { display: none; }
 .use-section { padding: 55px 0; }
 .expert-card { display: none; }
-.pdp-badge { display: none; }
 
 .solution-split {
   display: flex;
@@ -1278,22 +922,6 @@ body {
   margin-bottom: 16px;
 }
 
-.stats-grid {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  max-width: none;
-  padding: 0 18px;
-}
-.stats-grid::-webkit-scrollbar { display: none; }
-.stat-card {
-  flex: 0 0 260px;
-  scroll-snap-align: start;
-}
-
 .expert-mobile-logo {
   text-align: center;
   max-width: 580px;
@@ -1315,27 +943,6 @@ body {
   font-size: 14px;
   color: var(--body);
   line-height: 1.5;
-}
-
-.pdp-rating {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-.pdp-rating-stars {
-  color: var(--gold);
-  font-size: 16px;
-  letter-spacing: 1px;
-}
-.pdp-rating-score {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--heading);
-}
-.pdp-rating-count {
-  font-size: 14px;
-  color: var(--body);
 }
 
 /* ── Desktop ── */
@@ -1360,18 +967,7 @@ body {
     margin-right: 0;
   }
   .hero-body-wrap {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
     margin-bottom: 32px;
-  }
-  .hero-dash {
-    display: block;
-    width: 40px;
-    min-width: 40px;
-    height: 2px;
-    background: var(--brown);
-    margin-top: 12px;
   }
   .hero-body {
     font-size: 18px;
@@ -1381,16 +977,12 @@ body {
   .hero-image-wrap {
     max-width: none;
     margin: 0;
-    background: linear-gradient(145deg, #f8f5f0 0%, #ebe5db 100%);
-    border-radius: 20px;
-    padding: 30px;
     grid-column: 2;
     grid-row: 1 / 3;
     align-self: center;
   }
   .hero-product-img {
-    background: transparent;
-    border-radius: 0;
+    border-radius: 16px;
   }
   .btn-primary.hero-btn {
     margin: 0;
@@ -1465,17 +1057,6 @@ body {
   .how-cards { padding: 30px 0 10px; justify-content: center; overflow-x: visible; }
   .how-card { flex: 0 0 320px; }
 
-  .pdp-layout {
-    flex-direction: row;
-    gap: 40px;
-    align-items: start;
-  }
-  .pdp-image { flex: 0 0 45%; }
-  .pdp-info { flex: 1; }
-
-  .review-cards { padding: 30px 0 10px; justify-content: center; overflow-x: visible; }
-  .review-card { flex: 0 0 320px; }
-
   .compare-layout {
     max-width: 600px;
     margin-left: auto;
@@ -1490,17 +1071,14 @@ body {
   .cmp-check svg { width: 13px; height: 13px; }
   .cmp-x svg, .cmp-warn svg { width: 12px; height: 12px; }
 
-  .guarantee-heading { font-size: 24px; }
-
   .midcta-heading { font-size: 28px; }
   .midcta-sub { font-size: 17px; }
 
   .stats-heading { font-size: 28px; }
   .stats-grid {
     grid-template-columns: repeat(4, 1fr);
-    max-width: 800px;
+    max-width: 700px;
   }
-  .stat-number { font-size: 44px; }
 
   .use-section .section-inner {
     display: grid;
@@ -1517,7 +1095,6 @@ body {
   .expert-card { padding: 40px 36px; }
   .expert-quote { font-size: 19px; }
 
-
   .how-section { display: block; }
   .use-img { display: flex; }
   .use-full-img { display: block; }
@@ -1526,8 +1103,6 @@ body {
   .solution-img { order: 0; }
   .expert-card { display: block; }
   .expert-mobile-logo { display: none; }
-  .pdp-badge { display: inline-block; }
-  .pdp-rating { display: none; }
   .use-step-img { display: none; }
   .use-steps {
     display: grid;
@@ -1549,14 +1124,8 @@ body {
   }
   .use-step-num { margin-bottom: 0; }
   .stats-grid {
-    display: grid;
-    overflow-x: visible;
-    scroll-snap-type: none;
-    max-width: 800px;
-  }
-  .stat-card {
-    flex: none;
-    scroll-snap-align: unset;
+    max-width: 700px;
+    padding: 0 18px;
   }
 }
 
@@ -1577,41 +1146,29 @@ body {
     <div class="hero-copy">
       <div class="hero-trust">
         <span class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-        <span class="hero-trust-text">Trusted By Thousands of Women</span>
+        <span class="hero-trust-rating">{{ settings.lp_trust_rating }}</span>
+        <span class="hero-trust-text">{{ settings.lp_trust_text }}</span>
       </div>
 
-      <h1 class="hero-headline">Finally Stop Urgency, Leaks, and Nighttime Bathroom Trips Without Drugs or Side Effects</h1>
+      <h1 class="hero-headline">{{ lt_hero_headline }}</h1>
 
       <div class="hero-body-wrap">
-        <span class="hero-dash"></span>
-        <p class="hero-body">Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks.</p>
+        <p class="hero-body">{{ lt_hero_body }}</p>
       </div>
 
     </div>
 
     <div class="hero-image-wrap">
       <div class="hero-product-img">
-        <img src="https://cdn.shopify.com/s/files/1/1029/7170/3631/files/ChatGPT_Image_4_aug._2026_13_39_24.png?v=1785843591" alt="Tibella bladder control device" loading="eager" width="800" height="800" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div class="hero-callout callout-mid-left">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1v14M5 4l3-3 3 3" stroke="#3D8C52" stroke-width="1.5" stroke-linecap="round"/></svg>
-        Drug-Free
-      </div>
-      <div class="hero-callout callout-mid-right">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#3D8C52" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#3D8C52" stroke-width="1.5" stroke-linecap="round"/></svg>
-        30 Min Sessions
-      </div>
-      <div class="hero-callout callout-bottom-left">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8a6 6 0 1 1 12 0A6 6 0 0 1 2 8Z" stroke="#3D8C52" stroke-width="1.5"/><path d="m6 8 2 2 3-4" stroke="#3D8C52" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Clinic-Grade Technology
+        <img src="{{ lt_hero_img }}" alt="{{ lt_hero_img_alt }}" loading="eager" width="1200" height="900" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;">
       </div>
     </div>
 
-    <a href="#pdp" class="btn-primary hero-btn">SHOP NOW</a>
+    <a href="#pdp" class="btn-primary hero-btn">{{ lt_hero_cta }}</a>
   </div>
 </section>
 
-<!-- TRUST STRIP -->
+{%- comment -%} ═══ TRUST STRIP — edit items directly (duplicated for marquee loop) ═══ {%- endcomment -%}
 <div class="trust-strip">
   <div class="trust-strip-inner">
     <span class="trust-strip-item">Try Risk-Free for 60 Days</span>
@@ -1628,8 +1185,9 @@ body {
 <!-- MECHANISM SECTION -->
 <section class="mechanism-section">
   <div class="section-inner">
-    <h2 class="section-heading">The Science Behind Your Bladder</h2>
+    <h2 class="section-heading">{{ lt_mech_heading }}</h2>
 
+    {%- comment -%} ═══ MECHANISM BLOCKS — edit blocks directly ═══ {%- endcomment -%}
     <div class="mech-blocks">
 
       <div class="mech-block">
@@ -1665,6 +1223,7 @@ body {
       </div>
 
     </div>
+    {%- comment -%} ═══ END MECHANISM BLOCKS ═══ {%- endcomment -%}
   </div>
 </section>
 
@@ -1673,9 +1232,10 @@ body {
   <div class="section-inner">
     <div class="solution-split">
       <div class="solution-copy">
-        <h2 class="section-heading">Introducing Tibella</h2>
-        <p class="solution-subhead">Based on the same science used in urology clinics worldwide. No needle. No office visits. Same nerve. Same principle.</p>
+        <h2 class="section-heading">{{ lt_solution_heading }}</h2>
+        <p class="solution-subhead">{{ lt_solution_subhead }}</p>
 
+        {%- comment -%} ═══ SOLUTION BENEFITS — edit bullets directly ═══ {%- endcomment -%}
         <div class="solution-benefits">
           <div class="solution-benefit">
             <div class="solution-check">
@@ -1696,6 +1256,7 @@ body {
             <div class="solution-benefit-text">Backed by 10+ published clinical studies with thousands of participants across multiple randomized controlled trials</div>
           </div>
         </div>
+        {%- comment -%} ═══ END SOLUTION BENEFITS ═══ {%- endcomment -%}
       </div>
 
       <div class="solution-img">
@@ -1708,9 +1269,9 @@ body {
 <!-- MID-PAGE CTA -->
 <section class="midcta-section">
   <div class="midcta-inner">
-    <h2 class="midcta-heading">Ready to Take Back Control?</h2>
-    <p class="midcta-sub">30 minutes a day. No drugs. No side effects. Results in 4-6 weeks.</p>
-    <a href="#pdp" class="btn-midcta">GET TIBELLA NOW</a>
+    <h2 class="midcta-heading">{{ lt_midcta_heading }}</h2>
+    <p class="midcta-sub">{{ lt_midcta_sub }}</p>
+    <a href="#pdp" class="btn-midcta">{{ lt_midcta_cta }}</a>
     <div class="midcta-badges">
       <span><svg viewBox="0 0 16 16" fill="none"><path d="M2 4l6-2 6 2v4c0 3.5-2.5 5.5-6 7-3.5-1.5-6-3.5-6-7z" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>60-Day Guarantee</span>
       <span><svg viewBox="0 0 16 16" fill="none"><path d="M1 8h14M4 4l-3 4 3 4M12 4l3 4-3 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free Shipping</span>
@@ -1721,35 +1282,46 @@ body {
 <!-- HOW IT WORKS -->
 <section class="how-section">
   <div class="section-inner">
-    <h2 class="section-heading">How Tibella Works</h2>
+    <h2 class="section-heading">{{ lt_how_heading }}</h2>
   </div>
+  {%- comment -%} ═══ HOW-IT-WORKS CARDS — edit cards directly ═══ {%- endcomment -%}
   <div class="how-cards">
     <div class="how-card">
-      <div class="how-card-step">Step 1</div>
+      <div class="how-card-top">
+        <div class="how-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 6 5 6 8c0 2 1 3 2 4l1 2h6l1-2c1-1 2-2 2-4 0-3-2-6-6-6Z"/><path d="M9 14v4a3 3 0 0 0 6 0v-4"/><path d="M10 17h4"/></svg></div>
+        <div class="how-card-step">Step 1</div>
+      </div>
       <div class="how-card-title">The Nerve</div>
       <div class="how-card-text">The posterior tibial nerve runs from your inner ankle to the sacral nerve center (S2-S4) in your lower spine. This is the control center for bladder function.</div>
     </div>
     <div class="how-card">
-      <div class="how-card-step">Step 2</div>
+      <div class="how-card-top">
+        <div class="how-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-7 4 14 3-7h6"/></svg></div>
+        <div class="how-card-step">Step 2</div>
+      </div>
       <div class="how-card-title">The Signal</div>
       <div class="how-card-text">Tibella sends gentle electrical pulses through the skin at your ankle. The signal travels up the tibial nerve to the sacral spine where bladder signals originate.</div>
     </div>
     <div class="how-card">
-      <div class="how-card-step">Step 3</div>
+      <div class="how-card-top">
+        <div class="how-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <div class="how-card-step">Step 3</div>
+      </div>
       <div class="how-card-title">The Result</div>
       <div class="how-card-text">The overactive "squeeze" signal calms down. Urgency decreases. Leaks stop. Nighttime trips reduce. Studies show improvement beginning around 4-6 weeks with consistent use.</div>
     </div>
   </div>
+  {%- comment -%} ═══ END HOW-IT-WORKS CARDS ═══ {%- endcomment -%}
 </section>
 
 <!-- COMPARISON SECTION -->
 <section class="compare-section">
   <div class="section-inner">
-    <h2 class="section-heading">How Tibella Compares</h2>
+    <h2 class="section-heading">{{ lt_compare_heading }}</h2>
 
+    {%- comment -%} ═══ COMPARISON TABLE — edit rows directly ═══ {%- endcomment -%}
     <div class="compare-layout">
       <div>
-        <!-- Comparison table -->
         <div class="compare-wrap">
           <table class="compare-table">
             <thead>
@@ -1790,6 +1362,7 @@ body {
         </div>
       </div>
     </div>
+    {%- comment -%} ═══ END COMPARISON TABLE ═══ {%- endcomment -%}
 
     <p class="compare-note">Based on published clinical literature and publicly available pricing. Tibella references surface-electrode (TTNS) studies.</p>
   </div>
@@ -1798,31 +1371,53 @@ body {
 <!-- CLINICAL STATS -->
 <section class="stats-section">
   <div class="section-inner">
-    <h2 class="stats-heading">The Science Speaks for Itself</h2>
-    <p class="stats-sub">Published clinical trial results for tibial nerve stimulation</p>
+    <h2 class="stats-heading">{{ lt_stats_heading }}</h2>
+    <p class="stats-sub">{{ lt_stats_sub }}</p>
   </div>
+  {%- comment -%} ═══ STAT CARDS — edit cards directly ═══ {%- endcomment -%}
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-number">54.5%</div>
+      <div class="stat-visual">
+        <div class="stat-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="stat-ring-track" cx="50" cy="50" r="42"/>
+            <circle class="stat-ring-fill stat-ring-fill--green" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="120.07"/>
+          </svg>
+          <div class="stat-ring-value stat-green">54.5%</div>
+        </div>
+      </div>
       <div class="stat-label">of patients improved vs 20.9% with sham</div>
-      <div class="stat-source">SUmiT trial, n=220 (clinical PTNS version)</div>
+      <div class="stat-source">SUmiT trial, n=220</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">0</div>
-      <div class="stat-label">side effects reported in surface-electrode trials</div>
-      <div class="stat-source">Booth review, 629 patients</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">72%</div>
+      <div class="stat-visual">
+        <div class="stat-ring">
+          <svg viewBox="0 0 100 100">
+            <circle class="stat-ring-track" cx="50" cy="50" r="42"/>
+            <circle class="stat-ring-fill stat-ring-fill--gold" cx="50" cy="50" r="42" stroke-dasharray="263.89" stroke-dashoffset="73.89"/>
+          </svg>
+          <div class="stat-ring-value stat-gold">72%</div>
+        </div>
+      </div>
       <div class="stat-label">of women quit OAB medications within 1 year</div>
       <div class="stat-source">Medicare analysis, 42,886 patients</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">20+</div>
+      <div class="stat-visual">
+        <div class="stat-big-number stat-green">0</div>
+      </div>
+      <div class="stat-label">side effects reported in surface-electrode trials</div>
+      <div class="stat-source">Booth review, 629 patients</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-visual">
+        <div class="stat-big-number stat-gold">20+</div>
+      </div>
       <div class="stat-label">years this principle has been used in urology clinics worldwide</div>
-      <div class="stat-source">AUA guideline-endorsed (clinical version)</div>
+      <div class="stat-source">AUA guideline-endorsed</div>
     </div>
   </div>
+  {%- comment -%} ═══ END STAT CARDS ═══ {%- endcomment -%}
   <p class="stats-note">Tibella uses surface electrodes (TTNS). The SUmiT trial used the clinical needle version (PTNS). Surface-electrode studies show comparable results with higher patient satisfaction.</p>
 </section>
 
@@ -1833,8 +1428,9 @@ body {
   </div>
   <div class="use-text-content">
     <div class="section-inner">
-      <h2 class="section-heading">Simple to Use. 30 Minutes. Done.</h2>
+      <h2 class="section-heading">{{ lt_use_heading }}</h2>
     </div>
+    {%- comment -%} ═══ HOW-TO-USE STEPS — edit steps directly ═══ {%- endcomment -%}
     <div class="use-steps">
       <div class="use-step">
         <div class="use-step-num">1</div>
@@ -1858,15 +1454,17 @@ body {
         </div>
       </div>
     </div>
+    {%- comment -%} ═══ END HOW-TO-USE STEPS ═══ {%- endcomment -%}
   </div>
 </section>
 
-<!-- EXPERT CREDIBILITY -->
+{%- comment -%} ═══ EXPERT CREDIBILITY — edit content directly ═══ {%- endcomment -%}
 <section class="expert-section">
   <div class="section-inner">
     <div class="expert-card">
       <div class="expert-badge">Guideline-Endorsed Principle</div>
       <p class="expert-quote">"Posterior tibial nerve stimulation should be offered to patients with overactive bladder who have not responded to behavioral therapies and are not candidates for, or prefer an alternative to, pharmacological therapy."</p>
+      <div class="expert-logo"><img src="https://cdn.shopify.com/s/files/1/1029/7170/3631/files/logo.svg?v=1786374028" alt="American Urological Association" width="50" height="50" loading="lazy"></div>
       <div class="expert-source">American Urological Association (AUA)</div>
       <div class="expert-context">The AUA endorses the clinical (percutaneous) version of this technology. Tibella applies the same principle using surface electrodes for home use.</div>
     </div>
@@ -1878,273 +1476,20 @@ body {
     </div>
   </div>
 </section>
-
-<!-- MINI PDP -->
-<section class="pdp-section" id="pdp">
-  <div class="section-inner">
-    <div class="pdp-layout">
-      <div class="pdp-image">
-        <span class="placeholder-label">Product Image</span>
-      </div>
-
-      <div class="pdp-info">
-        <div class="pdp-badge">Clinic-Grade Technology</div>
-        <div class="pdp-rating">
-          <span class="pdp-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="pdp-rating-score">4.6</span>
-          <span class="pdp-rating-count">584 reviews</span>
-        </div>
-
-        <p class="pdp-desc">A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week.</p>
-
-        <div class="pdp-benefits">
-          <div class="pdp-benefit">
-            <div class="pdp-benefit-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            6 stimulation modes, 19 intensity levels
-          </div>
-          <div class="pdp-benefit">
-            <div class="pdp-benefit-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            30-minute sessions, 3-4 times per week
-          </div>
-          <div class="pdp-benefit">
-            <div class="pdp-benefit-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            USB rechargeable with remote control
-          </div>
-          <div class="pdp-benefit">
-            <div class="pdp-benefit-check"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            Gentle tingling, you control the intensity
-          </div>
-        </div>
-
-        <div class="pdp-price-row">
-          <span class="pdp-price" id="pdp-price">$59</span>
-          <span class="pdp-price-compare" id="pdp-compare" style="display:none"></span>
-          <span class="pdp-free">Free Shipping</span>
-        </div>
-
-        <div class="pdp-select-label">Select Quantity:</div>
-
-        <div class="pack-options">
-          <button class="pack-btn active" data-price="59" data-compare="" onclick="selectPack(this)">
-            <div class="pack-btn-name">1 Unit</div>
-            <div class="pack-btn-price">$59.00</div>
-          </button>
-          <button class="pack-btn" data-price="99" data-compare="118" onclick="selectPack(this)">
-            <span class="pack-btn-badge" style="background:#361E12">MOST POPULAR</span>
-            <div class="pack-btn-name">2-Pack</div>
-            <div class="pack-btn-price">$49.50/per unit</div>
-            <div class="pack-btn-supply">Save $19</div>
-          </button>
-          <button class="pack-btn" data-price="149" data-compare="236" onclick="selectPack(this)">
-            <span class="pack-btn-badge" style="background:#3D8C52">BEST VALUE</span>
-            <div class="pack-btn-name">3+1 Free</div>
-            <div class="pack-btn-price">$37.25/per unit</div>
-            <div class="pack-btn-supply">Save $87</div>
-          </button>
-        </div>
-
-        <p class="pdp-use-note">*For Best Results, Use Consistently For 4-6 Weeks</p>
-
-        <button class="btn-cart">Add To Cart</button>
-
-        <div class="pdp-trust-row">
-          <div class="pdp-trust-item">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M8 1l1.5 3.2L13 4.8l-2.5 2.4.6 3.5L8 9l-3.1 1.7.6-3.5L3 4.8l3.5-.6z" fill="#E8A838"/></svg>
-            60-Day Money-Back Guarantee
-          </div>
-          <div class="pdp-trust-item">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M2 4l6-2 6 2v4c0 3.5-2.5 5.5-6 7-3.5-1.5-6-3.5-6-7z" stroke="#3D8C52" stroke-width="1.2" fill="none"/><path d="M6 8l2 2 3-4" stroke="#3D8C52" stroke-width="1.2" stroke-linecap="round"/></svg>
-            Free US Shipping
-          </div>
-        </div>
-
-        <div class="pdp-accordions">
-          <div class="pdp-accordion">
-            <button class="pdp-accordion-trigger" onclick="toggleAccordion(this)">
-              How To Use
-              <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-            <div class="pdp-accordion-body">
-              Place the ankle strap on your inner ankle, over the posterior tibial nerve point (about 4 finger-widths above the ankle bone). Select your preferred mode and intensity level using the remote control. Use for 30 minutes per session, 3-4 times per week. Most users feel a gentle tingling sensation.
-            </div>
-          </div>
-          <div class="pdp-accordion">
-            <button class="pdp-accordion-trigger" onclick="toggleAccordion(this)">
-              What's In The Box
-              <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-            <div class="pdp-accordion-body">
-              1x Tibella stimulation unit, 1x adjustable ankle strap, 1x remote control, 2x electrode pad sets (replaceable), 1x USB charging cable, 1x quick start guide.
-            </div>
-          </div>
-          <div class="pdp-accordion">
-            <button class="pdp-accordion-trigger" onclick="toggleAccordion(this)">
-              Specifications
-              <svg viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            </button>
-            <div class="pdp-accordion-body">
-              Weight: 156g. Stimulation modes: 6 (EMS + TENS). Intensity levels: 19. Session length: 30 minutes. Charging: USB rechargeable. Recommended use: 3-4 sessions per week.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="reviews-section">
-  <div class="section-inner">
-    <h2 class="section-heading">Here's What Women Are Saying About Tibella</h2>
-  </div>
-  <div class="review-cards">
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="review-title">[Review Title]</div>
-      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
-      <div class="review-name">[Customer Name]</div>
-      <div class="review-verified">Verified Customer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="review-title">[Review Title]</div>
-      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
-      <div class="review-name">[Customer Name]</div>
-      <div class="review-verified">Verified Customer</div>
-    </div>
-    <div class="review-card">
-      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <div class="review-title">[Review Title]</div>
-      <div class="review-body">[Replace with verified customer testimonial. 2-3 sentences describing their experience before and after using Tibella.]</div>
-      <div class="review-name">[Customer Name]</div>
-      <div class="review-verified">Verified Customer</div>
-    </div>
-  </div>
-  <p class="review-sample-note">Placeholder reviews. Replace with real customer testimonials before launch.</p>
-</section>
-
-<!-- GUARANTEE -->
-<section class="guarantee-section">
-  <div class="section-inner">
-    <div class="guarantee-card">
-      <h2 class="guarantee-heading">Try Tibella Completely Risk-Free For 60 Days</h2>
-      <p class="guarantee-body">Yes! We do mean completely risk-free. If you do not notice improvement within 60 days of using Tibella, simply send us an email at <strong>support@tibella.shop</strong> with your order number and we will give you a full refund within 24 hours. No questions asked. That's how confident we are that Tibella will work for you.</p>
-      <a href="#pdp" class="btn-guarantee">TAKE BACK CONTROL TODAY</a>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-section">
-  <div class="section-inner">
-    <h2 class="section-heading">Frequently Asked Questions</h2>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          How long before I see results?
-          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">Studies show improvement beginning around 4-6 weeks with consistent use (3-4 sessions per week, 30 minutes each). Some women notice changes sooner. For best results, use consistently for at least 60 days.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          How is this different from a regular TENS unit?
-          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">Tibella uses a specific frequency (20 Hz), pulse width (200 microseconds), and placement protocol designed for the posterior tibial nerve. A regular back pain TENS unit doesn't target this nerve pathway. This isn't general pain relief. It targets a specific nerve for a specific purpose.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Will it work if medications didn't?
-          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">Tibella works through a completely different mechanism. Medications suppress the bladder signal with chemicals, which is why they come with side effects. Tibella targets the nerve pathway directly. Studies have shown improvement even in women who didn't respond to medication.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Is it uncomfortable?
-          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">Most users describe a gentle tingling sensation. You control the intensity across 19 levels, so you can always find a comfortable setting. Zero side effects were reported in clinical trials of surface-electrode tibial nerve stimulation.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          Can I use it with my current medications or HRT?
-          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">Yes. Tibella is non-invasive and non-pharmacological. It works alongside any existing treatment, including hormone replacement therapy and OAB medications. Always consult with your healthcare provider if you have questions about your specific situation.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-trigger" onclick="toggleFaq(this)">
-          What if it doesn't work for me?
-          <svg viewBox="0 0 14 14" fill="none"><path d="M7 3v8M3 7h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </button>
-        <div class="faq-answer">We offer a 60-day money-back guarantee. If you don't notice improvement within 60 days, email support@tibella.shop with your order number and we'll refund you in full within 24 hours. No questions asked.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STICKY CART BAR -->
-<div class="sticky-cart" id="sticky-cart">
-  <div class="sticky-cart-info">
-    <div class="sticky-cart-name">Tibella</div>
-    <div class="sticky-cart-price">From <strong>$59</strong></div>
-  </div>
-  <a href="#pdp" class="btn-sticky">ADD TO CART</a>
-</div>
-
+{%- comment -%} ═══ END EXPERT CREDIBILITY ═══ {%- endcomment -%}
 
 <script>
-function selectPack(btn) {
-  document.querySelectorAll('.pack-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  var price = btn.dataset.price;
-  var compare = btn.dataset.compare;
-  document.getElementById('pdp-price').textContent = '$' + price;
-  var compareEl = document.getElementById('pdp-compare');
-  if (compare) {
-    compareEl.textContent = '$' + compare;
-    compareEl.style.display = '';
-  } else {
-    compareEl.style.display = 'none';
-  }
-}
-
-function toggleAccordion(trigger) {
-  trigger.closest('.pdp-accordion').classList.toggle('open');
-}
-
-function toggleFaq(trigger) {
-  trigger.closest('.faq-item').classList.toggle('open');
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  var sticky = document.getElementById('sticky-cart');
-  var trigger = document.querySelector('.hero');
-  if (!sticky || !trigger) return;
-  document.body.appendChild(sticky);
-
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-        sticky.classList.add('visible');
-      } else {
-        sticky.classList.remove('visible');
-      }
-    });
-  }, { root: null, threshold: 0 });
-
-  observer.observe(trigger);
-});
+(function() {
+  var hc = document.getElementById('header-component');
+  if (hc) hc.removeAttribute('data-transparent-background');
+})();
 </script>
 
 {% schema %}
 {
-  "name": "Tibella Longform",
+  "name": "LP Longform Top",
   "tag": "section",
-  "class": "tibella-longform-section",
+  "class": "lp-longform-section",
   "settings": []
 }
 {% endschema %}

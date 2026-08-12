@@ -1,7 +1,7 @@
 {
   "sections": {
     "tibella_home": {
-      "type": "tibella-home",
+      "type": "lp-home",
       "settings": {}
     }
   },

@@ -29,33 +29,37 @@ database.sqlite
 # Ignore everything inside theme/
 /theme/*
 
-# Un-ignore sections, templates and config directories so Git scans them
+# Un-ignore sections, templates, snippets and config directories so Git scans them
 !/theme/sections/
 !/theme/templates/
+!/theme/snippets/
 !/theme/layout
 !/theme/config
 
 # Ignore all other files inside those directories...
 /theme/sections/*
 /theme/templates/*
+/theme/snippets/*
 /theme/layout/*
 /theme/config/*
 
-# ...EXCEPT our custom Tibella files!
-!/theme/sections/tibella-longform.liquid
-!/theme/sections/tibella-longform-top.liquid
-!/theme/sections/tibella-longform-bottom.liquid
-!/theme/sections/tibella-buy-box.liquid
-!/theme/sections/tibella-home.liquid
-!/theme/sections/tibella-contact.liquid
+# ...EXCEPT our custom LP files!
+!/theme/sections/lp-longform-top.liquid
+!/theme/sections/lp-longform-bottom.liquid
+!/theme/sections/lp-buy-box.liquid
+!/theme/sections/lp-home.liquid
+!/theme/sections/lp-contact.liquid
 !/theme/sections/header.liquid
 !/theme/sections/header-group.json
 !/theme/sections/announcement-bar.liquid
 !/theme/sections/footer.liquid
 !/theme/sections/footer-group.json
-!/theme/templates/page.tibella-longform.json
+!/theme/snippets/lp-brand-vars.liquid
+!/theme/templates/page.lp-longform.json
 !/theme/layout/theme.liquid
 !/theme/templates/index.json
+!/theme/templates/page.contact.json
+!/theme/config/settings_schema.json
 !/theme/config/settings_data.json
 
 # Now also ignore our local backups

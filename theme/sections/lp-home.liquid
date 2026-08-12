@@ -1,17 +1,22 @@
-{% assign product = all_products['ankle-support-ems-massager-with-remote-control'] %}
+{%- render 'lp-brand-vars' -%}
+{%- assign product = settings.lp_product -%}
+
+{%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
+
+{%- assign home_headline = "Drug-Free Bladder Control That Actually Works" -%}
+{%- assign home_body = "Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks." -%}
+{%- assign home_hero_cta = "Learn More" -%}
+{%- assign home_hero_cta_url = "/pages/overactive-bladder" -%}
+{%- assign home_about_eyebrow = "How It Works" -%}
+{%- assign home_about_heading = "The Same Principle Urologists Have Used for 20+ Years" -%}
+{%- assign home_about_body = "Tibella uses gentle electrical stimulation on the tibial nerve at your ankle to calm the overactive signals causing urgency, leaks, and nighttime bathroom trips. No drugs. No side effects. Just 30 minutes, 3-4 times per week." -%}
+{%- assign home_about_cta = "See the Science" -%}
+{%- assign home_about_cta_url = "/pages/overactive-bladder" -%}
+
+{%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
 
 <style>
 .th {
-  --brown: #361E12;
-  --brown-hover: #2A1610;
-  --heading: #1B1919;
-  --body: #5E5C5C;
-  --cream: #F4F0E9;
-  --white: #FFFFFF;
-  --gold: #E8A838;
-  --nav-dark: #423F3F;
-  --font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
@@ -47,7 +52,7 @@
   color: var(--body);
 }
 .th h1, .th h2 {
-  font-family: var(--font-heading);
+  font-family: var(--font);
 }
 .th-hero h1 {
   font-size: 32px;
@@ -90,7 +95,7 @@
   color: var(--white);
   border: none;
   border-radius: 6px;
-  font-family: var(--font-heading);
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -235,13 +240,13 @@
       <div>
         <div class="th-hero-eyebrow">
           <span class="th-hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="th-hero-rating">4.7/5</span>
-          <span class="th-hero-trust">Trusted By 1,267 Women</span>
+          <span class="th-hero-rating">{{ settings.lp_trust_rating }}</span>
+          <span class="th-hero-trust">{{ settings.lp_trust_text }}</span>
         </div>
-        <h1>Drug-Free Bladder Control That Actually Works</h1>
-        <p>Tibella targets the nerve signal behind your urgency. Based on technology used in urology clinics for 20+ years. Feel the difference in as little as 4 weeks.</p>
+        <h1>{{ home_headline }}</h1>
+        <p>{{ home_body }}</p>
         <div class="th-hero-buttons">
-          <a href="/pages/overactive-bladder" class="th-btn">Learn More</a>
+          <a href="{{ home_hero_cta_url }}" class="th-btn">{{ home_hero_cta }}</a>
         </div>
       </div>
       <div class="th-hero-img">
@@ -254,7 +259,7 @@
     </div>
   </section>
 
-  <!-- VALUE PROPS -->
+  {%- comment -%} ═══ VALUE PROPS — edit items directly ═══ {%- endcomment -%}
   <section class="th-values">
     <div class="th-values-inner">
       <div class="th-value">
@@ -277,21 +282,22 @@
       </div>
     </div>
   </section>
+  {%- comment -%} ═══ END VALUE PROPS ═══ {%- endcomment -%}
 
   <!-- ABOUT -->
   <section class="th-about">
     <div class="th-about-inner">
-      <div class="th-about-eyebrow">How It Works</div>
-      <h2>The Same Principle Urologists Have Used for 20+ Years</h2>
-      <p>Tibella uses gentle electrical stimulation on the tibial nerve at your ankle to calm the overactive signals causing urgency, leaks, and nighttime bathroom trips. No drugs. No side effects. Just 30 minutes, 3-4 times per week.</p>
-      <a href="/pages/overactive-bladder" class="th-btn">See the Science</a>
+      <div class="th-about-eyebrow">{{ home_about_eyebrow }}</div>
+      <h2>{{ home_about_heading }}</h2>
+      <p>{{ home_about_body }}</p>
+      <a href="{{ home_about_cta_url }}" class="th-btn">{{ home_about_cta }}</a>
     </div>
   </section>
 </div>
 
 {% schema %}
 {
-  "name": "Tibella Home",
+  "name": "LP Home",
   "settings": []
 }
 {% endschema %}

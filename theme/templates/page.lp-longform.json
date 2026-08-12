@@ -1,15 +1,15 @@
 {
   "sections": {
     "top": {
-      "type": "tibella-longform-top",
+      "type": "lp-longform-top",
       "settings": {}
     },
     "buy-box": {
-      "type": "tibella-buy-box",
+      "type": "lp-buy-box",
       "settings": {}
     },
     "bottom": {
-      "type": "tibella-longform-bottom",
+      "type": "lp-longform-bottom",
       "settings": {}
     }
   },

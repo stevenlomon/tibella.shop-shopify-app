@@ -1,18 +1,16 @@
-<style>
-:root {
-  --brown: #361E12;
-  --brown-hover: #2A1610;
-  --heading: #1B1919;
-  --body: #5E5C5C;
-  --muted: #8A8787;
-  --cream: #F4F0E9;
-  --white: #FFFFFF;
-  --border: #E5E0D9;
-  --green: #3D8C52;
-  --red: #B54A3A;
-  --font: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-}
+{%- render 'lp-brand-vars' -%}
 
+{%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
+
+{%- assign contact_heading = "Get in Touch" -%}
+{%- assign contact_subtext = "Have a question about Tibella or your order? We're here to help." -%}
+{%- assign contact_success = "Thank you for reaching out. We'll get back to you within 24 hours." -%}
+{%- assign contact_cta = "Send Message" -%}
+{%- assign contact_note = "We typically respond within 24 hours on business days." -%}
+
+{%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
+
+<style>
 .tc-section {
   padding: 60px 0 80px;
   font-family: var(--font) !important;
@@ -149,13 +147,13 @@
 
 <section class="tc-section">
   <div class="tc-inner">
-    <h1 class="tc-heading">Get in Touch</h1>
-    <p class="tc-subtext">Have a question about Tibella or your order? We're here to help. You can also reach us directly at <a href="mailto:support@tibella.shop">support@tibella.shop</a></p>
+    <h1 class="tc-heading">{{ contact_heading }}</h1>
+    <p class="tc-subtext">{{ contact_subtext }} You can also reach us directly at <a href="mailto:{{ settings.lp_support_email }}">{{ settings.lp_support_email }}</a></p>
 
-    {%- form 'contact', id: 'TibellaContact', class: 'tc-form' -%}
+    {%- form 'contact', id: 'LPContact', class: 'tc-form' -%}
 
       {%- if form.posted_successfully? -%}
-        <div class="tc-success">Thank you for reaching out. We'll get back to you within 24 hours.</div>
+        <div class="tc-success">{{ contact_success }}</div>
       {%- endif -%}
 
       {%- if form.errors -%}
@@ -217,11 +215,11 @@
         >{{ form.body }}</textarea>
       </div>
 
-      <button type="submit" class="tc-submit">Send Message</button>
+      <button type="submit" class="tc-submit">{{ contact_cta }}</button>
 
     {%- endform -%}
 
-    <p class="tc-support-note">We typically respond within 24 hours on business days.</p>
+    <p class="tc-support-note">{{ contact_note }}</p>
   </div>
 </section>
 
@@ -234,9 +232,9 @@
 
 {% schema %}
 {
-  "name": "Tibella Contact",
+  "name": "LP Contact",
   "tag": "section",
-  "class": "tibella-contact-section",
+  "class": "lp-contact-section",
   "settings": []
 }
 {% endschema %}

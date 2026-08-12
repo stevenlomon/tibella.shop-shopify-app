@@ -1,0 +1,25 @@
+{%- unless lp_brand_vars_loaded -%}
+{%- assign lp_brand_vars_loaded = true -%}
+<style>
+:root {
+  --brown: {{ settings.lp_brown }};
+  --brown-hover: {{ settings.lp_brown_hover }};
+  --heading: {{ settings.lp_heading }};
+  --body-dark: {{ settings.lp_body_dark }};
+  --body: {{ settings.lp_body }};
+  --muted: {{ settings.lp_muted }};
+  --cream: {{ settings.lp_cream }};
+  --cream-27: {{ settings.lp_cream | color_modify: 'alpha', 0.27 }};
+  --tan: {{ settings.lp_tan }};
+  --light: {{ settings.lp_light }};
+  --white: #FFFFFF;
+  --border: {{ settings.lp_border }};
+  --green: {{ settings.lp_green }};
+  --red: {{ settings.lp_red }};
+  --gold: {{ settings.lp_gold }};
+  --nav-dark: {{ settings.lp_nav_dark }};
+  --font: {{ settings.lp_font_heading }};
+  --font-body: {{ settings.lp_font_body }};
+}
+</style>
+{%- endunless -%}
