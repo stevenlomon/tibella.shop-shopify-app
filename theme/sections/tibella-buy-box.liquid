@@ -1,25 +1,28 @@
-{% assign product = section.settings.product | default: all_products['ankle-support-ems-massager-with-remote-control'] %}
-{% assign current_variant = product.selected_or_first_available_variant %}
+{%- render 'lp-brand-vars' -%}
+{%- assign product = section.settings.product | default: settings.lp_product -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
+{%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
+
+{%- assign bb_description = "A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week." -%}
+{%- assign bb_free_ship = "Free Shipping" -%}
+{%- assign bb_pack_label = "Select Quantity:" -%}
+{%- assign bb_pack_note = "*For Best Results, Use Consistently For 4-6 Weeks" -%}
+{%- assign bb_pack_badge_2 = "Most Popular" -%}
+{%- assign bb_pack_badge_3 = "Best Value" -%}
+{%- assign bb_cta = "Add To Cart" -%}
+{%- assign bb_sold_out = "Sold Out" -%}
+{%- assign bb_trust_1 = "60-Day Money-Back Guarantee" -%}
+{%- assign bb_trust_2 = "Free US Shipping" -%}
+
+{%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
 
 <style>
 /* ── Buy Box ── */
 .bb {
-  --bb-brown: #361E12;
-  --bb-brown-hover: #2A1610;
-  --bb-heading: #1B1919;
-  --bb-body: #5E5C5C;
-  --bb-border: #E5E0D9;
-  --bb-cream: #F4F0E9;
-  --bb-green: #3D8C52;
-  --bb-gold: #E8A838;
-  --bb-white: #FFFFFF;
-  --bb-light: #F6F6F6;
-  --bb-font-heading: "Century Gothic", "CenturyGothic", "AppleGothic", "Futura", "Avenir Next", system-ui, sans-serif;
-  --bb-font-body: "Inter", system-ui, sans-serif;
-
-  font-family: var(--bb-font-body);
+  font-family: var(--font-body);
   padding: 55px 0 80px;
-  border-top: 1px solid var(--bb-border);
+  border-top: 1px solid var(--border);
 }
 .bb-inner {
   max-width: 1100px;
@@ -41,7 +44,7 @@
 .bb-media-main {
   width: 100%;
   aspect-ratio: 1 / 1;
-  background: var(--bb-light);
+  background: var(--light);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -69,12 +72,12 @@
   overflow: hidden;
   border: 2px solid transparent;
   cursor: pointer;
-  background: var(--bb-light);
+  background: var(--light);
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.bb-thumb.active { border-color: var(--bb-brown); }
+.bb-thumb.active { border-color: var(--brown); }
 .bb-thumb img {
   width: 100%;
   height: 100%;
@@ -88,24 +91,24 @@
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  color: var(--bb-body);
+  color: var(--body);
   margin-bottom: 16px;
 }
 .bb-badge-stars {
-  color: #E8A838;
+  color: var(--gold);
   font-size: 16px;
   letter-spacing: 1px;
 }
 .bb-badge-rating {
   font-weight: 700;
-  color: var(--bb-heading);
+  color: var(--heading);
 }
 .bb-badge-count {
-  color: var(--bb-muted);
+  color: var(--muted);
 }
 .bb-desc {
   font-size: 16px;
-  color: var(--bb-heading);
+  color: var(--heading);
   line-height: 1.6;
   margin-bottom: 24px;
 }
@@ -120,14 +123,14 @@
   align-items: center;
   gap: 10px;
   font-size: 15px;
-  color: var(--bb-heading);
+  color: var(--heading);
   line-height: 1.4;
 }
 .bb-check {
   width: 22px;
   height: 22px;
   min-width: 22px;
-  background: var(--bb-green);
+  background: var(--green);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -145,19 +148,19 @@
 .bb-price {
   font-size: 32px;
   font-weight: 700;
-  color: var(--bb-heading);
+  color: var(--heading);
 }
 .bb-free-ship {
   font-size: 15px;
   font-weight: 700;
-  color: var(--bb-green);
+  color: var(--green);
 }
 
 /* ── Pack Selector ── */
 .bb-pack-label {
   font-size: 16px;
   font-weight: 700;
-  color: var(--bb-heading);
+  color: var(--heading);
   margin-bottom: 14px;
 }
 .bb-packs {
@@ -168,23 +171,23 @@
 }
 .bb-pack {
   position: relative;
-  border: 2px solid var(--bb-border);
+  border: 2px solid var(--border);
   border-radius: 8px;
   padding: 16px;
   text-align: center;
   cursor: pointer;
   transition: border-color 0.2s;
-  background: var(--bb-white);
+  background: var(--white);
 }
-.bb-pack:hover { border-color: var(--bb-brown); }
-.bb-pack.active { border-color: var(--bb-brown); }
+.bb-pack:hover { border-color: var(--brown); }
+.bb-pack.active { border-color: var(--brown); }
 .bb-pack-badge {
   position: absolute;
   top: -11px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--bb-green);
-  color: var(--bb-white);
+  background: var(--green);
+  color: var(--white);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -194,29 +197,29 @@
   white-space: nowrap;
 }
 .bb-pack-badge--gold {
-  background: var(--bb-gold);
+  background: var(--gold);
 }
 .bb-pack-name {
   font-size: 16px;
   font-weight: 700;
-  color: var(--bb-heading);
+  color: var(--heading);
   margin-bottom: 4px;
 }
 .bb-pack-price {
   font-size: 14px;
-  color: var(--bb-body);
+  color: var(--body);
 }
 .bb-pack-save {
   font-size: 12px;
   font-weight: 700;
-  color: var(--bb-green);
+  color: var(--green);
   text-transform: uppercase;
   margin-top: 4px;
 }
 .bb-pack-note {
   font-size: 13px;
   font-weight: 700;
-  color: var(--bb-body);
+  color: var(--body);
   text-align: center;
   margin-bottom: 20px;
 }
@@ -226,11 +229,11 @@
   display: block;
   width: 100%;
   padding: 18px 32px;
-  background: var(--bb-brown);
-  color: var(--bb-white);
+  background: var(--brown);
+  color: var(--white);
   border: none;
   border-radius: 6px;
-  font-family: var(--bb-font-heading);
+  font-family: var(--font);
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -238,7 +241,7 @@
   transition: background 0.2s;
   text-align: center;
 }
-.bb-atc:hover { background: var(--bb-brown-hover); }
+.bb-atc:hover { background: var(--brown-hover); }
 .bb-atc:disabled {
   opacity: 0.5;
   cursor: not-allowed;
@@ -252,7 +255,7 @@
   gap: 24px;
   margin-top: 16px;
   font-size: 13px;
-  color: var(--bb-body);
+  color: var(--body);
 }
 .bb-trust-item {
   display: flex;
@@ -270,10 +273,10 @@
 /* ── Accordions ── */
 .bb-accordions {
   margin-top: 28px;
-  border-top: 1px solid var(--bb-border);
+  border-top: 1px solid var(--border);
 }
 .bb-accordion {
-  border-bottom: 1px solid var(--bb-border);
+  border-bottom: 1px solid var(--border);
 }
 .bb-accordion-trigger {
   width: 100%;
@@ -283,10 +286,10 @@
   padding: 18px 0;
   background: none;
   border: none;
-  font-family: var(--bb-font-heading);
+  font-family: var(--font);
   font-size: 16px;
   font-weight: 700;
-  color: var(--bb-heading);
+  color: var(--heading);
   cursor: pointer;
   text-align: left;
 }
@@ -295,7 +298,7 @@
   height: 16px;
   flex-shrink: 0;
   transition: transform 0.2s;
-  color: var(--bb-body);
+  color: var(--body);
 }
 .bb-accordion.open .bb-accordion-trigger svg {
   transform: rotate(90deg);
@@ -304,7 +307,7 @@
   display: none;
   padding: 0 0 18px;
   font-size: 15px;
-  color: var(--bb-body);
+  color: var(--body);
   line-height: 1.6;
 }
 .bb-accordion.open .bb-accordion-body {
@@ -363,12 +366,13 @@
       <div class="bb-details">
         <div class="bb-badge">
           <span class="bb-badge-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span class="bb-badge-rating">4.7/5</span>
-          <span class="bb-badge-count">Trusted By 1,267 Women</span>
+          <span class="bb-badge-rating">{{ settings.lp_trust_rating }}</span>
+          <span class="bb-badge-count">{{ settings.lp_trust_text }}</span>
         </div>
 
-        <p class="bb-desc">A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week.</p>
+        <p class="bb-desc">{{ bb_description }}</p>
 
+        {%- comment -%} ═══ BENEFITS — edit bullets directly ═══ {%- endcomment -%}
         <div class="bb-benefits">
           <div class="bb-benefit">
             <span class="bb-check"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -390,23 +394,23 @@
 
         <div class="bb-price-row">
           <span class="bb-price" id="bb-display-price">${{ current_variant.price | money_without_currency }}</span>
-          <span class="bb-free-ship">Free Shipping</span>
+          <span class="bb-free-ship">{{ bb_free_ship }}</span>
         </div>
 
         {% form 'product', product, id: 'bb-product-form' %}
           <input type="hidden" name="id" value="{{ current_variant.id }}" id="bb-variant-id">
 
-          <div class="bb-pack-label">Select Quantity:</div>
+          <div class="bb-pack-label">{{ bb_pack_label }}</div>
           <div class="bb-packs" id="bb-packs">
             {% for variant in product.variants %}
               <div class="bb-pack{% if forloop.first %} active{% endif %}"
                    data-variant-id="{{ variant.id }}"
                    data-price="{{ variant.price | money_without_currency }}"
                    onclick="bbSelectPack(this)">
-                {% if forloop.index == 2 %}
-                  <div class="bb-pack-badge">Most Popular</div>
-                {% elsif forloop.index == 3 %}
-                  <div class="bb-pack-badge bb-pack-badge--gold">Best Value</div>
+                {% if forloop.index == 2 and bb_pack_badge_2 != blank %}
+                  <div class="bb-pack-badge">{{ bb_pack_badge_2 }}</div>
+                {% elsif forloop.index == 3 and bb_pack_badge_3 != blank %}
+                  <div class="bb-pack-badge bb-pack-badge--gold">{{ bb_pack_badge_3 }}</div>
                 {% endif %}
                 <div class="bb-pack-name">{{ variant.title }}</div>
                 <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
@@ -424,24 +428,25 @@
             {% endfor %}
           </div>
 
-          <p class="bb-pack-note">*For Best Results, Use Consistently For 4-6 Weeks</p>
+          <p class="bb-pack-note">{{ bb_pack_note }}</p>
 
           <button type="submit" class="bb-atc"{% unless current_variant.available %} disabled{% endunless %}>
-            {% if current_variant.available %}Add To Cart{% else %}Sold Out{% endif %}
+            {% if current_variant.available %}{{ bb_cta }}{% else %}{{ bb_sold_out }}{% endif %}
           </button>
         {% endform %}
 
         <div class="bb-trust">
           <span class="bb-trust-item">
             <span class="bb-trust-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 1l2 4h4l-3 3 1 4-4-2-4 2 1-4-3-3h4z" fill="#E8A838"/></svg></span>
-            60-Day Money-Back Guarantee
+            {{ bb_trust_1 }}
           </span>
           <span class="bb-trust-item">
             <span class="bb-trust-icon"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" fill="#3D8C52"/><path d="M5 8l2 2 4-4" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            Free US Shipping
+            {{ bb_trust_2 }}
           </span>
         </div>
 
+        {%- comment -%} ═══ ACCORDIONS — edit sections directly ═══ {%- endcomment -%}
         <div class="bb-accordions">
           <div class="bb-accordion">
             <button class="bb-accordion-trigger" onclick="bbToggle(this)">
@@ -566,13 +571,14 @@ function bbToggle(trigger) {
 
 {% schema %}
 {
-  "name": "Tibella Buy Box",
+  "name": "LP Buy Box",
   "tag": "div",
   "settings": [
     {
       "type": "product",
       "id": "product",
-      "label": "Product"
+      "label": "Product",
+      "info": "Overrides the global LP product for this section."
     }
   ]
 }
