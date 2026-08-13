@@ -20,6 +20,7 @@
 {%- assign bb_sold_out = "Sold Out" -%}
 {%- assign bb_trust_1 = "60-Day Money-Back Guarantee" -%}
 {%- assign bb_trust_2 = "Free US Shipping" -%}
+{%- assign bb_ship_days = 10 -%}
 
 {%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
 
@@ -276,6 +277,26 @@
   align-items: center;
   justify-content: center;
 }
+.bb-shipping {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--body);
+}
+.bb-shipping-dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  background: var(--green);
+  border-radius: 50%;
+}
+.bb-shipping-date {
+  font-weight: 700;
+  color: var(--heading);
+}
 
 /* ── Accordions ── */
 .bb-accordions {
@@ -455,6 +476,11 @@
           </span>
         </div>
 
+        <div class="bb-shipping" id="bb-shipping" data-days="{{ bb_ship_days }}">
+          <span class="bb-shipping-dot"></span>
+          <span>Order today for delivery by <strong class="bb-shipping-date" id="bb-ship-date"></strong></span>
+        </div>
+
         {%- comment -%} ═══ ACCORDIONS — edit sections directly ═══ {%- endcomment -%}
         <div class="bb-accordions">
           <div class="bb-accordion">
@@ -526,6 +552,20 @@ function bbSelectImage(thumb, src) {
 function bbToggle(trigger) {
   trigger.closest('.bb-accordion').classList.toggle('open');
 }
+
+(function() {
+  var wrap = document.getElementById('bb-shipping');
+  if (!wrap) return;
+  var days = parseInt(wrap.dataset.days) || 10;
+  var d = new Date();
+  var added = 0;
+  while (added < days) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() !== 0 && d.getDay() !== 6) added++;
+  }
+  var el = document.getElementById('bb-ship-date');
+  if (el) el.textContent = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+})();
 
 (function() {
   var form = document.getElementById('bb-product-form');
