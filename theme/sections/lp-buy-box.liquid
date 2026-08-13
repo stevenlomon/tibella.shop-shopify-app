@@ -21,11 +21,11 @@
 /* ── Buy Box ── */
 .bb {
   font-family: var(--font-body);
-  padding: 55px 0 80px;
+  padding: 24px 0 80px;
   border-top: 1px solid var(--border);
 }
 .bb-inner {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 18px;
 }
@@ -65,9 +65,9 @@
 }
 .bb-thumbnails::-webkit-scrollbar { display: none; }
 .bb-thumb {
-  flex: 0 0 64px;
-  width: 64px;
-  height: 64px;
+  flex: 0 0 76px;
+  width: 76px;
+  height: 76px;
   border-radius: 8px;
   overflow: hidden;
   border: 2px solid transparent;
@@ -318,22 +318,22 @@
 @media (min-width: 768px) {
   .bb-layout {
     flex-direction: row;
-    gap: 48px;
+    gap: 36px;
     align-items: flex-start;
   }
   .bb-media {
-    flex: 0 0 48%;
+    flex: 0 0 52%;
     max-width: none;
     position: sticky;
-    top: 100px;
+    top: 20px;
   }
   .bb-details { flex: 1; }
   .bb-packs { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
 
 @media (min-width: 1024px) {
-  .bb-inner { padding: 0 40px; }
-  .bb-media { flex: 0 0 50%; }
+  .bb-inner { padding: 0 28px; }
+  .bb-media { flex: 0 0 55%; }
 }
 </style>
 
