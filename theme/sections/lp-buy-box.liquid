@@ -5,9 +5,14 @@
 {%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
 
 {%- assign bb_headline = "Bladder Control In 60 Days" -%}
+{%- assign bb_retail_unit = 8900 -%}
 {%- assign bb_description = "A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week." -%}
-{%- assign bb_free_ship = "Free Shipping" -%}
-{%- assign bb_pack_label = "Select Quantity:" -%}
+{%- assign bb_pack_name_1 = "Buy One" -%}
+{%- assign bb_pack_name_2 = "Buy 2, Get a Free Gift" -%}
+{%- assign bb_pack_name_3 = "Buy 3, Get 1 Free!" -%}
+{%- assign bb_units_1 = 1 -%}
+{%- assign bb_units_2 = 2 -%}
+{%- assign bb_units_3 = 4 -%}
 {%- assign bb_pack_note = "*For Best Results, Use Consistently For 4-6 Weeks" -%}
 {%- assign bb_pack_badge_2 = "Most Popular" -%}
 {%- assign bb_pack_badge_3 = "Best Value" -%}
@@ -147,54 +152,32 @@
 }
 .bb-check svg { width: 12px; height: 12px; }
 
-/* ── Price ── */
-.bb-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-.bb-price {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--heading);
-}
-.bb-free-ship {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--green);
-}
 
 /* ── Pack Selector ── */
-.bb-pack-label {
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--heading);
-  margin-bottom: 14px;
-}
 .bb-packs {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 12px;
 }
 .bb-pack {
   position: relative;
   border: 2px solid var(--border);
   border-radius: 8px;
-  padding: 16px;
-  text-align: center;
+  padding: 14px 16px;
   cursor: pointer;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background 0.2s;
   background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .bb-pack:hover { border-color: var(--brown); }
-.bb-pack.active { border-color: var(--brown); }
+.bb-pack.active { border-color: var(--brown); background: var(--light); }
 .bb-pack-badge {
   position: absolute;
   top: -11px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 12px;
   background: var(--green);
   color: var(--white);
   font-size: 10px;
@@ -208,22 +191,37 @@
 .bb-pack-badge--gold {
   background: var(--gold);
 }
+.bb-pack-left {
+  display: flex;
+  flex-direction: column;
+}
 .bb-pack-name {
   font-size: 16px;
   font-weight: 700;
   color: var(--heading);
-  margin-bottom: 4px;
-}
-.bb-pack-price {
-  font-size: 14px;
-  color: var(--body);
 }
 .bb-pack-save {
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   color: var(--green);
-  text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 2px;
+}
+.bb-pack-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.bb-pack-price {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--heading);
+}
+.bb-pack-compare {
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-top: 1px;
 }
 .bb-pack-note {
   font-size: 13px;
@@ -337,7 +335,6 @@
     top: 20px;
   }
   .bb-details { flex: 1; }
-  .bb-packs { grid-template-columns: repeat(3, 1fr); gap: 12px; }
 }
 
 @media (min-width: 1024px) {
@@ -402,38 +399,40 @@
           </div>
         </div>
 
-        <div class="bb-price-row">
-          <span class="bb-price" id="bb-display-price">${{ current_variant.price | money_without_currency }}</span>
-          <span class="bb-free-ship">{{ bb_free_ship }}</span>
-        </div>
-
         {% form 'product', product, id: 'bb-product-form' %}
           <input type="hidden" name="id" value="{{ current_variant.id }}" id="bb-variant-id">
 
-          <div class="bb-pack-label">{{ bb_pack_label }}</div>
           <div class="bb-packs" id="bb-packs">
             {% for variant in product.variants %}
+              {%- case forloop.index -%}
+                {%- when 1 -%}{%- assign pack_units = bb_units_1 -%}
+                {%- when 2 -%}{%- assign pack_units = bb_units_2 -%}
+                {%- when 3 -%}{%- assign pack_units = bb_units_3 -%}
+              {%- endcase -%}
+              {%- assign retail_price = bb_retail_unit | times: pack_units -%}
+              {%- assign saved = retail_price | minus: variant.price -%}
               <div class="bb-pack{% if forloop.first %} active{% endif %}"
                    data-variant-id="{{ variant.id }}"
                    data-price="{{ variant.price | money_without_currency }}"
+                   data-compare="{{ retail_price | money_without_currency }}"
                    onclick="bbSelectPack(this)">
                 {% if forloop.index == 2 and bb_pack_badge_2 != blank %}
                   <div class="bb-pack-badge">{{ bb_pack_badge_2 }}</div>
                 {% elsif forloop.index == 3 and bb_pack_badge_3 != blank %}
                   <div class="bb-pack-badge bb-pack-badge--gold">{{ bb_pack_badge_3 }}</div>
                 {% endif %}
-                <div class="bb-pack-name">{{ variant.title }}</div>
-                <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
-                {% unless forloop.first %}
-                  {% assign single_price = product.variants.first.price %}
-                  {% assign pack_count = forloop.index %}
-                  {% assign full_price = single_price | times: pack_count %}
-                  {% assign saved = full_price | minus: variant.price %}
-                  {% assign pct = saved | times: 100 | divided_by: full_price %}
-                  {% if pct > 0 %}
-                    <div class="bb-pack-save">Save {{ pct }}%</div>
-                  {% endif %}
-                {% endunless %}
+                <div class="bb-pack-left">
+                  {%- case forloop.index -%}
+                    {%- when 1 -%}<div class="bb-pack-name">{{ bb_pack_name_1 }}</div>
+                    {%- when 2 -%}<div class="bb-pack-name">{{ bb_pack_name_2 }}</div>
+                    {%- when 3 -%}<div class="bb-pack-name">{{ bb_pack_name_3 }}</div>
+                  {%- endcase -%}
+                  <div class="bb-pack-save">You save ${{ saved | money_without_currency }}</div>
+                </div>
+                <div class="bb-pack-right">
+                  <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
+                  <div class="bb-pack-compare">${{ retail_price | money_without_currency }}</div>
+                </div>
               </div>
             {% endfor %}
           </div>
@@ -511,6 +510,7 @@ function bbSelectPack(el) {
   el.classList.add('active');
   var variantId = el.dataset.variantId;
   var price = el.dataset.price;
+  var compare = el.dataset.compare;
   document.getElementById('bb-variant-id').value = variantId;
   document.getElementById('bb-display-price').textContent = '$' + price;
 }
