@@ -710,8 +710,21 @@ function bbClearCart() {
         oldBubble.innerHTML = newBubble.innerHTML;
       }
 
+      drawer.classList.remove('bb-cart-clearing');
+
       var cartDrawer = document.querySelector('cart-drawer');
       if (cartDrawer) cartDrawer.classList.add('is-empty');
+    })
+    .catch(function() {
+      drawer.classList.remove('bb-cart-clearing');
     });
 }
+
+// Safeguard: strip loading state whenever the drawer renders with items
+new MutationObserver(function() {
+  var drawer = document.getElementById('CartDrawer');
+  if (drawer && drawer.classList.contains('bb-cart-clearing') && drawer.querySelector('.cart-item')) {
+    drawer.classList.remove('bb-cart-clearing');
+  }
+}).observe(document.getElementById('CartDrawer'), { childList: true, subtree: true });
 </script>
