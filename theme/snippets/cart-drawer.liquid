@@ -372,24 +372,16 @@
                                   </button>
                                 </quantity-input>
                               </div>
-                              <cart-remove-button
-                                id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
-                                data-index="{{ item.index | plus: 1 }}"
+                              <button
+                                type="button"
+                                class="button button--tertiary cart-remove-button"
+                                aria-label="Clear cart"
+                                onclick="bbClearCart()"
                               >
-                                <button
-                                  type="button"
-                                  class="button button--tertiary cart-remove-button"
-                                  aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
-                                  data-variant-id="{{ item.variant.id }}"
-                                  {% if item.instructions and item.instructions.can_remove == false %}
-                                    class="hidden"
-                                  {% endif %}
-                                >
-                                  <span class="svg-wrapper">
-                                    {{- 'icon-remove.svg' | inline_asset_content -}}
-                                  </span>
-                                </button>
-                              </cart-remove-button>
+                                <span class="svg-wrapper">
+                                  {{- 'icon-remove.svg' | inline_asset_content -}}
+                                </span>
+                              </button>
                             </div>
                             {%- if has_qty_rules or has_vol_pricing -%}
                               <button
@@ -487,6 +479,19 @@
                               </span>
                             </div>
                           </quantity-popover>
+                          {%- else -%}
+                          <div class="cart-item__quantity-wrapper">
+                            <button
+                              type="button"
+                              class="button button--tertiary cart-remove-button"
+                              aria-label="Clear cart"
+                              onclick="bbClearCart()"
+                            >
+                              <span class="svg-wrapper">
+                                {{- 'icon-remove.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                          </div>
                           {%- endif -%}
                         </td>
                       </tr>
@@ -608,3 +613,32 @@
     </div>
   </div>
 </cart-drawer>
+
+<script>
+function bbClearCart() {
+  fetch('/cart/clear.js', { method: 'POST' })
+    .then(function() {
+      return fetch('/?sections=cart-drawer,cart-icon-bubble');
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(sections) {
+      var parser = new DOMParser();
+
+      var drawerDoc = parser.parseFromString(sections['cart-drawer'], 'text/html');
+      var newDrawer = drawerDoc.querySelector('#CartDrawer');
+      if (newDrawer) {
+        document.getElementById('CartDrawer').innerHTML = newDrawer.innerHTML;
+      }
+
+      var bubbleDoc = parser.parseFromString(sections['cart-icon-bubble'], 'text/html');
+      var newBubble = bubbleDoc.querySelector('.shopify-section');
+      var oldBubble = document.getElementById('cart-icon-bubble');
+      if (newBubble && oldBubble) {
+        oldBubble.innerHTML = newBubble.innerHTML;
+      }
+
+      var cartDrawer = document.querySelector('cart-drawer');
+      if (cartDrawer) cartDrawer.classList.add('is-empty');
+    });
+}
+</script>
