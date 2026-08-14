@@ -29,10 +29,11 @@ database.sqlite
 # Ignore everything inside theme/
 /theme/*
 
-# Un-ignore sections, templates, snippets and config directories so Git scans them
+# Un-ignore sections, templates, snippets, assets and config directories so Git scans them
 !/theme/sections/
 !/theme/templates/
 !/theme/snippets/
+!/theme/assets/
 !/theme/layout
 !/theme/config
 
@@ -40,6 +41,7 @@ database.sqlite
 /theme/sections/*
 /theme/templates/*
 /theme/snippets/*
+/theme/assets/*
 /theme/layout/*
 /theme/config/*
 
@@ -55,12 +57,14 @@ database.sqlite
 !/theme/sections/footer.liquid
 !/theme/sections/footer-group.json
 !/theme/snippets/lp-brand-vars.liquid
+!/theme/snippets/cart-drawer.liquid
 !/theme/templates/page.lp-longform.json
 !/theme/layout/theme.liquid
 !/theme/templates/index.json
 !/theme/templates/page.contact.json
 !/theme/config/settings_schema.json
 !/theme/config/settings_data.json
+!/theme/assets/component-cart-items.css
 
 # Now also ignore our local backups
 /theme-horizon-backup/
