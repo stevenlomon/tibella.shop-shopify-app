@@ -1,21 +1,33 @@
 {%- render 'lp-brand-vars' -%}
 {%- assign product = section.settings.product | default: settings.lp_product -%}
-{%- assign current_variant = product.selected_or_first_available_variant -%}
-
 {%- comment -%} ═══ CONTENT CONFIG ═══ {%- endcomment -%}
 
 {%- assign bb_headline = "Bladder Control In 60 Days" -%}
 {%- assign bb_retail_unit = 8900 -%}
 {%- assign bb_description = "A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week." -%}
+
+{%- comment -%} Variant references: device-only = first, device+remote = last {%- endcomment -%}
+{%- assign v_device = product.variants.first -%}
+{%- assign v_bundle = product.variants.last -%}
+
+{%- comment -%} Pack 1: 1× device {%- endcomment -%}
 {%- assign bb_pack_name_1 = "Buy One" -%}
+{%- assign bb_pack_price_1 = 5900 -%}
+{%- assign bb_pack_units_1 = 1 -%}
+
+{%- comment -%} Pack 2: 1× device + 1× device+remote {%- endcomment -%}
 {%- assign bb_pack_name_2 = "Buy 2, Get a Free Gift" -%}
-{%- assign bb_pack_name_3 = "Buy 3, Get 1 Free!" -%}
-{%- assign bb_units_1 = 1 -%}
-{%- assign bb_units_2 = 2 -%}
-{%- assign bb_units_3 = 4 -%}
-{%- assign bb_pack_note = "*For Best Results, Use Consistently For 4-6 Weeks" -%}
+{%- assign bb_pack_price_2 = 9900 -%}
+{%- assign bb_pack_units_2 = 2 -%}
 {%- assign bb_pack_badge_2 = "Most Popular" -%}
+
+{%- comment -%} Pack 3: 3× device + 1× device+remote {%- endcomment -%}
+{%- assign bb_pack_name_3 = "Buy 3, Get 1 Free!" -%}
+{%- assign bb_pack_price_3 = 13900 -%}
+{%- assign bb_pack_units_3 = 4 -%}
 {%- assign bb_pack_badge_3 = "Best Value" -%}
+
+{%- assign bb_pack_note = "*For Best Results, Use Consistently For 4-6 Weeks" -%}
 {%- assign bb_cta = "Add To Cart" -%}
 {%- assign bb_sold_out = "Sold Out" -%}
 {%- assign bb_trust_1 = "60-Day Money-Back Guarantee" -%}
@@ -421,47 +433,66 @@
         </div>
 
         {% form 'product', product, id: 'bb-product-form' %}
-          <input type="hidden" name="id" value="{{ current_variant.id }}" id="bb-variant-id">
+          <input type="hidden" name="id" value="{{ v_device.id }}">
+
+          {%- assign retail_1 = bb_retail_unit | times: bb_pack_units_1 -%}
+          {%- assign saved_1 = retail_1 | minus: bb_pack_price_1 -%}
+          {%- assign retail_2 = bb_retail_unit | times: bb_pack_units_2 -%}
+          {%- assign saved_2 = retail_2 | minus: bb_pack_price_2 -%}
+          {%- assign retail_3 = bb_retail_unit | times: bb_pack_units_3 -%}
+          {%- assign saved_3 = retail_3 | minus: bb_pack_price_3 -%}
 
           <div class="bb-packs" id="bb-packs">
-            {% for variant in product.variants %}
-              {%- case forloop.index -%}
-                {%- when 1 -%}{%- assign pack_units = bb_units_1 -%}
-                {%- when 2 -%}{%- assign pack_units = bb_units_2 -%}
-                {%- when 3 -%}{%- assign pack_units = bb_units_3 -%}
-              {%- endcase -%}
-              {%- assign retail_price = bb_retail_unit | times: pack_units -%}
-              {%- assign saved = retail_price | minus: variant.price -%}
-              <div class="bb-pack{% if forloop.first %} active{% endif %}"
-                   data-variant-id="{{ variant.id }}"
-                   data-price="{{ variant.price | money_without_currency }}"
-                   data-compare="{{ retail_price | money_without_currency }}"
-                   onclick="bbSelectPack(this)">
-                {% if forloop.index == 2 and bb_pack_badge_2 != blank %}
-                  <div class="bb-pack-badge">{{ bb_pack_badge_2 }}</div>
-                {% elsif forloop.index == 3 and bb_pack_badge_3 != blank %}
-                  <div class="bb-pack-badge bb-pack-badge--gold">{{ bb_pack_badge_3 }}</div>
-                {% endif %}
-                <div class="bb-pack-left">
-                  {%- case forloop.index -%}
-                    {%- when 1 -%}<div class="bb-pack-name">{{ bb_pack_name_1 }}</div>
-                    {%- when 2 -%}<div class="bb-pack-name">{{ bb_pack_name_2 }}</div>
-                    {%- when 3 -%}<div class="bb-pack-name">{{ bb_pack_name_3 }}</div>
-                  {%- endcase -%}
-                  <div class="bb-pack-save">You save ${{ saved | money_without_currency }}</div>
-                </div>
-                <div class="bb-pack-right">
-                  <div class="bb-pack-price">${{ variant.price | money_without_currency }}</div>
-                  <div class="bb-pack-compare">${{ retail_price | money_without_currency }}</div>
-                </div>
+            <div class="bb-pack active"
+                 data-pack='[{"id":{{ v_device.id }},"quantity":1}]'
+                 onclick="bbSelectPack(this)">
+              <div class="bb-pack-left">
+                <div class="bb-pack-name">{{ bb_pack_name_1 }}</div>
+                <div class="bb-pack-save">You save ${{ saved_1 | money_without_currency }}</div>
               </div>
-            {% endfor %}
+              <div class="bb-pack-right">
+                <div class="bb-pack-price">${{ bb_pack_price_1 | money_without_currency }}</div>
+                <div class="bb-pack-compare">${{ retail_1 | money_without_currency }}</div>
+              </div>
+            </div>
+
+            <div class="bb-pack"
+                 data-pack='[{"id":{{ v_device.id }},"quantity":1},{"id":{{ v_bundle.id }},"quantity":1}]'
+                 onclick="bbSelectPack(this)">
+              {% if bb_pack_badge_2 != blank %}
+                <div class="bb-pack-badge">{{ bb_pack_badge_2 }}</div>
+              {% endif %}
+              <div class="bb-pack-left">
+                <div class="bb-pack-name">{{ bb_pack_name_2 }}</div>
+                <div class="bb-pack-save">You save ${{ saved_2 | money_without_currency }}</div>
+              </div>
+              <div class="bb-pack-right">
+                <div class="bb-pack-price">${{ bb_pack_price_2 | money_without_currency }}</div>
+                <div class="bb-pack-compare">${{ retail_2 | money_without_currency }}</div>
+              </div>
+            </div>
+
+            <div class="bb-pack"
+                 data-pack='[{"id":{{ v_device.id }},"quantity":3},{"id":{{ v_bundle.id }},"quantity":1}]'
+                 onclick="bbSelectPack(this)">
+              {% if bb_pack_badge_3 != blank %}
+                <div class="bb-pack-badge bb-pack-badge--gold">{{ bb_pack_badge_3 }}</div>
+              {% endif %}
+              <div class="bb-pack-left">
+                <div class="bb-pack-name">{{ bb_pack_name_3 }}</div>
+                <div class="bb-pack-save">You save ${{ saved_3 | money_without_currency }}</div>
+              </div>
+              <div class="bb-pack-right">
+                <div class="bb-pack-price">${{ bb_pack_price_3 | money_without_currency }}</div>
+                <div class="bb-pack-compare">${{ retail_3 | money_without_currency }}</div>
+              </div>
+            </div>
           </div>
 
           <p class="bb-pack-note">{{ bb_pack_note }}</p>
 
-          <button type="submit" class="bb-atc"{% unless current_variant.available %} disabled{% endunless %}>
-            {% if current_variant.available %}{{ bb_cta }}{% else %}{{ bb_sold_out }}{% endif %}
+          <button type="submit" class="bb-atc"{% unless v_device.available and v_bundle.available %} disabled{% endunless %}>
+            {% if v_device.available and v_bundle.available %}{{ bb_cta }}{% else %}{{ bb_sold_out }}{% endif %}
           </button>
         {% endform %}
 
@@ -534,11 +565,6 @@
 function bbSelectPack(el) {
   document.querySelectorAll('.bb-pack').forEach(function(p) { p.classList.remove('active'); });
   el.classList.add('active');
-  var variantId = el.dataset.variantId;
-  var price = el.dataset.price;
-  var compare = el.dataset.compare;
-  document.getElementById('bb-variant-id').value = variantId;
-  document.getElementById('bb-display-price').textContent = '$' + price;
 }
 
 function bbSelectImage(thumb, src) {
@@ -572,14 +598,16 @@ function bbToggle(trigger) {
   if (!form) return;
   form.addEventListener('submit', function(e) {
     e.preventDefault();
+    var activePack = document.querySelector('.bb-pack.active');
+    if (!activePack) return;
+    var items = JSON.parse(activePack.dataset.pack);
     var btn = form.querySelector('[type="submit"]');
     btn.setAttribute('aria-disabled', 'true');
     btn.textContent = 'Adding...';
-    var formData = new FormData(form);
     fetch('/cart/add.js', {
       method: 'POST',
-      headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      body: formData
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ items: items })
     })
     .then(function(r) { return r.json(); })
     .then(function(response) {
