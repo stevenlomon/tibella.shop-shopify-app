@@ -39,6 +39,9 @@
 {%- assign bb_trust_1 = "60-Day Money-Back Guarantee" -%}
 {%- assign bb_trust_2 = "Free US Shipping" -%}
 {%- assign bb_ship_days = 10 -%}
+{%- assign bb_gift_ship_value = "$9.99" -%}
+{%- assign bb_gift_remote_value = "$19" -%}
+{%- assign bb_gift_device_value = "$89" -%}
 
 {%- comment -%} ═══ END CONTENT CONFIG ═══ {%- endcomment -%}
 
@@ -273,6 +276,86 @@
   margin-bottom: 20px;
 }
 
+/* ── Gifts Unlocked ── */
+.bb-gifts {
+  position: relative;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 12px 14px;
+  margin-bottom: 12px;
+}
+.bb-gifts-label {
+  position: absolute;
+  top: -9px;
+  left: 16px;
+  background: var(--white);
+  padding: 0 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--heading);
+}
+.bb-gifts-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+.bb-gift {
+  flex: 1;
+  text-align: center;
+}
+.bb-gift-unlocked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.bb-gift .bb-gift-locked { display: none; }
+.bb-gift.locked .bb-gift-unlocked { display: none; }
+.bb-gift.locked .bb-gift-locked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.bb-gift-icon {
+  width: 36px;
+  height: 36px;
+}
+.bb-gift-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+.bb-gift-lock {
+  width: 28px;
+  height: 28px;
+  color: var(--muted);
+  margin: 4px 0;
+}
+.bb-gift-price {
+  font-size: 11px;
+  color: var(--muted);
+  text-decoration: line-through;
+}
+.bb-gift-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+}
+.bb-gift.locked .bb-gift-name {
+  color: var(--muted);
+  font-weight: 600;
+}
+.bb-gift-plus {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-top: 12px;
+}
+
 /* ── Add to Cart ── */
 .bb-atc {
   display: block;
@@ -473,6 +556,7 @@
 
           <div class="bb-packs" id="bb-packs">
             <div class="bb-pack active"
+                 data-level="1"
                  data-pack='[{"id":{{ v_device.id }},"quantity":1}]'
                  onclick="bbSelectPack(this)">
               <div class="bb-pack-images">
@@ -489,6 +573,7 @@
             </div>
 
             <div class="bb-pack"
+                 data-level="2"
                  data-pack='[{"id":{{ v_device.id }},"quantity":1},{"id":{{ v_bundle.id }},"quantity":1}]'
                  onclick="bbSelectPack(this)">
               {% if bb_pack_badge_2 != blank %}
@@ -510,6 +595,7 @@
             </div>
 
             <div class="bb-pack"
+                 data-level="3"
                  data-pack='[{"id":{{ v_device.id }},"quantity":3},{"id":{{ v_bundle.id }},"quantity":1}]'
                  onclick="bbSelectPack(this)">
               {% if bb_pack_badge_3 != blank %}
@@ -529,6 +615,47 @@
               <div class="bb-pack-right">
                 <div class="bb-pack-price">${{ bb_pack_price_3 | money_without_currency }}</div>
                 <div class="bb-pack-compare">${{ retail_3 | money_without_currency }}</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bb-gifts">
+            <span class="bb-gifts-label">Gifts Unlocked</span>
+            <div class="bb-gifts-row">
+              <div class="bb-gift" data-unlock="1">
+                <div class="bb-gift-unlocked">
+                  <svg class="bb-gift-icon" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10" rx="1"/><path d="M14 9h3l4 4v3h-7V9z"/><circle cx="5.5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/></svg>
+                  <span class="bb-gift-price">{{ bb_gift_ship_value }}</span>
+                  <span class="bb-gift-name">FREE Shipping</span>
+                </div>
+                <div class="bb-gift-locked">
+                  <svg class="bb-gift-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span class="bb-gift-name">Locked</span>
+                </div>
+              </div>
+              <span class="bb-gift-plus">+</span>
+              <div class="bb-gift locked" data-unlock="2">
+                <div class="bb-gift-unlocked">
+                  <img class="bb-gift-img" src="{{ bb_img_remote }}" alt="Remote control">
+                  <span class="bb-gift-price">{{ bb_gift_remote_value }}</span>
+                  <span class="bb-gift-name">FREE Remote</span>
+                </div>
+                <div class="bb-gift-locked">
+                  <svg class="bb-gift-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span class="bb-gift-name">Locked</span>
+                </div>
+              </div>
+              <span class="bb-gift-plus">+</span>
+              <div class="bb-gift locked" data-unlock="3">
+                <div class="bb-gift-unlocked">
+                  <img class="bb-gift-img" src="{{ bb_img_1x }}" alt="Tibella device">
+                  <span class="bb-gift-price">{{ bb_gift_device_value }}</span>
+                  <span class="bb-gift-name">FREE Device</span>
+                </div>
+                <div class="bb-gift-locked">
+                  <svg class="bb-gift-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  <span class="bb-gift-name">Locked</span>
+                </div>
               </div>
             </div>
           </div>
@@ -609,6 +736,11 @@
 function bbSelectPack(el) {
   document.querySelectorAll('.bb-pack').forEach(function(p) { p.classList.remove('active'); });
   el.classList.add('active');
+  var level = parseInt(el.dataset.level) || 1;
+  document.querySelectorAll('.bb-gift').forEach(function(g) {
+    var unlock = parseInt(g.dataset.unlock) || 1;
+    g.classList.toggle('locked', level < unlock);
+  });
 }
 
 function bbSelectImage(thumb, src) {
