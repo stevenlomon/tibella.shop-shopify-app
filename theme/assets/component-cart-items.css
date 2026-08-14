@@ -350,16 +350,6 @@ cart-items .title-wrapper-with-link {
   cursor: default;
 }
 
-.cart-item__qty-fixed {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  font-size: 1.4rem;
-  font-weight: 600;
-  color: rgb(var(--color-foreground));
-}
 
 .cart-item__price-wrapper > * {
   display: block;
