@@ -56,6 +56,8 @@ database.sqlite
 !/theme/sections/announcement-bar.liquid
 !/theme/sections/footer.liquid
 !/theme/sections/footer-group.json
+!/theme/sections/main-404.liquid
+!/theme/sections/main-cart-items.liquid
 !/theme/snippets/lp-brand-vars.liquid
 !/theme/snippets/cart-drawer.liquid
 !/theme/templates/page.lp-longform.json
