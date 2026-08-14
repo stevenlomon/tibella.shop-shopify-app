@@ -284,11 +284,27 @@
                             assign has_vol_pricing = true
                           endif
                         -%}
+                        {%- liquid
+                          assign bb_is_remote = false
+                          for option in item.options_with_values
+                            if option.value contains 'Remote'
+                              assign bb_is_remote = true
+                            endif
+                          endfor
+
+                          assign bb_show_qty = true
+                          if bb_is_remote
+                            assign bb_show_qty = false
+                          elsif item.quantity < 3
+                            assign bb_show_qty = false
+                          endif
+                        -%}
                         <td
                           class="cart-item__quantity {% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}"
                           role="cell"
                           headers="CartDrawer-ColumnQuantity"
                         >
+                          {%- if bb_show_qty -%}
                           <quantity-popover>
                             <div class="cart-item__quantity-wrapper quantity-popover-wrapper">
                               <div class="quantity-popover-container{% if has_qty_rules or has_vol_pricing %} quantity-popover-container--hover{% endif %}">
@@ -471,6 +487,11 @@
                               </span>
                             </div>
                           </quantity-popover>
+                          {%- else -%}
+                          <div class="cart-item__quantity-wrapper">
+                            <span class="cart-item__qty-fixed">{{ item.quantity }}</span>
+                          </div>
+                          {%- endif -%}
                         </td>
                       </tr>
                     {%- endfor -%}
