@@ -243,32 +243,6 @@
                             {%- endfor -%}
                           </ul>
 
-                          {%- liquid
-                            assign bb_detail_trash = false
-                            assign bb_is_remote_detail = false
-                            for option in item.options_with_values
-                              if option.value contains 'Remote'
-                                assign bb_is_remote_detail = true
-                              endif
-                            endfor
-                            if bb_is_remote_detail
-                              assign bb_detail_trash = true
-                            elsif item.quantity < 3
-                              assign bb_detail_trash = true
-                            endif
-                          -%}
-                          {%- if bb_detail_trash -%}
-                          <div class="bb-detail-trash">
-                            <button
-                              type="button"
-                              class="bb-trash-btn"
-                              aria-label="Clear cart"
-                              onclick="bbClearCart()"
-                            >
-                              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
-                            </button>
-                          </div>
-                          {%- endif -%}
                         </td>
 
                         <td class="cart-item__totals right" role="cell" headers="CartDrawer-ColumnTotal">
@@ -509,6 +483,19 @@
                               </span>
                             </div>
                           </quantity-popover>
+                          {%- else -%}
+                          <div class="bb-trash-row">
+                            <button
+                              type="button"
+                              class="bb-trash-btn"
+                              aria-label="Clear cart"
+                              onclick="bbClearCart()"
+                            >
+                              <span class="svg-wrapper">
+                                {{- 'icon-remove.svg' | inline_asset_content -}}
+                              </span>
+                            </button>
+                          </div>
                           {%- endif -%}
                         </td>
                       </tr>
@@ -632,26 +619,35 @@
 </cart-drawer>
 
 <style>
-  .bb-detail-trash {
+  .bb-trash-row {
     display: flex;
     justify-content: flex-end;
-    margin-top: 8px;
+    margin-top: -4.5rem;
   }
   .bb-trash-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 28px;
-    height: 28px;
+    min-width: 3.5rem;
+    min-height: 3.5rem;
     border: none;
     background: none;
-    color: rgb(var(--color-foreground));
-    opacity: 0.4;
+    color: rgba(var(--color-foreground), 0.75);
     cursor: pointer;
     padding: 0;
-    transition: opacity 0.2s ease;
+    margin: 0;
+    transition: color 0.2s ease;
   }
-  .bb-trash-btn:hover { opacity: 1; }
+  .bb-trash-btn:hover { color: rgb(var(--color-foreground)); }
+  .bb-trash-btn .svg-wrapper {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+  }
+  .bb-trash-btn .svg-wrapper svg {
+    width: 100%;
+    height: 100%;
+  }
 
   .bb-cart-clearing .cart-item {
     opacity: 0.25;
