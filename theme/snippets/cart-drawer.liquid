@@ -716,6 +716,18 @@ function bbClearCart() {
     });
 }
 
+// Close cart drawer when clicking outside the panel
+(function() {
+  var el = document.querySelector('cart-drawer');
+  if (el) {
+    el.addEventListener('click', function(e) {
+      if (!e.target.closest('.drawer__inner') && !e.target.closest('.drawer__inner-empty')) {
+        this.close();
+      }
+    });
+  }
+})();
+
 // Safeguard: strip loading state whenever the drawer renders with items
 new MutationObserver(function() {
   var drawer = document.getElementById('CartDrawer');
