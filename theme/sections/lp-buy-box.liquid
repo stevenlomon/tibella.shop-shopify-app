@@ -304,50 +304,66 @@
 }
 .bb-gift {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
   text-align: center;
 }
-.bb-gift-unlocked {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.bb-gift .bb-gift-locked { display: none; }
-.bb-gift.locked .bb-gift-unlocked { display: none; }
-.bb-gift.locked .bb-gift-locked {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-.bb-gift-icon {
+.bb-gift-visual {
+  position: relative;
   width: 36px;
   height: 36px;
+  margin: 0 auto;
 }
+.bb-gift-icon,
 .bb-gift-img {
   width: 36px;
   height: 36px;
   object-fit: contain;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 .bb-gift-lock {
-  width: 28px;
-  height: 28px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
   color: var(--muted);
-  margin: 4px 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.bb-gift.locked .bb-gift-icon,
+.bb-gift.locked .bb-gift-img {
+  opacity: 0.25;
+  filter: grayscale(1) blur(1px);
+}
+.bb-gift.locked .bb-gift-lock {
+  opacity: 1;
 }
 .bb-gift-price {
   font-size: 11px;
   color: var(--muted);
   text-decoration: line-through;
+  transition: opacity 0.3s ease;
+}
+.bb-gift.locked .bb-gift-price {
+  opacity: 0.3;
+  filter: blur(2px);
 }
 .bb-gift-name {
   font-size: 11px;
   font-weight: 700;
   color: var(--green);
+  transition: color 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
 }
 .bb-gift.locked .bb-gift-name {
   color: var(--muted);
   font-weight: 600;
+  opacity: 0.3;
+  filter: blur(2px);
 }
 .bb-gift-plus {
   font-size: 14px;
@@ -623,39 +639,30 @@
             <span class="bb-gifts-label">Gifts Unlocked</span>
             <div class="bb-gifts-row">
               <div class="bb-gift" data-unlock="1">
-                <div class="bb-gift-unlocked">
+                <div class="bb-gift-visual">
                   <svg class="bb-gift-icon" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="13" height="10" rx="1"/><path d="M14 9h3l4 4v3h-7V9z"/><circle cx="5.5" cy="18" r="2"/><circle cx="18.5" cy="18" r="2"/></svg>
-                  <span class="bb-gift-price">{{ bb_gift_ship_value }}</span>
-                  <span class="bb-gift-name">FREE Shipping</span>
-                </div>
-                <div class="bb-gift-locked">
                   <svg class="bb-gift-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                  <span class="bb-gift-name">Locked</span>
                 </div>
+                <span class="bb-gift-price">{{ bb_gift_ship_value }}</span>
+                <span class="bb-gift-name">FREE Shipping</span>
               </div>
               <span class="bb-gift-plus">+</span>
               <div class="bb-gift locked" data-unlock="2">
-                <div class="bb-gift-unlocked">
+                <div class="bb-gift-visual">
                   <img class="bb-gift-img" src="{{ bb_img_remote }}" alt="Remote control">
-                  <span class="bb-gift-price">{{ bb_gift_remote_value }}</span>
-                  <span class="bb-gift-name">FREE Remote</span>
-                </div>
-                <div class="bb-gift-locked">
                   <svg class="bb-gift-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                  <span class="bb-gift-name">Locked</span>
                 </div>
+                <span class="bb-gift-price">{{ bb_gift_remote_value }}</span>
+                <span class="bb-gift-name">FREE Remote</span>
               </div>
               <span class="bb-gift-plus">+</span>
               <div class="bb-gift locked" data-unlock="3">
-                <div class="bb-gift-unlocked">
+                <div class="bb-gift-visual">
                   <img class="bb-gift-img" src="{{ bb_img_1x }}" alt="Tibella device">
-                  <span class="bb-gift-price">{{ bb_gift_device_value }}</span>
-                  <span class="bb-gift-name">FREE Device</span>
-                </div>
-                <div class="bb-gift-locked">
                   <svg class="bb-gift-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 11V7a4 4 0 018 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                  <span class="bb-gift-name">Locked</span>
                 </div>
+                <span class="bb-gift-price">{{ bb_gift_device_value }}</span>
+                <span class="bb-gift-name">FREE Device</span>
               </div>
             </div>
           </div>
