@@ -74,6 +74,12 @@
           </span>
         </button>
       </div>
+      {%- unless cart == empty -%}
+        <div class="bb-cart-timer-bar">
+          <svg class="bb-timer-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="9" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 6v3.5l2.5 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6.5 1.5h3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Your cart is reserved for <span id="bb-cart-timer">05:00</span>
+        </div>
+      {%- endunless -%}
       <cart-drawer-items
         view-event-payload="{{ cart | standard_event_data: 'view', context: 'dialog' | escape }}"
         view-event-trigger="manual"
@@ -551,10 +557,34 @@
             {%- endif -%}
           </div>
 
+          {%- assign bb_total_savings = 0 -%}
+          {%- assign bb_original_total = 0 -%}
+          {%- for item in cart.items -%}
+            {%- if item.variant.compare_at_price and item.variant.compare_at_price > item.variant.price -%}
+              {%- assign bb_item_original = item.variant.compare_at_price | times: item.quantity -%}
+            {%- else -%}
+              {%- assign bb_item_original = item.original_line_price -%}
+            {%- endif -%}
+            {%- assign bb_original_total = bb_original_total | plus: bb_item_original -%}
+            {%- assign bb_item_savings = bb_item_original | minus: item.final_line_price -%}
+            {%- if bb_item_savings > 0 -%}
+              {%- assign bb_total_savings = bb_total_savings | plus: bb_item_savings -%}
+            {%- endif -%}
+          {%- endfor -%}
+
           <div class="totals" role="status">
             <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+            <p class="totals__total-value">
+              {%- if bb_total_savings > 0 -%}
+                <span class="bb-total-compare">{{ bb_original_total | money }}</span>
+              {%- endif -%}
+              {{ cart.total_price | money_with_currency }}
+            </p>
           </div>
+
+          {%- if bb_total_savings > 0 -%}
+            <div class="bb-cart-savings">You save {{ bb_total_savings | money }}</div>
+          {%- endif -%}
 
           <small class="tax-note caption-large rte">
             {%- if cart.duties_included and cart.taxes_included -%}
@@ -597,21 +627,33 @@
           </small>
         </div>
 
+        <!-- Discount code -->
+        <div class="bb-discount-row">
+          <input type="text" id="bb-discount-input" class="bb-discount-input" placeholder="Discount code" autocomplete="off">
+          <button type="button" class="bb-discount-btn" onclick="bbApplyDiscount()">Apply</button>
+        </div>
+        <div id="bb-discount-msg" class="bb-discount-msg"></div>
+
         <!-- CTAs -->
 
         <div class="cart__ctas" {{ block.shopify_attributes }}>
           <button
             type="submit"
             id="CartDrawer-Checkout"
-            class="cart__checkout-button button"
+            class="cart__checkout-button button bb-checkout-btn"
             name="checkout"
             form="CartDrawer-Form"
             {% if cart == empty %}
               disabled
             {% endif %}
           >
-            {{ 'sections.cart.checkout' | t }}
+            Checkout &middot; {{ cart.total_price | money }}
           </button>
+        </div>
+
+        <div class="bb-cart-trust">
+          <svg class="bb-trust-icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1l5.5 2.5v4c0 3.5-2.5 5.5-5.5 7-3-1.5-5.5-3.5-5.5-7v-4L8 1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M5.5 8l1.5 2 3.5-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          60-Day Money-Back Guarantee
         </div>
       </div>
     </div>
@@ -677,6 +719,116 @@
   @keyframes bb-spin {
     to { transform: rotate(360deg); }
   }
+
+  /* Timer bar */
+  .bb-cart-timer-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.5rem;
+    background: rgba(var(--color-foreground), 0.04);
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+    font-size: 1.3rem;
+    letter-spacing: 0.02em;
+    color: rgba(var(--color-foreground), 0.85);
+  }
+  .bb-timer-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+  }
+  #bb-cart-timer {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Compare-at total */
+  .bb-total-compare {
+    text-decoration: line-through;
+    opacity: 0.5;
+    margin-right: 0.4rem;
+    font-weight: 400;
+  }
+
+  /* Savings callout */
+  .bb-cart-savings {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #2e7d32;
+    padding: 0.4rem 0 0.2rem;
+  }
+
+  /* Checkout button with price */
+  .bb-checkout-btn {
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* Discount code */
+  .bb-discount-row {
+    display: flex;
+    gap: 0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  .bb-discount-input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid rgba(var(--color-foreground), 0.2);
+    border-radius: 0.4rem;
+    font-size: 1.3rem;
+    font-family: inherit;
+    background: transparent;
+    color: rgb(var(--color-foreground));
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+  .bb-discount-input:focus {
+    border-color: rgba(var(--color-foreground), 0.5);
+  }
+  .bb-discount-input::placeholder {
+    color: rgba(var(--color-foreground), 0.4);
+  }
+  .bb-discount-btn {
+    padding: 0.8rem 1.4rem;
+    border: 1px solid rgba(var(--color-foreground), 0.2);
+    border-radius: 0.4rem;
+    background: rgb(var(--color-foreground));
+    color: rgb(var(--color-background));
+    font-size: 1.3rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .bb-discount-btn:hover { opacity: 0.85; }
+  .bb-discount-msg {
+    font-size: 1.2rem;
+    margin-top: 0.4rem;
+    min-height: 1.6rem;
+  }
+  .bb-discount-msg.success { color: #2e7d32; }
+  .bb-discount-msg.error { color: #c62828; }
+
+  /* Trust badge */
+  .bb-cart-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.8rem 0 0;
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+    color: rgba(var(--color-foreground), 0.55);
+  }
+  .bb-trust-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    flex-shrink: 0;
+  }
 </style>
 
 <script>
@@ -716,6 +868,75 @@ function bbClearCart() {
     });
 }
 
+// Cart reservation timer (5 min, persists via sessionStorage)
+(function() {
+  var DURATION = 300;
+  var timerInterval = null;
+
+  function getRemaining() {
+    var start = sessionStorage.getItem('bb_cart_timer_start');
+    if (!start) return -1;
+    var elapsed = Math.floor((Date.now() - parseInt(start, 10)) / 1000);
+    return Math.max(0, DURATION - elapsed);
+  }
+
+  function formatTime(s) {
+    var m = Math.floor(s / 60);
+    var sec = s % 60;
+    return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+  }
+
+  function updateDisplay() {
+    var el = document.getElementById('bb-cart-timer');
+    if (!el) return;
+    var remaining = getRemaining();
+    if (remaining < 0) return;
+    el.textContent = formatTime(remaining);
+    if (remaining <= 60) {
+      el.style.color = '#c62828';
+    }
+    if (remaining <= 0) {
+      clearInterval(timerInterval);
+      sessionStorage.removeItem('bb_cart_timer_start');
+      fetch('/cart/clear.js', { method: 'POST' }).then(function() {
+        window.location.reload();
+      });
+    }
+  }
+
+  function startTimer() {
+    if (timerInterval) clearInterval(timerInterval);
+    if (!sessionStorage.getItem('bb_cart_timer_start')) {
+      sessionStorage.setItem('bb_cart_timer_start', Date.now().toString());
+    }
+    updateDisplay();
+    timerInterval = setInterval(updateDisplay, 1000);
+  }
+
+  var observer = new MutationObserver(function() {
+    var drawer = document.querySelector('cart-drawer');
+    if (drawer && drawer.classList.contains('active') && document.getElementById('bb-cart-timer')) {
+      startTimer();
+    } else if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
+  });
+  var drawerEl = document.querySelector('cart-drawer');
+  if (drawerEl) {
+    observer.observe(drawerEl, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  // Reset timer when cart is cleared
+  var origClear = window.bbClearCart;
+  if (origClear) {
+    window.bbClearCart = function() {
+      sessionStorage.removeItem('bb_cart_timer_start');
+      origClear();
+    };
+  }
+})();
+
 // Close cart drawer when clicking outside the panel
 (function() {
   var el = document.querySelector('cart-drawer');
@@ -727,6 +948,67 @@ function bbClearCart() {
     });
   }
 })();
+
+// Apply discount code via /discount/CODE endpoint
+function bbApplyDiscount() {
+  var input = document.getElementById('bb-discount-input');
+  var msg = document.getElementById('bb-discount-msg');
+  if (!input || !msg) return;
+  var code = input.value.trim();
+  if (!code) {
+    msg.textContent = 'Please enter a discount code';
+    msg.className = 'bb-discount-msg error';
+    return;
+  }
+  msg.textContent = 'Applying...';
+  msg.className = 'bb-discount-msg';
+  fetch('/discount/' + encodeURIComponent(code), { method: 'GET', redirect: 'follow' })
+    .then(function() {
+      return fetch('/cart.js').then(function(r) { return r.json(); });
+    })
+    .then(function(cart) {
+      var found = cart.cart_level_discount_applications && cart.cart_level_discount_applications.some(function(d) {
+        return d.title.toLowerCase() === code.toLowerCase();
+      });
+      if (!found) {
+        found = cart.items && cart.items.some(function(item) {
+          return item.line_level_discount_allocations && item.line_level_discount_allocations.some(function(d) {
+            return d.discount_application && d.discount_application.title.toLowerCase() === code.toLowerCase();
+          });
+        });
+      }
+      return fetch('/?sections=cart-drawer,cart-icon-bubble')
+        .then(function(r) { return r.json(); })
+        .then(function(sections) {
+          var drawer = document.getElementById('CartDrawer');
+          var parser = new DOMParser();
+          var drawerDoc = parser.parseFromString(sections['cart-drawer'], 'text/html');
+          var newDrawer = drawerDoc.querySelector('#CartDrawer');
+          if (newDrawer && drawer) drawer.innerHTML = newDrawer.innerHTML;
+          var bubbleDoc = parser.parseFromString(sections['cart-icon-bubble'], 'text/html');
+          var newBubble = bubbleDoc.querySelector('.shopify-section');
+          var oldBubble = document.getElementById('cart-icon-bubble');
+          if (newBubble && oldBubble) oldBubble.innerHTML = newBubble.innerHTML;
+          msg = document.getElementById('bb-discount-msg');
+          if (msg) {
+            if (found) {
+              msg.textContent = 'Discount applied!';
+              msg.className = 'bb-discount-msg success';
+            } else {
+              msg.textContent = 'Invalid discount code';
+              msg.className = 'bb-discount-msg error';
+            }
+          }
+        });
+    })
+    .catch(function() {
+      msg = document.getElementById('bb-discount-msg');
+      if (msg) {
+        msg.textContent = 'Could not apply discount';
+        msg.className = 'bb-discount-msg error';
+      }
+    });
+}
 
 // Safeguard: strip loading state whenever the drawer renders with items
 new MutationObserver(function() {
