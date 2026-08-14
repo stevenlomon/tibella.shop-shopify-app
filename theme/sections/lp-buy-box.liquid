@@ -4,6 +4,7 @@
 
 {%- assign bb_headline = "Bladder Control In 60 Days" -%}
 {%- assign bb_retail_unit = 8900 -%}
+{%- assign bb_retail_remote = 1900 -%}
 {%- assign bb_description = "A home-use nerve stimulation device that targets the root cause of urgency, leaks, and nighttime bathroom trips. Just 30 minutes, a few times a week." -%}
 
 {%- comment -%} Variant references: device-only = first, device+remote = last {%- endcomment -%}
@@ -573,9 +574,9 @@
 
           {%- assign retail_1 = bb_retail_unit | times: bb_pack_units_1 -%}
           {%- assign saved_1 = retail_1 | minus: bb_pack_price_1 -%}
-          {%- assign retail_2 = bb_retail_unit | times: bb_pack_units_2 -%}
+          {%- assign retail_2 = bb_retail_unit | times: bb_pack_units_2 | plus: bb_retail_remote -%}
           {%- assign saved_2 = retail_2 | minus: bb_pack_price_2 -%}
-          {%- assign retail_3 = bb_retail_unit | times: bb_pack_units_3 -%}
+          {%- assign retail_3 = bb_retail_unit | times: bb_pack_units_3 | plus: bb_retail_remote -%}
           {%- assign saved_3 = retail_3 | minus: bb_pack_price_3 -%}
 
           <div class="bb-packs" id="bb-packs">
