@@ -10,19 +10,25 @@
 {%- assign v_device = product.variants.first -%}
 {%- assign v_bundle = product.variants.last -%}
 
+{%- comment -%} Pack images — direct CDN URLs {%- endcomment -%}
+{%- assign bb_img_1x = "https://cdn.shopify.com/s/files/1/1029/7170/3631/files/ChatGPT_Image_13_aug._2026_09_43_37.png?v=1786688017" -%}
+{%- assign bb_img_2x = "https://cdn.shopify.com/s/files/1/1029/7170/3631/files/ChatGPT_Image_13_aug._2026_09_56_47.png?v=1786688017" -%}
+{%- assign bb_img_3x = "https://cdn.shopify.com/s/files/1/1029/7170/3631/files/ChatGPT_Image_13_aug._2026_10_31_35.png?v=1786688017" -%}
+{%- assign bb_img_remote = "https://cdn.shopify.com/s/files/1/1029/7170/3631/files/ChatGPT_Image_14_aug._2026_07_44_25.png?v=1786688013" -%}
+
 {%- comment -%} Pack 1: 1× device {%- endcomment -%}
 {%- assign bb_pack_name_1 = "Buy One" -%}
 {%- assign bb_pack_price_1 = 5900 -%}
 {%- assign bb_pack_units_1 = 1 -%}
 
 {%- comment -%} Pack 2: 1× device + 1× device+remote {%- endcomment -%}
-{%- assign bb_pack_name_2 = "Buy 2, Get a Free Gift" -%}
+{%- assign bb_pack_name_2 = "Buy 2, Get a Remote" -%}
 {%- assign bb_pack_price_2 = 9900 -%}
 {%- assign bb_pack_units_2 = 2 -%}
 {%- assign bb_pack_badge_2 = "Most Popular" -%}
 
 {%- comment -%} Pack 3: 3× device + 1× device+remote {%- endcomment -%}
-{%- assign bb_pack_name_3 = "Buy 3, Get 1 Free!" -%}
+{%- assign bb_pack_name_3 = "Buy 3, Get 1 Free + Remote" -%}
 {%- assign bb_pack_price_3 = 13900 -%}
 {%- assign bb_pack_units_3 = 4 -%}
 {%- assign bb_pack_badge_3 = "Best Value" -%}
@@ -183,10 +189,31 @@
   background: var(--white);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;
 }
 .bb-pack:hover { border-color: var(--brown); }
 .bb-pack.active { border-color: var(--brown); background: var(--light); }
+.bb-pack-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+  width: 140px;
+}
+.bb-pack-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: contain;
+  background: var(--light);
+}
+.bb-pack-plus {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  line-height: 1;
+}
 .bb-pack-badge {
   position: absolute;
   top: -11px;
@@ -207,6 +234,8 @@
 .bb-pack-left {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  min-width: 0;
 }
 .bb-pack-name {
   font-size: 16px;
@@ -446,6 +475,9 @@
             <div class="bb-pack active"
                  data-pack='[{"id":{{ v_device.id }},"quantity":1}]'
                  onclick="bbSelectPack(this)">
+              <div class="bb-pack-images">
+                <img class="bb-pack-img" src="{{ bb_img_1x }}" alt="Tibella device" width="44" height="44">
+              </div>
               <div class="bb-pack-left">
                 <div class="bb-pack-name">{{ bb_pack_name_1 }}</div>
                 <div class="bb-pack-save">You save ${{ saved_1 | money_without_currency }}</div>
@@ -462,6 +494,11 @@
               {% if bb_pack_badge_2 != blank %}
                 <div class="bb-pack-badge">{{ bb_pack_badge_2 }}</div>
               {% endif %}
+              <div class="bb-pack-images">
+                <img class="bb-pack-img" src="{{ bb_img_2x }}" alt="2 Tibella devices" width="44" height="44">
+                <span class="bb-pack-plus">+</span>
+                <img class="bb-pack-img" src="{{ bb_img_remote }}" alt="Tibella remote" width="44" height="44">
+              </div>
               <div class="bb-pack-left">
                 <div class="bb-pack-name">{{ bb_pack_name_2 }}</div>
                 <div class="bb-pack-save">You save ${{ saved_2 | money_without_currency }}</div>
@@ -478,6 +515,13 @@
               {% if bb_pack_badge_3 != blank %}
                 <div class="bb-pack-badge bb-pack-badge--gold">{{ bb_pack_badge_3 }}</div>
               {% endif %}
+              <div class="bb-pack-images">
+                <img class="bb-pack-img" src="{{ bb_img_3x }}" alt="3 Tibella devices" width="44" height="44">
+                <span class="bb-pack-plus">+</span>
+                <img class="bb-pack-img" src="{{ bb_img_1x }}" alt="Tibella device" width="44" height="44">
+                <span class="bb-pack-plus">+</span>
+                <img class="bb-pack-img" src="{{ bb_img_remote }}" alt="Tibella remote" width="44" height="44">
+              </div>
               <div class="bb-pack-left">
                 <div class="bb-pack-name">{{ bb_pack_name_3 }}</div>
                 <div class="bb-pack-save">You save ${{ saved_3 | money_without_currency }}</div>
@@ -604,10 +648,16 @@ function bbToggle(trigger) {
     var btn = form.querySelector('[type="submit"]');
     btn.setAttribute('aria-disabled', 'true');
     btn.textContent = 'Adding...';
-    fetch('/cart/add.js', {
+    fetch('/cart/clear.js', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
-      body: JSON.stringify({ items: items })
+      headers: { 'X-Requested-With': 'XMLHttpRequest' }
+    })
+    .then(function() {
+      return fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+        body: JSON.stringify({ items: items })
+      });
     })
     .then(function(r) { return r.json(); })
     .then(function(response) {
